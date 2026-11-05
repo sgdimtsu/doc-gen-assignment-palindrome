@@ -14,8 +14,6 @@ Labels distinguish the basis of each requirement:
 - **Evidence-derived**: needed to handle the supplied client data and notes correctly.
 - **Proposed**: an engineering safeguard or implementation policy to evaluate.
 
-A requirement can have multiple labels where its success criterion combines a required behaviour with a proposed mechanism.
-
 | ID | Requirement | Basis | Success criterion |
 | --- | --- | --- | --- |
 | R1 | Read the relevant evidence | Evidence-derived; Proposed | Support JSON, Word documents and statement images. Discover optional files without requiring an identical file inventory for every client. Record unreadable or unsupported evidence explicitly. |
@@ -28,18 +26,13 @@ A requirement can have multiple labels where its success criterion combines a re
 | R8 | Include tax content conditionally | Assignment-mandated; Evidence-derived | Include Tax Implications only for a recommended disposal that may create a taxable capital gain. When included, describe the potential liability and annual exempt amount without inventing a tax estimate. |
 | R9 | Preserve mandatory wording | Assignment-mandated | The FCA authorisation sentence and specified investment risk warning appear verbatim. Model generation cannot rewrite them. |
 | R10 | Make human review actionable | Evidence-derived; Proposed | Clearly identify missing or unconfirmed CGT, platform charges and ongoing advice charges, with the relevant account or platform where applicable. Other material unknowns must also be visible. |
-| R11 | Validate before delivery | Proposed | Check the report against structured findings and the specification. Clearly report critical validation failures. Retain diagnostics for investigation. |
+| R11 | Validate before delivery | Proposed | Check the report against structured findings and the specification. A critical failure must prevent it from being labelled as a validated draft. Retain diagnostics for investigation. |
 | R12 | Run end to end | Assignment-mandated | A documented command produces the client's Markdown report under outputs/ from a clean checkout with the required credentials. Preserve the provided formatter as instructed. |
 
-R1's explicit ingestion diagnostics and R4's formal source-authority rules are proposed mechanisms. R10 extends the manual-review guidance to other material unknowns. The prohibition on estimating CGT and platform/adviser fee rates is explicit in client 01's notes; applying it across clients is a proposed shared drafting policy.
 
-## Evaluation and acceptance
+## Acceptance Criteria
 
-Writing an evaluation is assignment-mandated. The measures, acceptance targets and testing methods below are proposed.
-
-Establish expected facts and review items through manual investigation of all four clients before using generated reports as evidence of correctness. Expected case facts belong in evaluation fixtures, never in generation rules.
-
-| Dimension | Measure | Initial acceptance target |
+| Criteria | Measure | Acceptance Criteria |
 | --- | --- | --- |
 | Scope and account accuracy | Required accounts present; inappropriate accounts absent; correct ownership and deduplication | No known critical errors across the supplied cases |
 | Financial accuracy | Reported values, dates, transactions and calculations compared with evidence | No unsupported material figures; no known calculation errors; approximations remain qualified |
@@ -52,7 +45,7 @@ Establish expected facts and review items through manual investigation of all fo
 | Efficiency | Record model calls, token usage, estimated cost and elapsed time per client | Measure the starter and improved pipeline; set numerical budgets after obtaining a baseline |
 | Reproducibility | Document setup and exercise the generation and evaluation commands | Works from a clean checkout with documented dependencies and credentials |
 
-Use deterministic checks for exact properties and evidence-based human review for interpretation. A model reviewer may supplement evaluation but must not be the sole judge of factual correctness. Passing supplied cases does not establish performance on the unseen set.
+
 
 ## Trade-off priorities (proposed)
 
