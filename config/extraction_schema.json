@@ -1,0 +1,1770 @@
+{
+  "type": "object",
+  "properties": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/report_scope_observation"
+          },
+          {
+            "$ref": "#/$defs/account_observation"
+          },
+          {
+            "$ref": "#/$defs/valuation_observation"
+          },
+          {
+            "$ref": "#/$defs/objective_circumstance_observation"
+          },
+          {
+            "$ref": "#/$defs/action_observation"
+          },
+          {
+            "$ref": "#/$defs/funding_observation"
+          },
+          {
+            "$ref": "#/$defs/charge_observation"
+          },
+          {
+            "$ref": "#/$defs/tax_statement_observation"
+          },
+          {
+            "$ref": "#/$defs/instruction_observation"
+          },
+          {
+            "$ref": "#/$defs/unclassified_observation"
+          }
+        ]
+      }
+    },
+    "extraction_issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extraction_issue"
+      }
+    }
+  },
+  "required": [
+    "sources",
+    "observations",
+    "extraction_issues"
+  ],
+  "additionalProperties": false,
+  "description": "Model response for extraction only. Code validates and enriches this result using its inventory, tool ledger and code-generated IDs.",
+  "$defs": {
+    "account_reference": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "platform": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "account_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reference_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "account_id",
+        "platform",
+        "account_type",
+        "reference_text"
+      ],
+      "additionalProperties": false,
+      "description": "Preserve explicit identifiers and literal descriptions; do not force an uncertain account match."
+    },
+    "person_reference": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reference_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "reference_text"
+      ],
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "json_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "paragraph": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "table": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "region": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "line": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "json_path",
+        "paragraph",
+        "table",
+        "row",
+        "page",
+        "region",
+        "line"
+      ],
+      "additionalProperties": false,
+      "description": "Copy reader-provided coordinates; null where unavailable. Do not invent locations. Use line for Markdown/text and supplied region for images."
+    },
+    "precision": {
+      "type": "string",
+      "enum": [
+        "exact",
+        "approximate",
+        "range",
+        "upper_bound",
+        "lower_bound",
+        "unspecified"
+      ],
+      "description": "Precision stated in the source. Approximation or a bound is not an extraction failure."
+    },
+    "field_state": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "description": "Path relative to data, for example account.account_id or commitments[0].amount."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "explicitly_missing",
+            "not_stated",
+            "ambiguous",
+            "not_applicable",
+            "unreadable",
+            "qualified_value"
+          ]
+        }
+      },
+      "required": [
+        "field",
+        "state"
+      ],
+      "additionalProperties": false,
+      "description": "Describe unknown fields without conflating missing facts, unreadable evidence and deliberately non-exact amounts. qualified_value means the exact amount is null but a qualified value is preserved."
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "description": "Copy the code-supplied inventory ID."
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "report_request",
+            "account_records",
+            "meeting_notes",
+            "statement",
+            "internal_guidance",
+            "report_specification",
+            "general_background",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "document_date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Explicit document date as YYYY-MM-DD; never use file modification time."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "source_id",
+        "role",
+        "document_date"
+      ],
+      "additionalProperties": false,
+      "description": "One classification per inventoried source. Copy source_id from inventory; code supplies filename, format and reading status in the saved result."
+    },
+    "commitment": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Exact stated amount as a decimal string. Null for approximate or bounded figures; retain amount_text and precision."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "$ref": "#/$defs/precision"
+        },
+        "timing_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "description",
+        "amount",
+        "amount_text",
+        "currency",
+        "precision",
+        "timing_text"
+      ],
+      "additionalProperties": false
+    },
+    "report_scope_data": {
+      "type": "object",
+      "properties": {
+        "clients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/person_reference"
+          }
+        },
+        "included_accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/account_reference"
+          }
+        },
+        "excluded_accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/account_reference"
+          }
+        }
+      },
+      "required": [
+        "clients",
+        "included_accounts",
+        "excluded_accounts"
+      ],
+      "additionalProperties": false,
+      "description": "Explicit instructions about report coverage; a holdings list alone is not scope."
+    },
+    "report_scope_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "report_scope"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/report_scope_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "account_data": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/$defs/account_reference"
+        },
+        "holders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/person_reference"
+          }
+        },
+        "status": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "open",
+                "closed",
+                "proposed",
+                "unclear"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "account",
+        "holders",
+        "status"
+      ],
+      "additionalProperties": false,
+      "description": "Account identity, ownership, platform, type or status. Preserve repeated holder records separately."
+    },
+    "account_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "account"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/account_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "valuation_data": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/$defs/account_reference"
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Exact stated amount as a decimal string. Null for approximate or bounded figures; retain amount_text and precision."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount_text": {
+          "type": "string"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valuation_date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Explicit valuation or live observation date, YYYY-MM-DD."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "$ref": "#/$defs/precision"
+        }
+      },
+      "required": [
+        "account",
+        "amount",
+        "amount_text",
+        "currency",
+        "valuation_date",
+        "date_text",
+        "precision"
+      ],
+      "additionalProperties": false,
+      "description": "An account balance or value; preserve distinct dates and approximate language."
+    },
+    "valuation_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "valuation"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/valuation_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "objective_circumstance_data": {
+      "type": "object",
+      "properties": {
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/person_reference"
+          }
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "objective",
+            "time_horizon",
+            "risk_profile",
+            "income_need",
+            "personal_circumstance",
+            "other"
+          ]
+        },
+        "timeframe_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "risk_score": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "risk_description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "people",
+        "category",
+        "timeframe_text",
+        "risk_score",
+        "risk_description"
+      ],
+      "additionalProperties": false,
+      "description": "Stated goals, risk, income needs or relevant circumstances; do not upgrade aspirations into agreed actions."
+    },
+    "objective_circumstance_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "objective_circumstance"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/objective_circumstance_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "action_data": {
+      "type": "object",
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": [
+            "contribute",
+            "sell",
+            "transfer",
+            "open_account",
+            "rebalance",
+            "retain",
+            "other"
+          ]
+        },
+        "source_accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/account_reference"
+          }
+        },
+        "target_accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/account_reference"
+          }
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Exact stated amount as a decimal string. Null for approximate or bounded figures; retain amount_text and precision."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "$ref": "#/$defs/precision"
+        },
+        "amount_basis": {
+          "type": "string",
+          "enum": [
+            "specified",
+            "full_balance",
+            "partial_unspecified",
+            "unspecified"
+          ]
+        },
+        "agreement_status": {
+          "type": "string",
+          "enum": [
+            "agreed",
+            "proposed",
+            "discussed",
+            "deferred",
+            "rejected",
+            "unclear"
+          ]
+        },
+        "allocation_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rationale_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timing_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "action_type",
+        "source_accounts",
+        "target_accounts",
+        "amount",
+        "amount_text",
+        "currency",
+        "precision",
+        "amount_basis",
+        "agreement_status",
+        "allocation_text",
+        "rationale_text",
+        "conditions",
+        "timing_text"
+      ],
+      "additionalProperties": false,
+      "description": "Stated action, including rejected or deferred actions. Preserve conditions; do not calculate or invent advice."
+    },
+    "action_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "action"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/action_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "funding_data": {
+      "type": "object",
+      "properties": {
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/person_reference"
+          }
+        },
+        "origin_text": {
+          "type": "string"
+        },
+        "account": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/account_reference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Exact stated amount as a decimal string. Null for approximate or bounded figures; retain amount_text and precision."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "$ref": "#/$defs/precision"
+        },
+        "receipt_status": {
+          "type": "string",
+          "enum": [
+            "received",
+            "expected",
+            "contingent",
+            "unclear"
+          ]
+        },
+        "receipt_date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Explicit receipt date, YYYY-MM-DD."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "timing_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "commitments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/commitment"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "people",
+        "origin_text",
+        "account",
+        "amount",
+        "amount_text",
+        "currency",
+        "precision",
+        "receipt_status",
+        "receipt_date",
+        "timing_text",
+        "commitments",
+        "conditions"
+      ],
+      "additionalProperties": false,
+      "description": "Funding receipts and commitments; distinguish received money from contingent receipts without calculating net availability."
+    },
+    "funding_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "funding"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/funding_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "charge_data": {
+      "type": "object",
+      "properties": {
+        "charge_type": {
+          "type": "string",
+          "enum": [
+            "platform",
+            "ongoing_advice",
+            "initial",
+            "fund",
+            "other"
+          ]
+        },
+        "account": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/account_reference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "platform": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rate_percent": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Percentage as written: 0.5 means 0.5%, not 50%."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Exact stated amount as a decimal string. Null for approximate or bounded figures; retain amount_text and precision."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "basis_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frequency_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confirmation_status": {
+          "type": "string",
+          "enum": [
+            "explicitly_confirmed",
+            "requires_confirmation",
+            "not_stated"
+          ]
+        }
+      },
+      "required": [
+        "charge_type",
+        "account",
+        "platform",
+        "rate_percent",
+        "amount",
+        "currency",
+        "basis_text",
+        "frequency_text",
+        "confirmation_status"
+      ],
+      "additionalProperties": false,
+      "description": "Fees or fee confirmation requirements. A precise rate is not automatically confirmed."
+    },
+    "charge_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "charge"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/charge_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "tax_statement_data": {
+      "type": "object",
+      "properties": {
+        "people": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/person_reference"
+          }
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/account_reference"
+          }
+        },
+        "tax_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "Exact stated amount as a decimal string. Null for approximate or bounded figures; retain amount_text and precision."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "$ref": "#/$defs/precision"
+        },
+        "tax_period_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confirmation_status": {
+          "type": "string",
+          "enum": [
+            "explicitly_confirmed",
+            "requires_confirmation",
+            "not_stated"
+          ]
+        }
+      },
+      "required": [
+        "people",
+        "accounts",
+        "tax_type",
+        "amount",
+        "amount_text",
+        "currency",
+        "precision",
+        "tax_period_text",
+        "confirmation_status"
+      ],
+      "additionalProperties": false,
+      "description": "Source statements about tax; do not calculate liability or apply external tax rules."
+    },
+    "tax_statement_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "tax_statement"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/tax_statement_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "instruction_data": {
+      "type": "object",
+      "properties": {
+        "instruction_type": {
+          "type": "string",
+          "enum": [
+            "source_authority",
+            "report_content",
+            "mandatory_wording",
+            "manual_review",
+            "tone",
+            "other"
+          ]
+        },
+        "scope_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "exact_wording": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "instruction_type",
+        "scope_text",
+        "exact_wording"
+      ],
+      "additionalProperties": false,
+      "description": "Explicit source or drafting guidance. Preserve stated scope; do not generalise client-specific instructions."
+    },
+    "instruction_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "instruction"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/instruction_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "unclassified_data": {
+      "type": "object",
+      "properties": {
+        "reason_unclassified": {
+          "type": "string",
+          "enum": [
+            "no_matching_type",
+            "unclear_meaning",
+            "uncertain_relevance"
+          ]
+        }
+      },
+      "required": [
+        "reason_unclassified"
+      ],
+      "additionalProperties": false,
+      "description": "Potentially relevant evidence with uncertain relevance or no faithful type. Preserve supporting text; an additional issue is not required unless a distinct extraction limitation exists."
+    },
+    "unclassified_observation": {
+      "type": "object",
+      "properties": {
+        "observation_type": {
+          "type": "string",
+          "enum": [
+            "unclassified"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "source_text": {
+          "type": "string",
+          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "introduction",
+              "background_objectives",
+              "recommendations",
+              "tax_implications",
+              "fees_charges",
+              "conclusion"
+            ]
+          },
+          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+        },
+        "evidence_scope": {
+          "type": "string",
+          "enum": [
+            "client_specific",
+            "general_illustrative",
+            "unclear"
+          ]
+        },
+        "data": {
+          "$ref": "#/$defs/unclassified_data"
+        },
+        "field_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/field_state"
+          }
+        }
+      },
+      "required": [
+        "observation_type",
+        "source_id",
+        "location",
+        "source_text",
+        "sections",
+        "evidence_scope",
+        "data",
+        "field_states"
+      ],
+      "additionalProperties": false
+    },
+    "extraction_issue": {
+      "type": "object",
+      "properties": {
+        "issue_type": {
+          "type": "string",
+          "enum": [
+            "unreadable_content",
+            "unsupported_format",
+            "ambiguous_reference",
+            "ambiguous_wording",
+            "unclear_document_role",
+            "schema_gap",
+            "other_extraction_issue"
+          ]
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "affected_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "Describe an observed extraction limitation; do not resolve authority conflicts."
+        },
+        "observation_indexes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Zero-based positions in this response observations array. Code validates bounds and assigns permanent IDs. Empty for a source-level issue without an observation."
+        }
+      },
+      "required": [
+        "issue_type",
+        "source_id",
+        "location",
+        "affected_fields",
+        "description",
+        "observation_indexes"
+      ],
+      "additionalProperties": false,
+      "description": "A reading, interpretation or representation limitation. Not a missing fact, approximation, conditional receipt or cross-source disagreement by itself."
+    }
+  }
+}

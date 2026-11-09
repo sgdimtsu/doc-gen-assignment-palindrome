@@ -4,7 +4,8 @@ version = "0.1.0"
 description = "Document-generation take-home: turn client source material into a finished advice report via a config-driven pipeline."
 requires-python = ">=3.10"
 dependencies = [
-    "openai>=1.40",
+    "openai>=1.66",
+    "jsonschema>=4.23",
     "python-docx>=1.1",
     "python-dotenv>=1.0",
 ]
@@ -25,3 +26,7 @@ packages = ["src/agent_pipeline", "src/document_formatter"]
 
 [tool.ruff]
 src = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
