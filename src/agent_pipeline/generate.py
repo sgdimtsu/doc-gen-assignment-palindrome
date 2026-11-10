@@ -1,106 +1,121 @@
-"""Generate an advice report for a client from the template config.
-
-Usage:
-    python -m agent_pipeline.generate --client client_01_clean
-"""
+"""Generate a draft report: extract, reconcile, then write using the client specification."""
 
 import argparse
+import asyncio
 import json
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-from openai import OpenAI
+from openai import AsyncOpenAI, OpenAI
 
-from document_formatter.formatting import format_document
-from document_formatter.loading import read_file
-
-
-class ReportGenerator:
-    """Builds a report one section at a time from the template config."""
-
-    def __init__(self, openai_client: OpenAI, model: str) -> None:
-        self._openai = openai_client
-        self._model = model
-
-    def generate(self, config: dict, context: str) -> str:
-        instructions = config.get("global_instructions", "")
-        sections = []
-        for section in config["sections"]:
-            if not self._section_applies(section, context, instructions):
-                continue
-            sections.append(
-                {
-                    "title": section.get("title", ""),
-                    "content": self._build_section(section, context, instructions),
-                }
-            )
-        return format_document(config, sections)
-
-    def _section_applies(self, section: dict, context: str, instructions: str) -> bool:
-        rule = section.get("use_if", "always")
-        if rule == "always":
-            return True
-        verdict = self._ask(
-            f"{instructions}\n\n"
-            f"Decide whether this section applies to the client.\n"
-            f"Rule: {rule}\n"
-            f"Reply with only 'yes' or 'no'.",
-            context,
-        )
-        return verdict.lower().startswith("y")
-
-    def _build_section(self, section: dict, context: str, instructions: str) -> str:
-        content = section["template"]
-        for name, spec in section.get("placeholders", {}).items():
-            value = self._ask(f"{instructions}\n\n{spec['prompt']}", context)
-            content = content.replace(f"<<{name}>>", value)
-        return content
-
-    def _ask(self, instruction: str, context: str) -> str:
-        response = self._openai.chat.completions.create(
-            model=self._model,
-            messages=[
-                {"role": "user", "content": f"{context}\n\n---\n\n{instruction}"}
-            ],
-        )
-        return response.choices[0].message.content.strip()
+from agent_pipeline.cli import client_directory, extraction_model, load_environment
+from agent_pipeline import ROOT
+from agent_pipeline.extraction.agent import ExtractionAgent
+from agent_pipeline.extraction.models import ExtractionSettings
+from agent_pipeline.extraction.results import save_run, write_json
+from agent_pipeline.extraction.sources import SourceTools
+from agent_pipeline.reconciliation.engine import reconcile
+from agent_pipeline.reconciliation.input import load_extraction
+from agent_pipeline.writing.writer import WriterOutputError, write_report
 
 
-def read_client_context(client_dir: Path, filenames: list[str]) -> str:
-    """Read the named files from the client folder and concatenate them into one context string."""
-    parts = []
-    for name in filenames:
-        parts.append(f"=== {name} ===\n{read_file(client_dir / name)}")
-    return "\n\n".join(parts)
+def main(argv=None):
+    return asyncio.run(_main(argv))
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Generate an advice report for a client."
-    )
-    parser.add_argument("--client", required=True, help="folder name under data/")
-    parser.add_argument("--data-dir", type=Path, default=Path("data"))
+async def _main(argv):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--client", required=True, help="Client folder under data/")
     parser.add_argument(
-        "--config", type=Path, default=Path("config/template_config.json")
+        "--run-dir", type=Path, help="Reuse a saved run instead of extracting again"
     )
-    parser.add_argument("--output-dir", type=Path, default=Path("outputs"))
-    args = parser.parse_args()
+    parser.add_argument("--model", help="Override extraction and writer models")
+    parser.add_argument("--data-dir", type=Path, default=ROOT / "data")
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs")
+    parser.add_argument(
+        "--config", type=Path, default=ROOT / "config/template_config_v2.json"
+    )
+    args = parser.parse_args(argv)
+    client_dir = client_directory(parser, args.client, args.data_dir)
+    load_environment()
+    try:
+        specification = (client_dir / "template_spec.md").read_text(encoding="utf-8")
+        config = json.loads(args.config.read_text(encoding="utf-8"))
+        sources = SourceTools(client_dir)
+        request_source = next(
+            s
+            for s in sources.list_files()["sources"]
+            if s["filename"] == "report_request.docx"
+        )
+        request = sources.read_source(request_source["source_id"])
+        if not request.get("ok"):
+            raise ValueError("Cannot read report_request.docx")
+        report_request = {
+            "blocks": request["blocks"],
+            "limitations": request.get("limitations", []),
+        }
+        if args.run_dir:
+            summary = json.loads((args.run_dir / "summary.json").read_text())
+            if summary["client"] != args.client:
+                parser.error("Run belongs to a different client")
+    except (OSError, ValueError, KeyError, StopIteration):
+        parser.error(
+            "Cannot load client specification, report request, V2 config or selected run"
+        )
 
-    load_dotenv()
-    generator = ReportGenerator(OpenAI(), os.environ.get("OPENAI_MODEL", "gpt-4o-mini"))
-
-    config = json.loads(args.config.read_text(encoding="utf-8"))
-    client_dir = args.data_dir / args.client
-    filenames = sorted(path.name for path in client_dir.iterdir() if path.is_file())
-    context = read_client_context(client_dir, filenames)
-    report = generator.generate(config, context)
-
-    args.output_dir.mkdir(parents=True, exist_ok=True)
-    out_path = args.output_dir / f"{args.client}.md"
-    out_path.write_text(report, encoding="utf-8")
-    print(f"Wrote {out_path}")
+    model = extraction_model(args.model)
+    writer_model = args.model or os.environ.get("WRITER_MODEL") or model
+    folder = args.run_dir
+    try:
+        if folder is None:
+            settings = ExtractionSettings(model=model)
+            print(f"Extracting {args.client} using {model}...", flush=True)
+            client = AsyncOpenAI()
+            try:
+                run = await ExtractionAgent(client, settings).run(client_dir)
+            finally:
+                await client.close()
+            folder = save_run(args.output_dir, args.client, run, settings)
+            print(f"Extraction: {run.state}; run directory: {folder}", flush=True)
+        reconciliation_path = folder / "reconciliation.json"
+        if not reconciliation_path.exists():
+            extraction, reports, errors = load_extraction(folder)
+            facts = reconcile(extraction, reports, errors)
+            write_json(reconciliation_path, facts)
+        else:
+            facts = json.loads(reconciliation_path.read_text(encoding="utf-8"))
+        print(
+            f"Writing draft using {writer_model}; review issues: {len(facts.get('issues', []))}...",
+            flush=True,
+        )
+        with OpenAI(timeout=90, max_retries=2) as client:
+            report = write_report(
+                client,
+                writer_model,
+                specification,
+                report_request,
+                facts,
+                config,
+                response_path=folder / "writer_response.json",
+            )
+        path = folder / "report.md"
+        path.write_text(report, encoding="utf-8")
+        print(f"Wrote draft: {path}")
+        return 0
+    except WriterOutputError as error:
+        parser.exit(
+            1, f"Report generation failed: {error}; inspect run directory {folder}\n"
+        )
+    except Exception as error:
+        # Raw SDK messages/bodies may contain credentials or submitted source content.
+        parser.exit(
+            1,
+            "Report generation failed: "
+            + type(error).__name__
+            + (f"; inspect run directory {folder}" if folder else "")
+            + "\n",
+        )
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -1,4 +1,4 @@
-"""Match a code-owned validation verdict to the exact candidate."""
+"""Structural checks and advisory validation status."""
 
 import hashlib
 import json
@@ -12,23 +12,28 @@ def candidate_hash(candidate):
     ).hexdigest()
 
 
-def validation_errors(candidate, reports):
+def validation_state(candidate, reports, result=None):
     if not reports:
-        return ["Final candidate has not been validated"]
+        return "not_reviewed"
     report = reports[-1]
-    if candidate is None or report.get("candidate_sha256") != candidate_hash(candidate):
-        return ["Final candidate differs from the last validated candidate"]
+    if candidate is not None and report.get("candidate_sha256") != candidate_hash(
+        candidate
+    ):
+        return "stale"
+    if result is not None:
+        digest = hashlib.sha256(json.dumps(result, sort_keys=True).encode()).hexdigest()
+        if digest != report.get("extraction_sha256"):
+            return "stale" if report.get("extraction_sha256") else "incomplete"
+    if report.get("errors") or not report.get("evidence_review_complete"):
+        return "incomplete"
     findings = report.get("deterministic_findings", []) + report.get(
         "review_findings", []
     )
-    if (
-        report.get("state") != "passed"
-        or not report.get("evidence_review_complete")
-        or report.get("errors")
-        or any(f.get("severity") == "error" for f in findings)
+    if report.get("state") == "failed" or any(
+        f.get("severity") == "error" for f in findings
     ):
-        return ["Final candidate has unresolved or incomplete validation"]
-    return []
+        return "failed"
+    return "passed" if report.get("state") == "passed" else "incomplete"
 
 
 def candidate_errors(candidate, inventory):
@@ -50,9 +55,9 @@ def candidate_errors(candidate, inventory):
     return errors
 
 
-def release_errors(candidate, reports, inventory, result=None):
-    errors = validation_errors(candidate, reports)
-    if not inventory or not {"report_request.docx", "template_spec.md"}.issubset(
+def execution_errors(inventory):
+    errors = []
+    if not {"report_request.docx", "template_spec.md"}.issubset(
         {s["filename"] for s in inventory if s["read_status"] == "read"}
     ):
         errors.append("Required relevance files have not been read")
@@ -61,14 +66,4 @@ def release_errors(candidate, reports, inventory, result=None):
         for s in inventory
         if s["read_status"] != "read"
     )
-    if candidate:
-        errors.extend(
-            "Reported incomplete reading: " + issue["source_id"]
-            for issue in candidate.get("extraction_issues", [])
-            if issue["issue_type"] in {"unreadable_content", "unsupported_format"}
-        )
-    if not errors and result is not None:
-        digest = hashlib.sha256(json.dumps(result, sort_keys=True).encode()).hexdigest()
-        if digest != reports[-1].get("extraction_sha256"):
-            errors.append("Saved extraction differs from the reviewed extraction")
     return errors

@@ -1,0 +1,564 @@
+{
+  "scope": {
+    "included_account_keys": [
+      "account-0001"
+    ],
+    "excluded_account_keys": [],
+    "clients": [
+      "Margaret Hughes"
+    ],
+    "observation_ids": [
+      "71518aa17e0745d7b387ce7487afd362:observation-0001"
+    ]
+  },
+  "accounts": [
+    {
+      "account_key": "account-0001",
+      "account_id": "H-ISA-01",
+      "proposed": false,
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0002"
+      ],
+      "holders": [
+        "Margaret Hughes"
+      ],
+      "platform": "Holloway",
+      "account_type": "Stocks & Shares ISA",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-ISA-01",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Holloway Stocks & Shares ISA",
+            "owner_text": "Margaret Hughes"
+          },
+          "amount": "52000.0",
+          "amount_text": "52000.0",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": "2026-04-30",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "71518aa17e0745d7b387ce7487afd362:observation-0004"
+        ],
+        "source_text": "{\n          \"account_id\": \"H-ISA-01\",\n          \"platform\": \"Holloway\",\n          \"type\": \"Stocks & Shares ISA\",\n          \"owner\": \"Margaret Hughes\",\n          \"status\": \"open\",\n          \"value\": 52000.0,\n          \"currency\": \"GBP\",\n          \"valuation_date\": \"2026-04-30\"\n        }",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": true
+    },
+    {
+      "account_key": "account-0002",
+      "account_id": "H-CASH-01",
+      "proposed": false,
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0003"
+      ],
+      "holders": [
+        "Margaret Hughes"
+      ],
+      "platform": "Holloway",
+      "account_type": "Cash Account",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-CASH-01",
+            "platform": "Holloway",
+            "account_type": "Cash Account",
+            "reference_text": "Holloway cash account",
+            "owner_text": "Margaret Hughes"
+          },
+          "amount": "25000.0",
+          "amount_text": "25000.0",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": "2026-04-30",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "71518aa17e0745d7b387ce7487afd362:observation-0005"
+        ],
+        "source_text": "{\n          \"account_id\": \"H-CASH-01\",\n          \"platform\": \"Holloway\",\n          \"type\": \"Cash Account\",\n          \"owner\": \"Margaret Hughes\",\n          \"status\": \"open\",\n          \"value\": 25000.0,\n          \"currency\": \"GBP\",\n          \"valuation_date\": \"2026-04-30\"\n        }",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": false
+    }
+  ],
+  "actions": [
+    {
+      "data": {
+        "action_type": "contribute",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": "Cash Account",
+            "reference_text": "cash account",
+            "owner_text": null
+          }
+        ],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Stocks & Shares ISA",
+            "owner_text": null
+          }
+        ],
+        "amount": "20000",
+        "amount_text": "£20,000",
+        "currency": "GBP",
+        "precision": "exact",
+        "amount_basis": "specified",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": "move available cash into the ISA wrapper",
+        "conditions": [],
+        "timing_text": null
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0011"
+      ],
+      "source_text": "We agreed she would move £20,000 from the cash account into the Stocks & Shares ISA. No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved.",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [],
+      "target_account_keys": []
+    },
+    {
+      "data": {
+        "action_type": "sell",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": null,
+            "reference_text": "existing investments",
+            "owner_text": null
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "rejected",
+        "allocation_text": null,
+        "rationale_text": "No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved.",
+        "conditions": [],
+        "timing_text": null
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0012"
+      ],
+      "source_text": "No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved.",
+      "sections": [
+        "recommendations",
+        "tax_implications"
+      ],
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].account_type",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [],
+      "target_account_keys": []
+    }
+  ],
+  "funding": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "origin_text": "cash sitting on deposit in her Holloway cash account",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Cash Account",
+          "reference_text": "Holloway cash account",
+          "owner_text": "Margaret Hughes"
+        },
+        "amount": null,
+        "amount_text": "some of it",
+        "currency": null,
+        "precision": "unspecified",
+        "receipt_status": "received",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0010"
+      ],
+      "source_text": "her main point for the meeting was that she has cash sitting on deposit in her Holloway cash account and would like to use this year's ISA allowance by moving some of it into her Stocks & Shares ISA.",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "receipt_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "category": "risk_profile",
+        "timeframe_text": null,
+        "risk_score": "4",
+        "risk_description": "moderate approach to risk"
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0006"
+      ],
+      "source_text": "Margaret is retired and confirmed there have been no changes to her circumstances or objectives since last year's review. She remains comfortable with the moderate approach to risk we agreed previously and was happy that the portfolio had performed in line with that.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "category": "personal_circumstance",
+        "timeframe_text": null,
+        "risk_score": null,
+        "risk_description": "retired; no changes to circumstances or objectives"
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0007"
+      ],
+      "source_text": "Margaret is retired and confirmed there have been no changes to her circumstances or objectives since last year's review.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "category": "income_need",
+        "timeframe_text": "near term",
+        "risk_score": null,
+        "risk_description": null
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0008"
+      ],
+      "source_text": "Margaret has no income requirement from the portfolio at present and does not expect that to change in the near term.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_description",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "category": "objective",
+        "timeframe_text": "at some point in the future",
+        "risk_score": null,
+        "risk_description": "may want to discuss gifting to her grandchildren"
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0009"
+      ],
+      "source_text": "She mentioned she may want to discuss gifting to her grandchildren at some point in the future, but was clear that is not for today and nothing should be actioned on it now.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "charges": [],
+  "tax_statements": [],
+  "instructions": [
+    {
+      "data": {
+        "instruction_type": "source_authority",
+        "scope_text": "report data extraction and source precedence",
+        "exact_wording": null
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0013"
+      ],
+      "source_text": "The db is where account structure and ownership live. The meeting note is where the conversation and the decisions live. The two are produced at different times and for different reasons, so read the date on a figure before you rely on it.",
+      "sections": [],
+      "field_states": [
+        {
+          "field": "exact_wording",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "instruction_type": "manual_review",
+        "scope_text": "capital gains tax, platform and adviser fee rates must not be draft-estimated; must be flagged for manual completion if not explicit in the source",
+        "exact_wording": null
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0014"
+      ],
+      "source_text": "Some numbers are not ours to produce in the draft. The capital gains tax on any disposal, and the platform and adviser fee rates, are confirmed or inserted by a person before the report goes to the client, so the draft must not estimate or invent them. We do need a way to flag these clearly for manual review in the output, so whoever finalises the report can see exactly what is outstanding and fill it in. How you mark them is your call, but a number we made up must never reach the client, and the gaps must not be hidden.",
+      "sections": [
+        "fees_charges",
+        "tax_implications"
+      ],
+      "field_states": [
+        {
+          "field": "exact_wording",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "instruction_type": "mandatory_wording",
+        "scope_text": "introduction section",
+        "exact_wording": "There is a standard line about FCA authorisation that has to appear in the report word for word."
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0015"
+      ],
+      "source_text": "There is a standard line about FCA authorisation that has to appear in the report word for word. I have already put it into the template config as static text, so leave it exactly as it is: do not paraphrase it, and do not let the model rewrite it when you change how the sections are generated.",
+      "sections": [
+        "introduction"
+      ],
+      "field_states": []
+    },
+    {
+      "data": {
+        "instruction_type": "mandatory_wording",
+        "scope_text": "conclusion section risk warning",
+        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns."
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0016"
+      ],
+      "source_text": "Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"",
+      "sections": [
+        "conclusion"
+      ],
+      "field_states": []
+    },
+    {
+      "data": {
+        "instruction_type": "report_content",
+        "scope_text": "tax implications section inclusion",
+        "exact_wording": "Include this section ONLY if the recommendation involves selling or disposing of investments that may create a taxable capital gain. If nothing is being sold, omit the section entirely."
+      },
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0017"
+      ],
+      "source_text": "Include this section ONLY if the recommendation involves selling or disposing of investments that\n  may create a taxable capital gain. If nothing is being sold, omit the section entirely.",
+      "sections": [
+        "tax_implications"
+      ],
+      "field_states": []
+    }
+  ],
+  "unclassified": [],
+  "issues": [
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0011"
+      ],
+      "account_keys": [],
+      "field": "source_accounts[0]"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0011"
+      ],
+      "account_keys": [],
+      "field": "target_accounts[0]"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0012"
+      ],
+      "account_keys": [],
+      "field": "source_accounts[0]"
+    },
+    {
+      "issue_type": "interpretation_required",
+      "message": "Source guidance or unclassified evidence needs review; fixed rules do not interpret free-text policy",
+      "severity": "warning",
+      "observation_ids": [
+        "71518aa17e0745d7b387ce7487afd362:observation-0013"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_stale",
+      "message": "The final candidate changed after validation. Earlier findings may be outdated; see validation.json and verify this draft.",
+      "severity": "warning",
+      "observation_ids": [],
+      "account_keys": [],
+      "field": null
+    }
+  ],
+  "validation_state": "stale",
+  "requires_review": true
+}

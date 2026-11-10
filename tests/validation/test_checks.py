@@ -47,7 +47,9 @@ def test_checks_find_missing_state_on_populated_field():
     extraction["observations"][0]["field_states"] = [
         {"field": "reason_unclassified", "state": "not_stated"}
     ]
-    findings = ExtractionValidator().deterministic_checks(extraction, evidence)
+    findings = check_extraction(
+        extraction, evidence, ExtractionValidator().extraction_validator
+    )
     assert any(
         f["category"] == "field_state" and "contradicts populated" in f["message"]
         for f in findings
@@ -57,5 +59,7 @@ def test_checks_find_missing_state_on_populated_field():
 def test_checks_find_unsupported_excerpt():
     extraction, evidence = example()
     extraction["observations"][0]["source_text"] = "This was never in the document."
-    findings = ExtractionValidator().deterministic_checks(extraction, evidence)
+    findings = check_extraction(
+        extraction, evidence, ExtractionValidator().extraction_validator
+    )
     assert any(f["category"] == "quote" for f in findings)

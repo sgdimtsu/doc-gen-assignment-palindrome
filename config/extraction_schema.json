@@ -80,7 +80,8 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "description": "Stated platform from the reference or explicitly applicable surrounding context in this same source."
         },
         "account_type": {
           "anyOf": [
@@ -90,7 +91,8 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "description": "Account type as stated in this source, including an explicit abbreviation such as ISA or GIA. Do not infer a narrower product type."
         },
         "reference_text": {
           "anyOf": [
@@ -101,13 +103,25 @@
               "type": "null"
             }
           ]
+        },
+        "owner_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Owner name or joint-ownership wording explicitly stated for this account in this source; null if unstated. Do not import ownership from another document."
         }
       },
       "required": [
         "account_id",
         "platform",
         "account_type",
-        "reference_text"
+        "reference_text",
+        "owner_text"
       ],
       "additionalProperties": false,
       "description": "Preserve explicit identifiers and literal descriptions; do not force an uncertain account match."
@@ -325,40 +339,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/report_scope_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -422,40 +415,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/account_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -549,40 +521,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/valuation_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -670,40 +621,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/objective_circumstance_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -866,40 +796,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/action_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -1042,40 +951,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/funding_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -1210,40 +1098,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/charge_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -1362,40 +1229,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/tax_statement_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -1465,40 +1311,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/instruction_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -1543,40 +1368,19 @@
           "type": "string"
         },
         "source_text": {
-          "type": "string",
-          "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+          "$ref": "#/$defs/observation_source_text"
         },
         "sections": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "introduction",
-              "background_objectives",
-              "recommendations",
-              "tax_implications",
-              "fees_charges",
-              "conclusion"
-            ]
-          },
-          "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+          "$ref": "#/$defs/observation_sections"
         },
         "evidence_scope": {
-          "type": "string",
-          "enum": [
-            "client_specific",
-            "general_illustrative",
-            "unclear"
-          ]
+          "$ref": "#/$defs/observation_evidence_scope"
         },
         "data": {
           "$ref": "#/$defs/unclassified_data"
         },
         "field_states": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/field_state"
-          }
+          "$ref": "#/$defs/observation_field_states"
         }
       },
       "required": [
@@ -1635,6 +1439,39 @@
       ],
       "additionalProperties": false,
       "description": "A reading, interpretation or representation limitation. Not a missing fact, approximation, conditional receipt or cross-source disagreement by itself."
+    },
+    "observation_source_text": {
+      "type": "string",
+      "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
+    },
+    "observation_sections": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "introduction",
+          "background_objectives",
+          "recommendations",
+          "tax_implications",
+          "fees_charges",
+          "conclusion"
+        ]
+      },
+      "description": "Potential uses based on template_spec.md and report_request.docx; multiple allowed. Not authority, scope resolution or conditional section inclusion. Empty if placement is unclear."
+    },
+    "observation_evidence_scope": {
+      "type": "string",
+      "enum": [
+        "client_specific",
+        "general_illustrative",
+        "unclear"
+      ]
+    },
+    "observation_field_states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/field_state"
+      }
     }
   }
 }

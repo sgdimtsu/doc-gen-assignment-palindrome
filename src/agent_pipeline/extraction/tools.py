@@ -50,8 +50,8 @@ def validation_definition(extraction_schema):
         "name": "validate_extraction",
         "description": "After reading all sources, submit the complete candidate extraction. "
         "Runs deterministic checks and an independent evidence review. Repair errors "
-        "and resubmit within the validation budget. Return exactly the candidate "
-        "that passed; any later edits require validation again. Review observation "
+        "and resubmit within the validation budget. If findings remain or the budget "
+        "is exhausted, return the best candidate; findings become report review notes. Review observation "
         "IDs are code-generated and end in the candidate's one-based observation index.",
         "parameters": {
             "type": "object",

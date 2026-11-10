@@ -24,9 +24,10 @@ Call `read_source` for every file; code selects the reader by format. Other than
 4. Preserve observations that contradict or qualify relevant evidence. Keep assertions from different sources separate. Record original wording, dates, conditions and precision. Reference the source document by source_id; do not produce paragraph, line, table or JSON-path coordinates. Use `unclassified` for potentially relevant evidence that cannot be classified faithfully.
 5. Keep observations provisional until all available sources have been inspected. Revisit earlier passages where later context requires it. Assign zero or more section tags using the specification; tags do not select authoritative facts or decide section inclusion.
 6. Check source coverage and record extraction limitations. If a source fails, retain useful observations and record incomplete coverage. Do not claim the extraction is complete.
-7. Call `validate_extraction` with the complete candidate object. Inspect `errors`, `deterministic_findings` and `review_findings`. Correct supported extraction errors by returning to the evidence; never invent facts or suppress genuine ambiguity to obtain a pass. Review observation IDs are code-generated and end with the one-based observation index in the submitted candidate.
-8. Resubmit repairs within the returned `attempts_remaining` budget (initially three validation attempts in total). Only a `passed` result with a completed evidence review approves that candidate. Errors or incomplete reviews block release; warnings remain visible but do not block release.
-9. Return exactly the candidate that passed, with `sources`, `observations` and `extraction_issues`. Any edit, including reordered observations, requires validation again. Code rejects skipped validation or a changed final candidate. If validation cannot pass within the budget, stop with the best available candidate; code saves partial diagnostics and does not release a complete extraction.
+7. Call `validate_extraction` with the complete candidate. Use its findings to improve extraction: capture omitted source assertions, correct unsupported fields and preserve original wording and qualifications. For a field-specific finding, reread the cited source and its applicable surrounding context, then update that exact field. Do not merely add a not_stated label when the source provides the value. Do not copy a proposed correction without checking the cited evidence. Review observation IDs end with their one-based index in this candidate.
+8. Distinguish an extraction omission from missing source information. If the evidence contains the fact, extract it. If it is absent, retain null/not_stated and the material gap. If wording is ambiguous, preserve it and record the uncertainty. Do not invent an answer to satisfy validation. Keep conflicting assertions separate; reconciliation decides how they relate.
+9. Repair and resubmit within `attempts_remaining` (three submissions in total). If you repair a candidate and attempts remain, submit that revised candidate again before returning it. Do not retry merely to remove a genuine source gap or ambiguity. Once the budget is exhausted, return the best candidate with its genuine uncertainty intact. Unresolved findings and incomplete reviews become advisory report notes; they do not block the draft. Never keep calling validation after the budget is exhausted.
+10. Return `sources`, `observations` and `extraction_issues`. Do not claim that unresolved concerns have been resolved or that an unreviewed/changed candidate has passed. Code records execution completion separately from validation quality.
 
 Follow the supplied execution and retry limits. If a tool reports truncated or partial content, retrieve remaining content when supported and within limits. Otherwise record the limitation. The application saves diagnostics and any available final response when execution is incomplete.
 
@@ -107,7 +108,11 @@ Do not generate permanent observation or issue IDs. Code assigns them before rev
 
 ### Shared reference objects
 
-An account reference has fixed fields: `account_id`, `platform`, `account_type`, `reference_text`. A person reference has `name` and `reference_text`. All are strings or null. Preserve explicit identifiers and descriptions; do not invent IDs or force uncertain links. A null account ID does not mean the account is new.
+An account reference has fixed fields: `account_id`, `platform`, `account_type`, `owner_text`, `reference_text`. A person reference has `name` and `reference_text`. All are strings or null. Preserve explicit identifiers and descriptions; do not invent IDs or force uncertain links. A null account ID does not mean the account is new or ambiguous.
+
+Populate each stated reference component instead of placing everything only in `reference_text`. For “Holloway ISA (Robert)”, use platform `Holloway`, account_type `ISA`, owner_text `Robert`, and retain the original description. Keep account_id null with `not_stated` if no ID appears. Do not expand `ISA` to Stocks & Shares ISA or cash ISA without supporting wording. “Joint GIA” states account_type `GIA` and owner_text `joint`; it does not itself state a platform. Use surrounding paragraph/table context only when this same source explicitly makes it applicable to that account. Do not borrow platform, owner or IDs from another document.
+
+`owner_text` preserves the stated person or joint-ownership wording, not a resolved database identity. When absent, use null with the appropriate field state. Do not assume every person covered by a report owns every mentioned account. A missing ID alone is `not_stated`, not an `ambiguous_reference` issue. Use ambiguity only when the wording or available references genuinely support more than one interpretation, such as “another small cash account” with no clear identity.
 
 ### Unknowns and precision
 
@@ -248,7 +253,7 @@ Use `unknown` when a role cannot be established, with an `unclear_document_role`
 - Unclassified evidence and extraction failures remain visible for review.
 - Explicitly identify sources with incomplete reading coverage; do not claim their information is absent.
 - Ensure issue observation indexes are in range and match the final observation order.
-- Do not declare a completion state. Code determines completion from reading coverage and validation; source ambiguity alone is not incomplete reading.
+- Do not declare a completion state. Code records execution completion from structure and reading coverage; validation quality and source ambiguity remain separate review information.
 
 ## Examples
 

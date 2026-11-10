@@ -1,0 +1,1053 @@
+{
+  "sources": [
+    {
+      "source_id": "source-0001",
+      "role": "account_records",
+      "document_date": "2026-04-30",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "role": "internal_guidance",
+      "document_date": null,
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "role": "meeting_notes",
+      "document_date": "2026-05-16",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "role": "general_background",
+      "document_date": null,
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "role": "general_background",
+      "document_date": null,
+      "filename": "portfolio_pack.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "role": "report_request",
+      "document_date": null,
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0007",
+      "role": "statement",
+      "document_date": null,
+      "filename": "statement_summary.png",
+      "format": "png",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0008",
+      "role": "report_specification",
+      "document_date": null,
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "observations": [
+    {
+      "observation_type": "report_scope",
+      "source_id": "source-0006",
+      "source_text": "Accounts covered\tHolloway ISAs (Robert and Jean), the joint GIA, and a new joint account",
+      "sections": [
+        "introduction"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "clients": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          }
+        ],
+        "included_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Holloway ISA (Robert)",
+            "owner_text": "Robert"
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Holloway ISA (Jean)",
+            "owner_text": "Jean"
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "GIA",
+            "reference_text": "Holloway GIA (Joint)",
+            "owner_text": "Joint"
+          },
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": null,
+            "reference_text": "new joint account",
+            "owner_text": "Joint"
+          }
+        ],
+        "excluded_accounts": []
+      },
+      "field_states": [
+        {
+          "field": "included_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[1].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[2].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[3].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[3].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[3].account_type",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0001"
+    },
+    {
+      "observation_type": "funding",
+      "source_id": "source-0003",
+      "source_text": "Jean has received an inheritance of around £120,000 from her late mother's estate, which has now cleared.",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          }
+        ],
+        "origin_text": "inheritance from her late mother's estate",
+        "account": null,
+        "amount": null,
+        "amount_text": "around £120,000",
+        "currency": "GBP",
+        "precision": "approximate",
+        "receipt_status": "received",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "qualified_value"
+        },
+        {
+          "field": "receipt_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0002"
+    },
+    {
+      "observation_type": "funding",
+      "source_id": "source-0006",
+      "source_text": "Investment amount\tGBP 120,000 inheritance plus the full joint GIA value",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          },
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert"
+          }
+        ],
+        "origin_text": "inheritance (Jean) and the joint General Investment Account",
+        "account": null,
+        "amount": null,
+        "amount_text": "GBP 120,000 inheritance plus the full joint GIA value",
+        "currency": "GBP",
+        "precision": "unspecified",
+        "receipt_status": "received",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "receipt_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0003"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\n          \"account_id\": \"H-ISA-R\",\n          \"platform\": \"Holloway\",\n          \"type\": \"Stocks & Shares ISA\",\n          \"owner\": \"Robert Fletcher\",\n          \"status\": \"open\",\n          \"value\": 70000.0,\n          \"currency\": \"GBP\",\n          \"valuation_date\": \"2026-04-30\"\n        }",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-R",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "H-ISA-R",
+          "owner_text": "Robert Fletcher"
+        },
+        "holders": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert Fletcher"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0004"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\n          \"account_id\": \"H-ISA-JE\",\n          \"platform\": \"Holloway\",\n          \"type\": \"Stocks & Shares ISA\",\n          \"owner\": \"Jean Fletcher\",\n          \"status\": \"open\",\n          \"value\": 66000.0,\n          \"currency\": \"GBP\",\n          \"valuation_date\": \"2026-04-30\"\n        }",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-JE",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "H-ISA-JE",
+          "owner_text": "Jean Fletcher"
+        },
+        "holders": [
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean Fletcher"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0005"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\n          \"account_id\": \"H-GIA-JF\",\n          \"platform\": \"Holloway\",\n          \"type\": \"General Investment Account\",\n          \"owner\": \"Joint\",\n          \"status\": \"open\",\n          \"value\": 30000.0,\n          \"currency\": \"GBP\",\n          \"valuation_date\": \"2026-03-10\"\n        }",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-GIA-JF",
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "H-GIA-JF",
+          "owner_text": "Joint"
+        },
+        "holders": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert Fletcher"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean Fletcher"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0006"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0007",
+      "source_text": "Holloway Account Statement\n\n| Account                 | Type                      | Value    | Valued on    |\n|------------------------|---------------------------|----------|--------------|\n| Holloway ISA (Robert)  | Stocks & Shares ISA       | £70,000  | 30 Apr 2026  |",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway ISA (Robert)",
+          "owner_text": "Robert"
+        },
+        "amount": "70000",
+        "amount_text": "£70,000",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": "30 Apr 2026",
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0007"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0007",
+      "source_text": "Holloway Account Statement\n\n| Account                 | Type                      | Value    | Valued on    |\n|------------------------|---------------------------|----------|--------------|\n| Holloway ISA (Jean)    | Stocks & Shares ISA       | £66,000  | 30 Apr 2026  |",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway ISA (Jean)",
+          "owner_text": "Jean"
+        },
+        "amount": "66000",
+        "amount_text": "£66,000",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": "30 Apr 2026",
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0008"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0007",
+      "source_text": "Holloway Account Statement\n\n| Account                 | Type                      | Value    | Valued on    |\n|------------------------|---------------------------|----------|--------------|\n| Holloway GIA (Joint)   | General Investment Account| £30,000  | 10 Mar 2026  |",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "Holloway GIA (Joint)",
+          "owner_text": "Joint"
+        },
+        "amount": "30000",
+        "amount_text": "£30,000",
+        "currency": "GBP",
+        "valuation_date": "2026-03-10",
+        "date_text": "10 Mar 2026",
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0009"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0003",
+      "source_text": "We looked at the jointly-held General Investment Account on the Holloway platform. Pulling it up during the meeting, it was showing around £38,000, a little higher than the figure on the last statement they had to hand.",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "joint GIA",
+          "owner_text": "Joint"
+        },
+        "amount": null,
+        "amount_text": "around £38,000",
+        "currency": "GBP",
+        "valuation_date": "2026-05-16",
+        "date_text": "during the meeting (16 May 2026)",
+        "precision": "approximate"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "qualified_value"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0010"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "Their objectives are unchanged from the last review: long-term growth, with no income required from the portfolio for the foreseeable future. Both remain at a moderate risk level and were comfortable keeping it there.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          }
+        ],
+        "category": "objective",
+        "timeframe_text": "long-term",
+        "risk_score": "4",
+        "risk_description": "moderate risk level"
+      },
+      "field_states": [],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0011"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "Jean is doing as well as can be expected and was grateful for the flowers the office had sent.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          }
+        ],
+        "category": "personal_circumstance",
+        "timeframe_text": null,
+        "risk_score": null,
+        "risk_description": null
+      },
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_description",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0012"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "We talked about their grandchildren and a trip they have planned later in the year; nothing there changes the advice.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          }
+        ],
+        "category": "personal_circumstance",
+        "timeframe_text": null,
+        "risk_score": null,
+        "risk_description": null
+      },
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_description",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0013"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "sections": [
+        "recommendations",
+        "tax_implications"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "sell",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "Joint"
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "full_balance",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": null
+      },
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0014"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "contribute",
+        "source_accounts": [],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Robert's ISA",
+            "owner_text": "Robert"
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Jean's ISA",
+            "owner_text": "Jean"
+          }
+        ],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": null
+      },
+      "field_states": [
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[1].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0015"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "open_account",
+        "source_accounts": [],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": null,
+            "reference_text": "new jointly-held investment account",
+            "owner_text": "Joint"
+          }
+        ],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": null
+      },
+      "field_states": [
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_type",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0016"
+    },
+    {
+      "observation_type": "tax_statement",
+      "source_id": "source-0003",
+      "source_text": "Selling down the GIA is a disposal, so there is a capital gains position to set out in the report.",
+      "sections": [
+        "tax_implications"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean"
+          }
+        ],
+        "accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "Joint"
+          }
+        ],
+        "tax_type": "capital gains",
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "tax_period_text": null,
+        "confirmation_status": "not_stated"
+      },
+      "field_states": [
+        {
+          "field": "accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "tax_period_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0017"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "Jean mentioned in passing that she has another small cash account from some years ago, but she could not recall the balance and was not even sure it was still active. She will dig out the paperwork and we will confirm it before anything is finalised.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "retain",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": "Cash Account",
+            "reference_text": "another small cash account",
+            "owner_text": "Jean"
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "deferred",
+        "allocation_text": null,
+        "rationale_text": null,
+        "conditions": [
+          "confirmation of account status required"
+        ],
+        "timing_text": null
+      },
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0018"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0006",
+      "source_text": "Initial charge\t0.5%",
+      "sections": [
+        "fees_charges",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "initial",
+        "account": null,
+        "platform": null,
+        "rate_percent": "0.5",
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "not_stated"
+      },
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0019"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0003",
+      "source_text": "Robert asked about the charges on the new joint account; I said the report would set those out once verified.",
+      "sections": [
+        "fees_charges"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "platform",
+        "account": {
+          "account_id": null,
+          "platform": null,
+          "account_type": null,
+          "reference_text": "new joint account",
+          "owner_text": "Joint"
+        },
+        "platform": null,
+        "rate_percent": null,
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "requires_confirmation"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "account.platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "account.account_type",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "rate_percent",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0020"
+    },
+    {
+      "observation_type": "instruction",
+      "source_id": "source-0008",
+      "source_text": "Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"",
+      "sections": [
+        "conclusion"
+      ],
+      "evidence_scope": "general_illustrative",
+      "data": {
+        "instruction_type": "mandatory_wording",
+        "scope_text": "conclusion",
+        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest.\nPast performance is not a guide to future returns."
+      },
+      "field_states": [],
+      "observation_id": "38aa7eff8a754c88ad615c60179b90b9:observation-0021"
+    }
+  ],
+  "extraction_issues": [
+    {
+      "issue_type": "ambiguous_reference",
+      "source_id": "source-0003",
+      "affected_fields": [
+        "source_accounts[0].account_id",
+        "source_accounts[0].platform"
+      ],
+      "description": "Jean mentioned a 'small cash account' but could not recall key details such as the account ID or platform. This prevents a unique match to existing records.",
+      "issue_id": "38aa7eff8a754c88ad615c60179b90b9:issue-0001",
+      "observation_ids": [
+        "38aa7eff8a754c88ad615c60179b90b9:observation-0021"
+      ]
+    }
+  ]
+}

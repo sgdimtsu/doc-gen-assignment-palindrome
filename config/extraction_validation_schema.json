@@ -24,7 +24,9 @@
               "section_tag",
               "field_state",
               "scope",
-              "evidence_reading"
+              "evidence_reading",
+              "missing_information",
+              "ambiguous_information"
             ]
           },
           "severity": {
@@ -35,7 +37,8 @@
             ]
           },
           "message": {
-            "type": "string"
+            "type": "string",
+            "description": "Name the affected observation and exact field path relative to data. Explain the source-supported correction and cite evidence; if genuinely unstated or ambiguous, explain what must remain unresolved. Do not import fields from other sources or choose a winning source."
           },
           "observation_ids": {
             "type": "array",
@@ -66,8 +69,7 @@
                 "source_text"
               ],
               "additionalProperties": false
-            },
-            "minItems": 1
+            }
           }
         },
         "required": [

@@ -10,10 +10,18 @@ def normalise_text(text):
 
 
 def _finding(category, message, observation=None, source_id=None):
+    corrections = {
+        "quote": "Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "identity": "Keep this source's account description; remove IDs not stated here and mark the null ID not_stated.",
+        "field_state": "Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "references": "Use existing source and observation IDs and correct the issue links.",
+        "schema": "Use the fixed schema and required fields.",
+        "coverage": "Read the source if possible; otherwise preserve the reading limitation.",
+    }
     return {
         "category": category,
         "severity": "error",
-        "message": message,
+        "message": message + " Next step: " + corrections[category],
         "observation_ids": [observation["observation_id"]] if observation else [],
         "source_ids": [source_id] if source_id else [],
         "evidence": [],

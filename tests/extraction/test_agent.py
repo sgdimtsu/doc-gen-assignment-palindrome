@@ -10,6 +10,7 @@ from uuid import uuid4
 from agent_pipeline import ROOT
 from agent_pipeline.extraction.agent import ExtractionAgent, ExtractionSettings
 from agent_pipeline.extraction.sources import SourceTools
+from agent_pipeline.validation.status import validation_state
 
 
 class Item:
@@ -250,7 +251,7 @@ def test_limits_bound_execution(case):
     assert "Tool-call limit reached" in run.errors
 
 
-def test_reported_unreadability_is_not_complete(case):
+def test_reported_unreadability_is_an_advisory_issue(case):
     data = deepcopy(case.data)
     obs = observation(case)
     data["extraction_issues"] = [
@@ -262,8 +263,10 @@ def test_reported_unreadability_is_not_complete(case):
             "description": "A region could not be read.",
         }
     ]
-    (run, _, _) = run_agent(case, case.reads + validated(data))
-    assert run.state == "partial"
+    (run, _, _) = run_agent(
+        case, case.reads + [tool("validate_extraction", candidate=data), final(data)]
+    )
+    assert run.state == "complete"
     assert any("Reported incomplete" in e for e in run.validation_reports[-1]["errors"])
 
 
@@ -427,20 +430,20 @@ def omission(case, severity="error"):
     }
 
 
-def test_skipping_validation_cannot_complete_even_after_reading(case):
+def test_unreviewed_extraction_is_not_falsely_approved(case):
     run, _, _ = run_agent(case, case.reads + [final(case.data)])
-    assert run.state == "partial"
-    assert "Final candidate has not been validated" in run.errors
+    assert run.state == "complete"
+    assert validation_state(run.response, run.validation_reports) == "not_reviewed"
 
 
-def test_changed_candidate_after_pass_is_blocked(case):
+def test_changed_candidate_is_marked_stale_without_blocking(case):
     changed = deepcopy(case.data)
     changed["sources"][0]["document_date"] = "2026-01-01"
     script = validated(case.data)[:-1] + [final(changed)]
     run, _, _ = run_agent(case, case.reads + script)
     assert run.validation_reports[-1]["state"] == "passed"
-    assert run.state == "partial"
-    assert any("differs" in error for error in run.errors)
+    assert run.state == "complete"
+    assert validation_state(run.response, run.validation_reports) == "stale"
 
 
 def test_reviewer_failure_can_be_repaired_and_validated_again(case):
@@ -466,16 +469,16 @@ def test_reviewer_failure_can_be_repaired_and_validated_again(case):
     )
 
 
-def test_unresolved_review_errors_cannot_be_ignored(case):
+def test_unresolved_review_errors_are_preserved_without_blocking(case):
     script = [
         tool("validate_extraction", candidate=case.data),
         review(case.data, [omission(case)]),
         final(case.data),
     ]
     run, _, _ = run_agent(case, case.reads + script)
-    assert run.state == "partial"
     assert run.validation_reports[-1]["review_findings"][0]["category"] == "omission"
-    assert any("unresolved" in error for error in run.errors)
+    assert run.state == "complete"
+    assert validation_state(run.response, run.validation_reports) == "failed"
 
 
 def test_clean_llm_review_cannot_overrule_deterministic_errors(case):
@@ -483,24 +486,26 @@ def test_clean_llm_review_cannot_overrule_deterministic_errors(case):
     candidate["observations"] = [observation(case)]
     candidate["observations"][0]["source_text"] = "Invented quotation."
     run, _, _ = run_agent(case, case.reads + validated(candidate))
-    assert run.state == "partial"
+    assert run.state == "complete"
+    assert validation_state(run.response, run.validation_reports) == "failed"
     assert run.validation_reports[-1]["review_findings"] == []
     assert (
         run.validation_reports[-1]["deterministic_findings"][0]["category"] == "quote"
     )
 
 
-def test_validation_budget_stops_repeated_submissions(case):
+def test_validation_budget_ends_repairs_not_extraction(case):
     script = [
         tool("validate_extraction", candidate=case.data),
         review(case.data, [omission(case)]),
         tool("validate_extraction", candidate=case.data),
+        final(case.data),
     ]
     run, fake, _ = run_agent(case, case.reads + script, max_validation_attempts=1)
-    assert run.state == "partial"
     assert len(run.validation_reports) == 1
-    assert "Validation-attempt limit reached" in run.errors
-    assert len(fake.requests) == 6
+    assert run.errors == []
+    assert run.state == "complete"
+    assert len(fake.requests) == 7
 
 
 def test_incomplete_evidence_review_cannot_pass(case):
@@ -510,27 +515,9 @@ def test_incomplete_evidence_review_cannot_pass(case):
         final(case.data),
     ]
     run, _, _ = run_agent(case, case.reads + script)
-    assert run.state == "partial"
+    assert run.state == "complete"
+    assert validation_state(run.response, run.validation_reports) == "incomplete"
     assert run.validation_reports[-1]["evidence_review_complete"] is False
-
-
-@pytest.mark.parametrize("change", ["edit", "add", "delete"])
-def test_changed_sources_after_validation_are_blocked(case, change):
-    def changed_final():
-        if change == "edit":
-            (case.folder / "template_spec.md").write_text("Changed requirement.")
-        elif change == "add":
-            (case.folder / "extra.md").write_text("Extra evidence.")
-        else:
-            (case.folder / "template_spec.md").unlink()
-        return final(case.data)
-
-    run, _, _ = run_agent(
-        case, case.reads + validated(case.data)[:-1] + [changed_final]
-    )
-    assert run.validation_reports[-1]["state"] == "passed"
-    assert run.state == "partial"
-    assert any("changed after validation" in error for error in run.errors)
 
 
 def test_warning_is_preserved_without_blocking_release(case):
@@ -608,11 +595,18 @@ def test_rejected_review_is_saved_but_not_sent_as_repair_findings(case):
         final(case.data),
     ]
     run, fake, _ = run_agent(case, case.reads + script)
-    assert run.state == "partial"
+    assert run.state == "complete"
     assert run.validation_reports[-1]["review_diagnostics"]["response"] == rejected
     feedback = json.loads(
         [m for m in fake.requests[-1]["messages"] if m["role"] == "tool"][-1]["content"]
     )
-    assert "review_diagnostics" not in feedback
+    assert set(feedback) == {
+        "state",
+        "evidence_review_complete",
+        "deterministic_findings",
+        "review_findings",
+        "errors",
+        "attempts_remaining",
+    }
     assert feedback["review_findings"] == []
     assert "missing=" in feedback["errors"][0]

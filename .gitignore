@@ -5,3 +5,13 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .DS_Store
+
+# Generated runs are local; retain only the three submitted examples.
+outputs/*/
+!outputs/client_01_clean/
+outputs/client_01_clean/*/
+!outputs/client_01_clean/71518aa17e0745d7b387ce7487afd362/
+!outputs/client_03_hard/
+outputs/client_03_hard/*/
+!outputs/client_03_hard/38aa7eff8a754c88ad615c60179b90b9/
+!outputs/client_03_hard/5073cccf2d59422d9152a44466c87683/

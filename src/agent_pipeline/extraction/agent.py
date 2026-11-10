@@ -26,6 +26,7 @@ from agent_pipeline.extraction.sources import SourceTools
 from agent_pipeline.extraction.tools import TOOL_DEFINITIONS
 from agent_pipeline.extraction.models import ExtractionRun, ExtractionSettings
 from agent_pipeline.validation.tool import CandidateValidationTool
+from agent_pipeline.validation.status import execution_errors
 
 
 class CheckedChatCompletionsModel(OpenAIChatCompletionsModel):
@@ -230,7 +231,8 @@ class ExtractionAgent:
                 agent,
                 "Call list_files, read both relevance files, then read all remaining sources. "
                 "Prepare a candidate and call validate_extraction. Repair reported errors within "
-                "the validation budget. Return exactly the candidate that passed validation; "
+                "the validation budget. When attempts are exhausted, return the best candidate with "
+                "uncertainty preserved. Validation findings are advisory, not a release gate; "
                 "do not reconcile or write a report.",
                 max_turns=self.settings.max_model_calls,
                 hooks=ExtractionHooks(run, images),
@@ -245,7 +247,9 @@ class ExtractionAgent:
                     "Sources not delivered: "
                     + ", ".join(sorted(set(sources.sources) - delivered))
                 )
-            run.errors.extend(validation_tool.final_errors(run.response))
+            run.errors.extend(
+                execution_errors(sources.list_files()["sources"])
+            )
             if not run.errors:
                 run.state = "complete"
         except Exception as error:

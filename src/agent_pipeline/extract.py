@@ -2,17 +2,17 @@
 
 import argparse
 import asyncio
-import os
 from pathlib import Path
 import sys
 
-from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
+from agent_pipeline.cli import client_directory, extraction_model, load_environment
 from agent_pipeline import ROOT
 from agent_pipeline.extraction.agent import ExtractionAgent
 from agent_pipeline.extraction.models import ExtractionSettings
 from agent_pipeline.extraction.results import save_run
+from agent_pipeline.validation.status import validation_state
 
 
 def _create_client():
@@ -29,26 +29,9 @@ async def _main(argv):
     parser.add_argument("--model", help="Overrides EXTRACTION_MODEL, then OPENAI_MODEL")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs")
     args = parser.parse_args(argv)
-    if (
-        not args.client
-        or args.client in {".", ".."}
-        or Path(args.client).name != args.client
-        or "\\" in args.client
-    ):
-        parser.error("--client must be a single folder name")
-    client_dir = (ROOT / "data" / args.client).resolve()
-    if (
-        not client_dir.is_relative_to((ROOT / "data").resolve())
-        or not client_dir.is_dir()
-    ):
-        parser.error("Client must be an existing directory inside data/")
-    load_dotenv(ROOT / ".env", override=False)
-    settings = ExtractionSettings(
-        model=args.model
-        or os.environ.get("EXTRACTION_MODEL")
-        or os.environ.get("OPENAI_MODEL")
-        or "gpt-4o-mini"
-    )
+    client_dir = client_directory(parser, args.client, ROOT / "data")
+    load_environment()
+    settings = ExtractionSettings(model=extraction_model(args.model, "gpt-4o-mini"))
     client = None
     try:
         client = _create_client()
@@ -59,6 +42,9 @@ async def _main(argv):
         print(f"Run directory: {folder}")
         print(f"Model calls: {run.model_calls}; tool calls: {run.tool_calls}")
         print(f"Validation attempts: {len(run.validation_reports)}")
+        print(
+            f"Validation: {validation_state(run.response, run.validation_reports)} (advisory)"
+        )
         if run.state != "complete":
             for error in run.errors:
                 print(error, file=sys.stderr)

@@ -48,7 +48,6 @@ class SourceTools:
             raise ValueError("Client path must be a directory")
         self.sources = {}
         self._paths = {}
-        self.events = []
         for index, path in enumerate(sorted(self.root.rglob("*")), start=1):
             if path.is_file():
                 source_id = f"source-{index:04d}"
@@ -87,7 +86,7 @@ class SourceTools:
             raise ValueError("Wrong reader or unsupported source format")
         return path
 
-    def _read(self, source_id: str, tool: str, formats: set[str], reader) -> dict:
+    def _read(self, source_id: str, formats: set[str], reader) -> dict:
         reading_started = False
         try:
             path = self._path(source_id, formats)
@@ -119,20 +118,12 @@ class SourceTools:
                 "complete": complete,
                 **content,
             }
-        self.events.append(
-            {
-                "tool": tool,
-                "source_id": source_id,
-                "ok": result["ok"],
-                "complete": result.get("complete", False),
-            }
-        )
         return result
 
     def read_source(self, source_id: str) -> dict:
         source = self.sources.get(source_id)
         if source is None:
-            return self._read(source_id, "read_source", set(), lambda path: {})
+            return self._read(source_id, set(), lambda path: {})
         reader = {
             "json": self.read_json,
             "docx": self.read_document,
@@ -142,7 +133,7 @@ class SourceTools:
         }.get(source["format"])
         if reader is None:
             source["read_status"] = "unsupported"
-            return self._read(source_id, "read_source", set(), lambda path: {})
+            return self._read(source_id, set(), lambda path: {})
         return reader(source_id)
 
     def read_json(self, source_id: str) -> dict:
@@ -167,7 +158,7 @@ class SourceTools:
                 "raw_text": text,
             }
 
-        return self._read(source_id, "read_json", {"json"}, read)
+        return self._read(source_id, {"json"}, read)
 
     def read_document(self, source_id: str) -> dict:
         def read(path):
@@ -184,7 +175,7 @@ class SourceTools:
                     if child.tag == W + "p":
                         blocks.append({"text": _text(child)})
                     elif child.tag == W + "tbl":
-                        for row, element in enumerate(child.findall(W + "tr"), 1):
+                        for element in child.findall(W + "tr"):
                             blocks.append(
                                 {
                                     "cells": [
@@ -217,7 +208,7 @@ class SourceTools:
                     "limitations": limitations,
                 }
 
-        return self._read(source_id, "read_document", {"markdown", "docx"}, read)
+        return self._read(source_id, {"markdown", "docx"}, read)
 
     def inspect_image(self, source_id: str) -> dict:
         def read(path):
@@ -236,4 +227,4 @@ class SourceTools:
                 },
             }
 
-        return self._read(source_id, "inspect_image", {"png", "jpeg"}, read)
+        return self._read(source_id, {"png", "jpeg"}, read)

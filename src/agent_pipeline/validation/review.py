@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
-import inspect
 from collections import Counter
 from copy import deepcopy
 from dataclasses import dataclass
@@ -49,6 +47,10 @@ class ExtractionValidator:
     ):
         self.settings = settings
         response_schema = json.loads(Path(extraction_schema_path).read_text())
+        self.field_definitions = {
+            name: response_schema["$defs"][name]
+            for name in ("account_reference", "field_state")
+        }
         self.extraction_validator = Draft202012Validator(
             ExtractionRecords._result_schema(response_schema)
         )
@@ -92,9 +94,6 @@ class ExtractionValidator:
                 "format": current[name]["format"],
                 "text": text,
                 "image": image,
-                "sha256": hashlib.sha256(
-                    tools._paths[current[name]["source_id"]].read_bytes()
-                ).hexdigest(),
             }
         return evidence
 
@@ -137,6 +136,8 @@ class ExtractionValidator:
                 or not set(finding["observation_ids"]).issubset(known_observations)
             ):
                 errors.append(label + ": invalid source or observation references")
+            if not finding["evidence"] and finding["category"] != "missing_information":
+                errors.append(label + ": source evidence is required for this finding")
             for excerpt_index, excerpt in enumerate(finding["evidence"]):
                 source = evidence.get(excerpt["source_id"])
                 excerpt_label = f"{label}.evidence[{excerpt_index}]"
@@ -158,13 +159,7 @@ class ExtractionValidator:
                     )
         return errors
 
-    def deterministic_checks(self, extraction, evidence):
-        return check_extraction(extraction, evidence, self.extraction_validator)
-
-    def validate(self, extraction, client_dir, client=None):
-        return asyncio.run(self.validate_async(extraction, client_dir, client))
-
-    async def validate_async(self, extraction, client_dir, client=None):
+    async def validate(self, extraction, client_dir, client=None):
         report = {
             "state": "incomplete",
             "deterministic_findings": [],
@@ -177,7 +172,6 @@ class ExtractionValidator:
             "extraction_sha256": hashlib.sha256(
                 json.dumps(extraction, sort_keys=True).encode()
             ).hexdigest(),
-            "source_hashes": {},
         }
         try:
             self.extraction_validator.validate(extraction)
@@ -188,11 +182,8 @@ class ExtractionValidator:
                 + (str(error) if type(error) is ValueError else type(error).__name__)
             )
             return report
-        report["source_hashes"] = {
-            sid: source["sha256"] for sid, source in evidence.items()
-        }
-        report["deterministic_findings"] = self.deterministic_checks(
-            extraction, evidence
+        report["deterministic_findings"] = check_extraction(
+            extraction, evidence, self.extraction_validator
         )
         if client is None:
             report["state"] = (
@@ -209,14 +200,11 @@ class ExtractionValidator:
                 "type": "text",
                 "text": json.dumps(
                     {
+                        "extraction_field_definitions": self.field_definitions,
                         "expected_reviewed_source_ids": list(evidence),
                         "extraction": extraction,
                         "sources": [
-                            {
-                                k: value
-                                for k, value in source.items()
-                                if k not in {"image", "sha256"}
-                            }
+                            {k: value for k, value in source.items() if k != "image"}
                             for source in evidence.values()
                         ],
                         "deterministic_findings": report["deterministic_findings"],
@@ -250,7 +238,7 @@ class ExtractionValidator:
                 timeout=self.settings.timeout_seconds,
             )
             report["model_calls"] = 1
-            response = configured.chat.completions.create(
+            response = await configured.chat.completions.create(
                 model=self.settings.model,
                 store=False,
                 messages=[
@@ -267,8 +255,6 @@ class ExtractionValidator:
                     },
                 },
             )
-            if inspect.isawaitable(response):
-                response = await response
             if response.usage:
                 report["usage"] = {
                     "input_tokens": response.usage.prompt_tokens or 0,

@@ -9,7 +9,11 @@ from jsonschema import Draft202012Validator, ValidationError
 
 from agent_pipeline import ROOT
 from agent_pipeline.extraction.models import ExtractionRun, ExtractionSettings
-from agent_pipeline.validation.status import candidate_errors, release_errors
+from agent_pipeline.validation.status import (
+    candidate_errors,
+    execution_errors,
+    validation_state,
+)
 
 
 class ExtractionRecords:
@@ -55,13 +59,13 @@ class ExtractionRecords:
         issue["required"] += ["issue_id", "observation_ids"]
         return schema
 
-    def assemble(self, run: ExtractionRun, run_id: str) -> dict:
-        self.response_validator.validate(run.response)
-        response = deepcopy(run.response)
-        inventory = {source["source_id"]: source for source in run.inventory}
-        problems = candidate_errors(run.response, run.inventory)
+    def assemble(self, candidate: dict, inventory: list, run_id: str) -> dict:
+        self.response_validator.validate(candidate)
+        response = deepcopy(candidate)
+        problems = candidate_errors(candidate, inventory)
         if problems:
             raise ValueError("; ".join(problems))
+        inventory = {source["source_id"]: source for source in inventory}
         classifications = {
             source["source_id"]: source for source in response["sources"]
         }
@@ -129,12 +133,12 @@ def save_run(
     result = None
     if run.response is not None:
         try:
-            result = ExtractionRecords().assemble(run, run.run_id)
+            result = ExtractionRecords().assemble(
+                run.response, run.inventory, run.run_id
+            )
         except (ValueError, KeyError, TypeError, ValidationError) as error:
             run.errors.append("Cannot assemble extraction: " + type(error).__name__)
-    problems = release_errors(
-        run.response, run.validation_reports, run.inventory, result
-    )
+    problems = execution_errors(run.inventory)
     run.errors.extend(error for error in problems if error not in run.errors)
     run.state = (
         "complete"
@@ -163,6 +167,9 @@ def save_run(
             "run_id": run.run_id,
             "client": client_name,
             "state": run.state,
+            "validation_state": validation_state(
+                run.response, run.validation_reports, result
+            ),
             "errors": run.errors,
             "tool_errors": run.tool_errors,
             "inventory": run.inventory,

@@ -44,3 +44,17 @@ A future version could assign an explicit status to each generation result to he
 | Blocked | Missing or conflicting evidence prevents a supported report; return an explanation of what needs resolving. |
 
 These statuses are not required for the initial implementation. For now, clearly flag outstanding information and report validation failures. Introducing formal statuses later would require explicit rules distinguishing review items from blocking issues.
+
+## Decision: advisory validation supports extraction and draft review
+
+Use deterministic checks and an independent LLM review to improve extraction
+within a bounded repair budget. Preserve material source gaps and ambiguity as
+review notes. Conflict resolution belongs to deterministic reconciliation; the
+validator only checks that separate assertions were faithfully extracted.
+
+Unresolved findings and unsuccessful reviews no longer block a structurally
+usable draft. Execution completion is recorded separately from validation quality,
+and changed candidates are labelled as having a stale review. The trade-off is
+that an output can contain errors: review notes and human verification are required,
+and a completed run must not be described as an approved report. Invalid structure
+or unavailable usable evidence remains a technical failure.

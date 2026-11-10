@@ -71,7 +71,10 @@ def mark_validated(records, run):
             "review_findings": [],
             "candidate_sha256": candidate_hash(run.response),
             "extraction_sha256": hashlib.sha256(
-                json.dumps(records.assemble(run, run.run_id), sort_keys=True).encode()
+                json.dumps(
+                    records.assemble(run.response, run.inventory, run.run_id),
+                    sort_keys=True,
+                ).encode()
             ).hexdigest(),
         }
     ]
@@ -94,7 +97,9 @@ def save(tmp_path, run):
 
 def test_assembly_adds_code_metadata_and_one_way_issue_links(records, complete_run):
     before = deepcopy(complete_run)
-    result = records.assemble(complete_run, complete_run.run_id)
+    result = records.assemble(
+        complete_run.response, complete_run.inventory, complete_run.run_id
+    )
     observation = result["observations"][0]
     issue = result["extraction_issues"][0]
     assert result["sources"][0]["filename"] == "report_request.docx"
@@ -143,9 +148,7 @@ def test_partial_run_is_separate_and_cannot_replace_complete_run(
         "error_finding",
     ],
 )
-def test_unapproved_or_changed_result_cannot_be_saved_as_complete(
-    tmp_path, complete_run, change
-):
+def test_validation_quality_is_separate_from_execution(tmp_path, complete_run, change):
     if change == "no_validation":
         complete_run.validation_reports = []
     elif change == "candidate":
@@ -161,8 +164,19 @@ def test_unapproved_or_changed_result_cannot_be_saved_as_complete(
     else:
         complete_run.validation_reports[-1]["review_findings"] = [{"severity": "error"}]
     folder = save(tmp_path, complete_run)
-    assert read(folder / "summary.json")["state"] == "partial"
-    assert not (folder / "extraction.json").exists()
+    summary = read(folder / "summary.json")
+    assert summary["state"] == ("partial" if change == "coverage" else "complete")
+    assert (
+        summary["validation_state"]
+        == {
+            "no_validation": "not_reviewed",
+            "candidate": "stale",
+            "metadata": "stale",
+            "coverage": "stale",
+            "reading_issue": "stale",
+            "error_finding": "failed",
+        }[change]
+    )
 
 
 def test_invalid_response_retained_for_diagnostics(tmp_path, complete_run):
@@ -176,7 +190,9 @@ def test_invalid_response_retained_for_diagnostics(tmp_path, complete_run):
 def test_invalid_issue_index_cannot_be_assembled(records, complete_run, index):
     complete_run.response["extraction_issues"][0]["observation_indexes"] = [index]
     with pytest.raises(ValueError):
-        records.assemble(complete_run, complete_run.run_id)
+        records.assemble(
+            complete_run.response, complete_run.inventory, complete_run.run_id
+        )
 
 
 def test_failure_without_candidate_still_saves_summary(tmp_path):

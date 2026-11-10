@@ -1,0 +1,72 @@
+{
+  "run_id": "71518aa17e0745d7b387ce7487afd362",
+  "client": "client_01_clean",
+  "state": "complete",
+  "validation_state": "stale",
+  "errors": [],
+  "tool_errors": [],
+  "inventory": [
+    {
+      "source_id": "source-0001",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "settings": {
+    "model": "gpt-4.1",
+    "max_model_calls": 40,
+    "max_tool_calls": 80,
+    "max_consecutive_tool_errors": 3,
+    "max_output_tokens": 16000,
+    "api_retries": 2,
+    "max_validation_attempts": 3,
+    "validation_model": "",
+    "validation_max_output_tokens": 8000,
+    "max_tool_output_bytes": 4000000,
+    "request_timeout_seconds": 60.0
+  },
+  "model_calls": 9,
+  "tool_calls": 8,
+  "usage": {
+    "input_tokens": 119884,
+    "output_tokens": 6271
+  },
+  "elapsed_seconds": 105.028,
+  "validation_attempts": 1,
+  "validation_model_calls": 1,
+  "validation_usage": {
+    "input_tokens": 10046,
+    "output_tokens": 556
+  }
+}

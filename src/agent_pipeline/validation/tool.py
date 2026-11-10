@@ -1,20 +1,16 @@
-"""Bounded candidate review and the final release gate."""
+"""Bounded advisory review of extractor candidates."""
 
 from copy import deepcopy
-import hashlib
 import json
 
 from agents import FunctionTool
 from jsonschema import Draft202012Validator, ValidationError
 
-from agent_pipeline.extraction.models import ExtractionRun
-from agent_pipeline.extraction.sources import SourceTools
 from agent_pipeline.extraction.results import ExtractionRecords
 from agent_pipeline.validation.review import ExtractionValidator, ValidationSettings
 from agent_pipeline.validation.status import (
     candidate_hash,
     candidate_errors,
-    release_errors,
 )
 from agent_pipeline.extraction.tools import validation_definition
 
@@ -79,8 +75,13 @@ class CandidateValidationTool:
                 }
             )
         if len(self.run.validation_reports) >= self.settings.max_validation_attempts:
-            self.run.errors.append("Validation-attempt limit reached")
-            raise RuntimeError("Validation-attempt limit reached")
+            return json.dumps(
+                {
+                    "state": "attempt_limit_reached",
+                    "attempts_remaining": 0,
+                    "message": "Return the best current candidate. Unresolved findings will be noted for human review; they do not block the draft.",
+                }
+            )
         report = {
             "state": "incomplete",
             "evidence_review_complete": False,
@@ -102,21 +103,15 @@ class CandidateValidationTool:
                 for issue in candidate["extraction_issues"]
                 if issue["issue_type"] in {"unreadable_content", "unsupported_format"}
             ]
-            if set(self.sources.sources) - self.delivered:
-                problems.append(
-                    "Read every source successfully before requesting validation"
-                )
             if problems:
                 report["errors"] = problems
             else:
                 enriched = self.store.assemble(
-                    ExtractionRun(
-                        response=candidate,
-                        inventory=self.sources.list_files()["sources"],
-                    ),
+                    candidate,
+                    self.sources.list_files()["sources"],
                     self.run.run_id,
                 )
-                reviewed = await self.reviewer.validate_async(
+                reviewed = await self.reviewer.validate(
                     enriched, self.sources.root, self.client
                 )
                 report.update(reviewed)
@@ -135,7 +130,14 @@ class CandidateValidationTool:
                 "Candidate validation failed: " + type(error).__name__
             )
         feedback = {
-            key: value for key, value in report.items() if key != "review_diagnostics"
+            key: report[key]
+            for key in (
+                "state",
+                "evidence_review_complete",
+                "deterministic_findings",
+                "review_findings",
+                "errors",
+            )
         }
         return json.dumps(
             {
@@ -145,30 +147,3 @@ class CandidateValidationTool:
             },
             ensure_ascii=False,
         )
-
-    def final_errors(self, candidate):
-        errors = release_errors(
-            candidate, self.run.validation_reports, self.sources.list_files()["sources"]
-        )
-        if errors:
-            return errors
-        report = self.run.validation_reports[-1]
-        current = self.sources.list_files()["sources"]
-        # Check both inventory and file bytes: a pass cannot outlive changed evidence.
-        fresh = SourceTools(self.sources.root)
-        if [(s["source_id"], s["filename"]) for s in fresh.list_files()["sources"]] != [
-            (s["source_id"], s["filename"]) for s in current
-        ]:
-            return ["Source inventory changed after validation"]
-        if any(
-            not path.resolve(strict=True).is_relative_to(fresh.root)
-            for path in fresh._paths.values()
-        ):
-            return ["Source resolves outside the client folder after validation"]
-        hashes = {
-            sid: hashlib.sha256(path.read_bytes()).hexdigest()
-            for sid, path in fresh._paths.items()
-        }
-        if hashes != report.get("source_hashes"):
-            return ["Source evidence changed after validation"]
-        return []
