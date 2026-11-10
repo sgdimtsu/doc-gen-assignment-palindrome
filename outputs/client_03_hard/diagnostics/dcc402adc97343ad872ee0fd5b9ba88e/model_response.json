@@ -1,0 +1,341 @@
+{
+  "structured_response": {
+    "sources": [
+      {
+        "source_id": "source-0006",
+        "role": "report_request",
+        "document_date": null
+      },
+      {
+        "source_id": "source-0008",
+        "role": "report_specification",
+        "document_date": null
+      },
+      {
+        "source_id": "source-0001",
+        "role": "account_records",
+        "document_date": "2026-04-30"
+      },
+      {
+        "source_id": "source-0003",
+        "role": "meeting_notes",
+        "document_date": "2026-05-16"
+      },
+      {
+        "source_id": "source-0004",
+        "role": "general_background",
+        "document_date": null
+      },
+      {
+        "source_id": "source-0005",
+        "role": "general_background",
+        "document_date": null
+      },
+      {
+        "source_id": "source-0002",
+        "role": "internal_guidance",
+        "document_date": null
+      },
+      {
+        "source_id": "source-0007",
+        "role": "general_background",
+        "document_date": null
+      }
+    ],
+    "observations": [
+      {
+        "observation_type": "report_scope",
+        "source_id": "source-0006",
+        "source_text": "Accounts covered: Holloway ISAs (Robert and Jean), the joint GIA, and a new joint account",
+        "sections": [
+          "introduction"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "clients": [
+            {
+              "name": "Robert Fletcher",
+              "reference_text": "Robert Fletcher"
+            },
+            {
+              "name": "Jean Fletcher",
+              "reference_text": "Jean Fletcher"
+            }
+          ],
+          "included_accounts": [
+            {
+              "account_id": "H-ISA-R",
+              "platform": "Holloway",
+              "account_type": "Stocks & Shares ISA",
+              "reference_text": "Holloway ISA (Robert)"
+            },
+            {
+              "account_id": "H-ISA-JE",
+              "platform": "Holloway",
+              "account_type": "Stocks & Shares ISA",
+              "reference_text": "Holloway ISA (Jean)"
+            },
+            {
+              "account_id": "H-GIA-JF",
+              "platform": "Holloway",
+              "account_type": "General Investment Account",
+              "reference_text": "Holloway GIA (Joint)"
+            }
+          ],
+          "excluded_accounts": []
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "account",
+        "source_id": "source-0001",
+        "source_text": "Account: Holloway ISA (Robert); Value: £70,000",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-ISA-R",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Holloway ISA (Robert)"
+          },
+          "holders": [
+            {
+              "name": "Robert Fletcher",
+              "reference_text": "Robert Fletcher"
+            }
+          ],
+          "status": "open"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "account",
+        "source_id": "source-0001",
+        "source_text": "Account: Holloway ISA (Jean); Value: £66,000",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-ISA-JE",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Holloway ISA (Jean)"
+          },
+          "holders": [
+            {
+              "name": "Jean Fletcher",
+              "reference_text": "Jean Fletcher"
+            }
+          ],
+          "status": "open"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "account",
+        "source_id": "source-0001",
+        "source_text": "Account: Holloway GIA (Joint); Value: £30,000",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-GIA-JF",
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "Holloway GIA (Joint)"
+          },
+          "holders": [
+            {
+              "name": "Robert Fletcher",
+              "reference_text": "Robert Fletcher"
+            },
+            {
+              "name": "Jean Fletcher",
+              "reference_text": "Jean Fletcher"
+            }
+          ],
+          "status": "open"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "action",
+        "source_id": "source-0003",
+        "source_text": "Plan agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+        "sections": [
+          "recommendations"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "action_type": "sell",
+          "source_accounts": [
+            {
+              "account_id": "H-GIA-JF",
+              "platform": "Holloway",
+              "account_type": "General Investment Account",
+              "reference_text": "Holloway GIA (Joint)"
+            }
+          ],
+          "target_accounts": [
+            {
+              "account_id": "H-ISA-R",
+              "platform": "Holloway",
+              "account_type": "Stocks & Shares ISA",
+              "reference_text": "Holloway ISA (Robert)"
+            },
+            {
+              "account_id": "H-ISA-JE",
+              "platform": "Holloway",
+              "account_type": "Stocks & Shares ISA",
+              "reference_text": "Holloway ISA (Jean)"
+            },
+            {
+              "account_id": null,
+              "platform": "Holloway",
+              "account_type": "new_joint",
+              "reference_text": "new jointly-held investment account"
+            }
+          ],
+          "amount": null,
+          "amount_text": null,
+          "currency": "GBP",
+          "precision": "unspecified",
+          "amount_basis": "full_balance",
+          "agreement_status": "agreed",
+          "allocation_text": null,
+          "rationale_text": null,
+          "conditions": [],
+          "timing_text": null
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "valuation",
+        "source_id": "source-0001",
+        "source_text": "Value of joint GIA: £30,000; Valued on: 10 Mar 2026",
+        "sections": [
+          "recommendations"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-GIA-JF",
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "Holloway GIA (Joint)"
+          },
+          "amount": "30000",
+          "amount_text": "£30,000",
+          "currency": "GBP",
+          "valuation_date": "2026-03-10",
+          "date_text": null,
+          "precision": "exact"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "valuation",
+        "source_id": "source-0007",
+        "source_text": "Holloway ISA (Robert); Value: £70,000; Valued on: 30 Apr 2026",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-ISA-R",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Holloway ISA (Robert)"
+          },
+          "amount": "70000",
+          "amount_text": "£70,000",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": null,
+          "precision": "exact"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "valuation",
+        "source_id": "source-0007",
+        "source_text": "Holloway ISA (Jean); Value: £66,000; Valued on: 30 Apr 2026",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-ISA-JE",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Holloway ISA (Jean)"
+          },
+          "amount": "66000",
+          "amount_text": "£66,000",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": null,
+          "precision": "exact"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "valuation",
+        "source_id": "source-0007",
+        "source_text": "Holloway GIA (Joint); Value: £30,000; Valued on: 10 Mar 2026",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "account": {
+            "account_id": "H-GIA-JF",
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "Holloway GIA (Joint)"
+          },
+          "amount": "30000",
+          "amount_text": "£30,000",
+          "currency": "GBP",
+          "valuation_date": "2026-03-10",
+          "date_text": null,
+          "precision": "exact"
+        },
+        "field_states": []
+      },
+      {
+        "observation_type": "objective_circumstance",
+        "source_id": "source-0003",
+        "source_text": "Jean's mother had passed away. Inheritance of around £120,000.",
+        "sections": [
+          "background_objectives"
+        ],
+        "evidence_scope": "client_specific",
+        "data": {
+          "people": [
+            {
+              "name": "Jean Fletcher",
+              "reference_text": "Jean Fletcher"
+            }
+          ],
+          "category": "personal_circumstance",
+          "timeframe_text": null,
+          "risk_score": null,
+          "risk_description": null
+        },
+        "field_states": []
+      }
+    ],
+    "extraction_issues": []
+  },
+  "last_output_text": null
+}

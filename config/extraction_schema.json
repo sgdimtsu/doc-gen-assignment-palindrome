@@ -142,92 +142,6 @@
       ],
       "additionalProperties": false
     },
-    "location": {
-      "type": "object",
-      "properties": {
-        "json_path": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "paragraph": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "table": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "row": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "page": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "region": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "line": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        }
-      },
-      "required": [
-        "json_path",
-        "paragraph",
-        "table",
-        "row",
-        "page",
-        "region",
-        "line"
-      ],
-      "additionalProperties": false,
-      "description": "Copy reader-provided coordinates; null where unavailable. Do not invent locations. Use line for Markdown/text and supplied region for images."
-    },
     "precision": {
       "type": "string",
       "enum": [
@@ -410,9 +324,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -453,7 +364,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -511,9 +421,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -554,7 +461,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -642,9 +548,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -685,7 +588,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -767,9 +669,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -810,7 +709,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -967,9 +865,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -1010,7 +905,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -1147,9 +1041,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -1190,7 +1081,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -1319,9 +1209,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -1362,7 +1249,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -1475,9 +1361,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -1518,7 +1401,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -1582,9 +1464,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "source_text": {
           "type": "string",
           "description": "Supporting source excerpt or literal content, retaining qualifications and negation."
@@ -1625,7 +1504,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -1663,9 +1541,6 @@
         },
         "source_id": {
           "type": "string"
-        },
-        "location": {
-          "$ref": "#/$defs/location"
         },
         "source_text": {
           "type": "string",
@@ -1707,7 +1582,6 @@
       "required": [
         "observation_type",
         "source_id",
-        "location",
         "source_text",
         "sections",
         "evidence_scope",
@@ -1734,9 +1608,6 @@
         "source_id": {
           "type": "string"
         },
-        "location": {
-          "$ref": "#/$defs/location"
-        },
         "affected_fields": {
           "type": "array",
           "items": {
@@ -1758,7 +1629,6 @@
       "required": [
         "issue_type",
         "source_id",
-        "location",
         "affected_fields",
         "description",
         "observation_indexes"

@@ -1,0 +1,1229 @@
+{
+  "run_id": "6d16773af3cf4bab9ca5de4e81fa3058",
+  "client": "client_03_hard",
+  "saved_at": "2026-11-10T13:30:59.213891+00:00",
+  "state": "partial",
+  "result_path": "diagnostics/6d16773af3cf4bab9ca5de4e81fa3058/partial_extraction.json",
+  "latest_complete_run": {
+    "run_id": "4c78094a964d48fb9b8be52a141e6c5c",
+    "result_path": "runs/4c78094a964d48fb9b8be52a141e6c5c/extraction.json"
+  },
+  "inventory": [
+    {
+      "source_id": "source-0001",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "filename": "portfolio_pack.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0007",
+      "filename": "statement_summary.png",
+      "format": "png",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0008",
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "errors": [
+    "Validation-attempt limit reached",
+    "Extraction stopped: UserError",
+    "Final candidate has unresolved or incomplete validation"
+  ],
+  "tool_errors": [],
+  "api_errors": [],
+  "tool_events": [
+    {
+      "tool": "read_document",
+      "source_id": "source-0006",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "read_document",
+      "source_id": "source-0008",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "read_json",
+      "source_id": "source-0001",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "read_document",
+      "source_id": "source-0003",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "read_document",
+      "source_id": "source-0004",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "read_document",
+      "source_id": "source-0005",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "read_document",
+      "source_id": "source-0002",
+      "ok": true,
+      "complete": true
+    },
+    {
+      "tool": "inspect_image",
+      "source_id": "source-0007",
+      "ok": true,
+      "complete": true
+    }
+  ],
+  "validation_reports": [
+    {
+      "state": "incomplete",
+      "evidence_review_complete": false,
+      "deterministic_findings": [
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0002"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0003"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0004"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: allocation_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: rationale_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timing_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: account",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timing_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0010"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timeframe_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0010"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0011"
+          ],
+          "source_ids": [
+            "source-0004"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: scope_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0011"
+          ],
+          "source_ids": [
+            "source-0004"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: tax_period_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        }
+      ],
+      "review_findings": [],
+      "errors": [
+        "Evidence review failed: Evidence review did not cover the source inventory"
+      ],
+      "candidate_sha256": "7e1b8ec7297f62d1bb49a4df50bd60b7c5c683d78d0311161fa7a3bab3209948",
+      "api_errors": [],
+      "usage": {
+        "input_tokens": 22584,
+        "output_tokens": 940
+      },
+      "model": "gpt-4o-mini",
+      "model_calls": 1,
+      "extraction_sha256": "e311bca7b85343c5c3e0e2b04140b0b185d9ea615bda8fc83f260ddc01f9b06f",
+      "source_hashes": {
+        "source-0006": "fd1efd2bdcbcfc6113c5e7a60a04cf006eccb13d9c8f54d4bdc3eef650709794",
+        "source-0008": "378389bed26961f627e84c8ff2ed56af913fd058f2a9d159a4b64e190920e0ff",
+        "source-0001": "59eff88f71749ceba63bcdeb9b3068c7d593c344dc787f508035e983c1b15f6f",
+        "source-0002": "c59e3ea2d6b6dc534f920a12aba045dd7a0685ed07e1392177cd7968cb84267a",
+        "source-0003": "d878cad1a30637ec12410a00d137c1690e74e83429175c2175df5b999168f57c",
+        "source-0004": "84d21ad840d81d31ddbe92313c266280312ad01f44dd67fa6949271c1fd74009",
+        "source-0005": "a91fa69bc04e0d2d9c1cbf0ac5585bb2367a4cab6e3b8b7f2ffb5b8f8ed63e33",
+        "source-0007": "3e98093c3737f88afddaf1e248cbbfd8d3d9605da4c51b00ffdb6d4ca7c7a652"
+      }
+    },
+    {
+      "state": "incomplete",
+      "evidence_review_complete": false,
+      "deterministic_findings": [
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0002"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0003"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0004"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: allocation_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: rationale_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timing_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: account",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timing_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0010"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timeframe_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0010"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0011"
+          ],
+          "source_ids": [
+            "source-0004"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: scope_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0011"
+          ],
+          "source_ids": [
+            "source-0004"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: tax_period_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        }
+      ],
+      "review_findings": [],
+      "errors": [
+        "Evidence review failed: Evidence review did not cover the source inventory"
+      ],
+      "candidate_sha256": "09e3b4900031fcf192312bf91e64cb4fe90795b9ba8eba1011478ed6be75ac5d",
+      "api_errors": [],
+      "usage": {
+        "input_tokens": 22468,
+        "output_tokens": 1009
+      },
+      "model": "gpt-4o-mini",
+      "model_calls": 1,
+      "extraction_sha256": "cf54593b6d9f40721347c19358f1b37442f498abca3a0790104b09d6810a5f3f",
+      "source_hashes": {
+        "source-0006": "fd1efd2bdcbcfc6113c5e7a60a04cf006eccb13d9c8f54d4bdc3eef650709794",
+        "source-0008": "378389bed26961f627e84c8ff2ed56af913fd058f2a9d159a4b64e190920e0ff",
+        "source-0001": "59eff88f71749ceba63bcdeb9b3068c7d593c344dc787f508035e983c1b15f6f",
+        "source-0002": "c59e3ea2d6b6dc534f920a12aba045dd7a0685ed07e1392177cd7968cb84267a",
+        "source-0003": "d878cad1a30637ec12410a00d137c1690e74e83429175c2175df5b999168f57c",
+        "source-0004": "84d21ad840d81d31ddbe92313c266280312ad01f44dd67fa6949271c1fd74009",
+        "source-0005": "a91fa69bc04e0d2d9c1cbf0ac5585bb2367a4cab6e3b8b7f2ffb5b8f8ed63e33",
+        "source-0007": "3e98093c3737f88afddaf1e248cbbfd8d3d9605da4c51b00ffdb6d4ca7c7a652"
+      }
+    },
+    {
+      "state": "incomplete",
+      "evidence_review_complete": false,
+      "deterministic_findings": [
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0001"
+          ],
+          "source_ids": [
+            "source-0006"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0002"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0003"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0004"
+          ],
+          "source_ids": [
+            "source-0001"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: allocation_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: rationale_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timing_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0005"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: account",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timing_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0006"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0010"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: timeframe_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0010"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0011"
+          ],
+          "source_ids": [
+            "source-0004"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: scope_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0011"
+          ],
+          "source_ids": [
+            "source-0004"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "quote",
+          "severity": "error",
+          "message": "Supporting text is not a verbatim excerpt of the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "identity",
+          "severity": "error",
+          "message": "Account ID is not stated in the cited document",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: amount_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        },
+        {
+          "category": "field_state",
+          "severity": "error",
+          "message": "Null field lacks an explicit state: tax_period_text",
+          "observation_ids": [
+            "6d16773af3cf4bab9ca5de4e81fa3058:observation-0012"
+          ],
+          "source_ids": [
+            "source-0003"
+          ],
+          "evidence": []
+        }
+      ],
+      "review_findings": [],
+      "errors": [
+        "Evidence review failed: Reviewer evidence is not supported by its source"
+      ],
+      "candidate_sha256": "7e1b8ec7297f62d1bb49a4df50bd60b7c5c683d78d0311161fa7a3bab3209948",
+      "api_errors": [],
+      "usage": {
+        "input_tokens": 22584,
+        "output_tokens": 1487
+      },
+      "model": "gpt-4o-mini",
+      "model_calls": 1,
+      "extraction_sha256": "e311bca7b85343c5c3e0e2b04140b0b185d9ea615bda8fc83f260ddc01f9b06f",
+      "source_hashes": {
+        "source-0006": "fd1efd2bdcbcfc6113c5e7a60a04cf006eccb13d9c8f54d4bdc3eef650709794",
+        "source-0008": "378389bed26961f627e84c8ff2ed56af913fd058f2a9d159a4b64e190920e0ff",
+        "source-0001": "59eff88f71749ceba63bcdeb9b3068c7d593c344dc787f508035e983c1b15f6f",
+        "source-0002": "c59e3ea2d6b6dc534f920a12aba045dd7a0685ed07e1392177cd7968cb84267a",
+        "source-0003": "d878cad1a30637ec12410a00d137c1690e74e83429175c2175df5b999168f57c",
+        "source-0004": "84d21ad840d81d31ddbe92313c266280312ad01f44dd67fa6949271c1fd74009",
+        "source-0005": "a91fa69bc04e0d2d9c1cbf0ac5585bb2367a4cab6e3b8b7f2ffb5b8f8ed63e33",
+        "source-0007": "3e98093c3737f88afddaf1e248cbbfd8d3d9605da4c51b00ffdb6d4ca7c7a652"
+      }
+    }
+  ],
+  "validation_model_calls": 3,
+  "validation_usage": {
+    "input_tokens": 67636,
+    "output_tokens": 3436
+  },
+  "settings": {
+    "model": "gpt-4o-mini",
+    "max_model_calls": 40,
+    "max_tool_calls": 80,
+    "max_consecutive_tool_errors": 3,
+    "max_output_tokens": 16000,
+    "api_retries": 2,
+    "max_validation_attempts": 3,
+    "validation_model": "",
+    "validation_max_output_tokens": 8000,
+    "max_tool_output_bytes": 4000000,
+    "request_timeout_seconds": 60.0
+  },
+  "api_endpoint": "/v1/chat/completions",
+  "usage": {
+    "input_tokens": 260099,
+    "output_tokens": 7680
+  },
+  "model_calls": 13,
+  "tool_calls": 13,
+  "elapsed_seconds": 382.65
+}

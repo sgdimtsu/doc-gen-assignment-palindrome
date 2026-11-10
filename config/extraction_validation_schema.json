@@ -1,0 +1,90 @@
+{
+  "type": "object",
+  "properties": {
+    "reviewed_source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "omission",
+              "unsupported_assertion",
+              "misclassification",
+              "lost_qualification",
+              "cross_source_inference",
+              "premature_reconciliation",
+              "section_tag",
+              "field_state",
+              "scope",
+              "evidence_reading"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "error",
+              "warning"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "observation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "source_text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "source_id",
+                "source_text"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "category",
+          "severity",
+          "message",
+          "observation_ids",
+          "source_ids",
+          "evidence"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "reviewed_source_ids",
+    "findings"
+  ],
+  "additionalProperties": false
+}

@@ -7,8 +7,8 @@ from types import SimpleNamespace
 import pytest
 
 from agent_pipeline import extract
-from agent_pipeline.extraction_agent import ROOT
-from agent_pipeline.source_tools import SourceTools
+from agent_pipeline import ROOT
+from agent_pipeline.extraction.sources import SourceTools
 
 
 class OutputItem:
@@ -25,11 +25,10 @@ class ScriptedClient:
         ids = {s["filename"]: s["source_id"] for s in inventory}
         ordered = [ids["report_request.docx"], ids["template_spec.md"]]
         ordered += [s["source_id"] for s in inventory if s["source_id"] not in ordered]
-        formats = {s["source_id"]: s["format"] for s in inventory}
         self.calls = [("list_files", {})]
         self.calls += [
             (
-                "read_json" if formats[sid] == "json" else "read_document",
+                "read_source",
                 {"source_id": sid},
             )
             for sid in ordered
@@ -42,98 +41,141 @@ class ScriptedClient:
             "observations": [],
             "extraction_issues": [],
         }
+        self.calls.append(("validate_extraction", {"candidate": self.data}))
         self.requests = []
-        self.responses = self
+        self.chat = SimpleNamespace(completions=self)
         self.closed = False
         self.final_status = final_status
 
     def with_options(self, **kwargs):
         return self
 
-    def create(self, **kwargs):
+    @property
+    def base_url(self):
+        return "https://api.openai.com/v1/"
+
+    async def create(self, **kwargs):
+        from openai.types.chat import ChatCompletion
+
+        response = self._response(**kwargs)
+        choice = response.choices[0]
+        message = choice.message
+        return ChatCompletion(
+            id="test",
+            created=0,
+            model="offline",
+            object="chat.completion",
+            choices=[
+                {
+                    "index": 0,
+                    "finish_reason": choice.finish_reason,
+                    "message": {
+                        "role": "assistant",
+                        "content": message.content,
+                        "refusal": message.refusal,
+                        "tool_calls": [c.model_dump() for c in message.tool_calls]
+                        if message.tool_calls
+                        else None,
+                    },
+                }
+            ],
+        )
+
+    def _response(self, **kwargs):
         index = len(self.requests)
         self.requests.append(kwargs)
+        if kwargs["response_format"]["json_schema"]["name"] == "extraction_review":
+            return SimpleNamespace(
+                choices=[
+                    SimpleNamespace(
+                        finish_reason="stop",
+                        message=SimpleNamespace(
+                            content=json.dumps(
+                                {
+                                    "reviewed_source_ids": [
+                                        s["source_id"] for s in self.data["sources"]
+                                    ],
+                                    "findings": [],
+                                }
+                            ),
+                            refusal=None,
+                            tool_calls=None,
+                        ),
+                    )
+                ],
+                usage=None,
+            )
         if index < len(self.calls):
             name, args = self.calls[index]
             data = {
-                "type": "function_call",
-                "call_id": f"call-{index}",
-                "name": name,
-                "arguments": json.dumps(args),
+                "id": f"call-{index}",
+                "type": "function",
+                "function": {"name": name, "arguments": json.dumps(args)},
             }
+            message = SimpleNamespace(
+                content=None, refusal=None, tool_calls=[OutputItem(data)]
+            )
             return SimpleNamespace(
-                status="completed",
-                output=[OutputItem(data)],
-                output_text="",
+                choices=[SimpleNamespace(finish_reason="tool_calls", message=message)],
                 usage=None,
             )
-        text = json.dumps(self.data)
+        message = SimpleNamespace(
+            content=json.dumps(self.data), refusal=None, tool_calls=None
+        )
         return SimpleNamespace(
-            status=self.final_status,
-            output=[
-                OutputItem(
-                    {
-                        "type": "message",
-                        "content": [{"type": "output_text", "text": text}],
-                    }
+            choices=[
+                SimpleNamespace(
+                    finish_reason="stop"
+                    if self.final_status == "completed"
+                    else "length",
+                    message=message,
                 )
             ],
-            output_text=text,
             usage=None,
         )
 
-    def close(self):
+    async def close(self):
         self.closed = True
 
 
 @pytest.fixture
 def cli_case(tmp_path, monkeypatch):
-    data_dir = tmp_path / "data"
-    client_dir = data_dir / "example"
+    client_dir = tmp_path / "data" / "example"
     shutil.copytree(ROOT / "data/client_01_clean", client_dir)
-    output_dir = tmp_path / "outputs"
     client = ScriptedClient(client_dir)
+    monkeypatch.setattr(extract, "ROOT", tmp_path)
     monkeypatch.setattr(extract, "_create_client", lambda: client)
-    monkeypatch.setattr(extract, "_load_environment", lambda path: None)
+    monkeypatch.setattr(extract, "load_dotenv", lambda *args, **kwargs: None)
     monkeypatch.delenv("EXTRACTION_MODEL", raising=False)
     monkeypatch.delenv("OPENAI_MODEL", raising=False)
     return SimpleNamespace(
         client=client,
-        client_dir=client_dir,
-        output_dir=output_dir,
-        argv=[
-            "--client",
-            "example",
-            "--data-dir",
-            str(data_dir),
-            "--output-dir",
-            str(output_dir),
-        ],
+        output_dir=tmp_path / "outputs",
+        argv=["--client", "example", "--output-dir", str(tmp_path / "outputs")],
     )
 
 
-def test_cli_runs_real_tools_agent_and_saver_with_fake_api(cli_case, capsys):
+def run_folder(case):
+    return next((case.output_dir / "example").iterdir())
+
+
+def test_cli_runs_real_agent_validation_and_saving(cli_case, capsys):
     assert extract.main(cli_case.argv) == 0
-    root = cli_case.output_dir / "example"
-    result = json.loads((root / "extraction.json").read_text())
-    manifest = json.loads((root / "extraction_manifest.json").read_text())
-    assert manifest["state"] == "complete"
+    folder = run_folder(cli_case)
+    result = json.loads((folder / "extraction.json").read_text())
     assert len(result["sources"]) == 6
     assert all(s["read_status"] == "read" for s in result["sources"])
     assert cli_case.client.closed
-    assert not (cli_case.output_dir / "example.md").exists()
     assert "Extraction: complete" in capsys.readouterr().out
+    assert json.loads((folder / "validation.json").read_text())[-1]["state"] == "passed"
 
 
-def test_cli_partial_run_returns_nonzero_and_saves_manifest(cli_case):
+def test_cli_partial_run_returns_nonzero_and_only_partial_output(cli_case):
     cli_case.client.final_status = "incomplete"
     assert extract.main(cli_case.argv) == 1
-    root = cli_case.output_dir / "example"
-    assert (
-        json.loads((root / "extraction_manifest.json").read_text())["state"]
-        == "partial"
-    )
-    assert not (root / "extraction.json").exists()
+    folder = run_folder(cli_case)
+    assert json.loads((folder / "summary.json").read_text())["state"] == "partial"
+    assert not (folder / "extraction.json").exists()
 
 
 @pytest.mark.parametrize(
@@ -152,49 +194,53 @@ def test_model_precedence(
         monkeypatch.setenv("EXTRACTION_MODEL", extraction_env)
     if baseline_env:
         monkeypatch.setenv("OPENAI_MODEL", baseline_env)
-    argv = cli_case.argv + (["--model", explicit] if explicit else [])
-    assert extract.main(argv) == 0
+    assert (
+        extract.main(cli_case.argv + (["--model", explicit] if explicit else [])) == 0
+    )
     assert cli_case.client.requests[0]["model"] == expected
 
 
-def test_limits_are_passed_to_agent_and_saved(cli_case):
-    assert (
-        extract.main(
-            cli_case.argv + ["--max-model-calls", "1", "--max-tool-calls", "3"]
-        )
-        == 1
+def test_execution_limits_are_settings_not_cli_options(cli_case, monkeypatch):
+    from agent_pipeline.extraction.models import ExtractionSettings
+
+    monkeypatch.setattr(
+        extract,
+        "ExtractionSettings",
+        lambda model: ExtractionSettings(model=model, max_model_calls=1),
     )
-    manifest = json.loads(
-        (cli_case.output_dir / "example/extraction_manifest.json").read_text()
-    )
-    assert manifest["settings"]["max_model_calls"] == 1
-    assert manifest["settings"]["max_tool_calls"] == 3
-    assert manifest["model_calls"] == 1
+    assert extract.main(cli_case.argv) == 1
+    summary = json.loads((run_folder(cli_case) / "summary.json").read_text())
+    assert summary["model_calls"] == 1
+    assert summary["settings"]["max_model_calls"] == 1
 
 
-@pytest.mark.parametrize(
-    "extra", [["--max-model-calls", "0"], ["--client", "../outside"]]
-)
-def test_invalid_arguments_do_not_call_model(cli_case, extra):
+@pytest.mark.parametrize("name", ["../outside", "missing"])
+def test_invalid_client_is_argument_error(cli_case, name):
     with pytest.raises(SystemExit) as error:
-        extract.main(cli_case.argv + extra)
+        extract.main(cli_case.argv + ["--client", name])
     assert error.value.code == 2
     assert cli_case.client.requests == []
 
 
-def test_missing_client_is_argument_error(cli_case):
-    with pytest.raises(SystemExit) as error:
-        extract.main(cli_case.argv + ["--client", "missing"])
-    assert error.value.code == 2
-    assert cli_case.client.requests == []
-
-
-def test_client_initialisation_error_does_not_print_secret(
-    cli_case, monkeypatch, capsys
-):
+def test_initialisation_error_does_not_print_secret(cli_case, monkeypatch, capsys):
     def fail():
         raise ValueError("secret-api-key-must-not-be-printed")
 
     monkeypatch.setattr(extract, "_create_client", fail)
     assert extract.main(cli_case.argv) == 1
     assert "secret-api-key" not in capsys.readouterr().err
+
+
+def test_api_failure_keeps_status_without_raw_body(cli_case, monkeypatch, capsys):
+    async def fail(**kwargs):
+        error = type("AuthenticationError", (Exception,), {})("sk-do-not-log-this")
+        error.status_code = 401
+        error.body = {"message": "sk-do-not-log-this"}
+        raise error
+
+    monkeypatch.setattr(cli_case.client, "create", fail)
+    assert extract.main(cli_case.argv) == 1
+    errors = capsys.readouterr().err
+    summary = (run_folder(cli_case) / "summary.json").read_text()
+    assert "401" in errors and "401" in summary
+    assert "sk-do-not-log-this" not in errors + summary
