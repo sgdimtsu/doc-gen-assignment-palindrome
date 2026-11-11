@@ -96,8 +96,10 @@ outputs/<client>/<run_id>/evaluation.json
 | `needs_review` | Quality concerns, uncertainty or incomplete evaluation | 1 |
 | `fail` | A required code check or an assessed critical/requirement finding failed | 2 |
 
-Read `code_checks`, `judgment` and `evaluation_errors` in the result file. An
-incomplete judge or unverifiable citation cannot produce a pass. Rerunning
+Read `code_checks`, `judgment.outcome_checks`, `judgment.criteria` and
+`evaluation_errors` in the result file. Each expected outcome is assessed
+separately. Explanations and source references are advisory; they are not checked
+for exact quotation matches. An incomplete API response cannot produce a pass. Rerunning
 evaluation overwrites `evaluation.json` in that directory.
 
 The shared rubric is `evaluation/judge_prompt.md`; source-based client expectations

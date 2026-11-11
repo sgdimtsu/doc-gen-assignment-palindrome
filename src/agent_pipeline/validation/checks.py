@@ -1,6 +1,7 @@
 """Deterministic checks on extraction structure and source support."""
 
 import re
+from decimal import Decimal, InvalidOperation
 
 from jsonschema import ValidationError
 
@@ -61,6 +62,60 @@ def _account_ids(value):
     elif isinstance(value, list):
         for child in value:
             yield from _account_ids(child)
+
+
+def _account_references(value, path=""):
+    if isinstance(value, dict):
+        if "owner_text" in value:
+            yield path, value
+        for name, child in value.items():
+            yield from _account_references(child, path + "." + name if path else name)
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            yield from _account_references(child, f"{path}[{index}]")
+
+
+def _amounts(text):
+    result = set()
+    for amount in re.findall(r"(?:[£$€]|\bGBP\s*)\s*(\d[\d,]*(?:\.\d+)?)", text, re.I):
+        try:
+            result.add(Decimal(amount.replace(",", "")))
+        except InvalidOperation:
+            pass
+    return result
+
+
+def _valuation_coverage(extraction, evidence):
+    findings = []
+    for sid, source in evidence.items():
+        if source.get("role") not in {
+            "meeting_notes",
+            "statement",
+            "mixed",
+        } or not source.get("text"):
+            continue
+        captured = set()
+        for obs in extraction["observations"]:
+            if obs["source_id"] == sid and obs["observation_type"] == "valuation":
+                data = obs["data"]
+                captured.update(_amounts(data["amount_text"]))
+                if data["amount"] is not None:
+                    try:
+                        captured.add(Decimal(data["amount"]))
+                    except InvalidOperation:
+                        pass
+        for passage in re.split(r"(?<=[.!?])\s+|\n", source["text"]):
+            if not re.search(r"\b(?:showing|valued|valuation|worth)\b", passage, re.I):
+                continue
+            if _amounts(passage) - captured:
+                finding = _finding(
+                    "coverage",
+                    "A stated account value in this source has no valuation observation. Extract its account reference, explicit observation date and precision; do not substitute an older source.",
+                    source_id=sid,
+                )
+                finding["evidence"] = [{"source_id": sid, "source_text": passage}]
+                findings.append(finding)
+    return findings
 
 
 def check_extraction(extraction, evidence, validator):
@@ -147,6 +202,24 @@ def check_extraction(extraction, evidence, validator):
                             sid,
                         )
                     )
+        if text is not None and not code_match:
+            for path, reference in _account_references(observation["data"]):
+                owner = reference.get("owner_text")
+                if (
+                    owner
+                    and normalise_text(owner).casefold()
+                    not in normalise_text(text).casefold()
+                ):
+                    findings.append(
+                        _finding(
+                            "identity",
+                            "Keep "
+                            + path
+                            + ".owner_text as a literal source name or ownership phrase, not an explanation or cross-source reconstruction",
+                            observation,
+                            sid,
+                        )
+                    )
         states = {}
         for entry in observation["field_states"]:
             path, state = entry["field"], entry["state"]
@@ -221,4 +294,5 @@ def check_extraction(extraction, evidence, validator):
                 findings.append(
                     _finding("references", "Issue references an unknown observation")
                 )
+    findings.extend(_valuation_coverage(extraction, evidence))
     return findings

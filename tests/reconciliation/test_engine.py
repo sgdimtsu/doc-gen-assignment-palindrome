@@ -653,3 +653,52 @@ def test_contribution_assertion_cannot_replace_known_account_value(evidence):
     account = next(a for a in result["accounts"] if a["account_id"] == "A1")
     assert account["valuation"]["data"]["amount"] != "20000"
     assert any(i["issue_type"] == "valuation_unresolved" for i in result["issues"])
+
+
+def test_partially_matched_scope_remains_explicit_and_incomplete(evidence):
+    scope = next(
+        o for o in evidence["observations"] if o["observation_type"] == "report_scope"
+    )
+    scope["data"]["included_accounts"].append(
+        {
+            **REF,
+            "account_id": None,
+            "account_type": "SIPP",
+            "owner_text": "Unknown",
+            "reference_text": "Proposed SIPP",
+        }
+    )
+    result = reconcile(evidence)
+    assert result["scope"]["included_account_keys"]
+    assert result["scope"]["complete"] is False
+    assert (
+        result["scope"]["unresolved_requests"][0]["reference"]["reference_text"]
+        == "Proposed SIPP"
+    )
+    assert any(i["issue_type"] == "scope_incomplete" for i in result["issues"])
+    from agent_pipeline.reconciliation.report import build_report
+
+    plan = build_report(
+        result,
+        "## Introduction\nState which of the client's accounts the report covers.",
+    )
+    text = "\n".join(b["text"] for b in plan["blocks"].values())
+    assert "Confirmed accounts within the requested scope" in text
+    assert "Proposed SIPP" in text
+    assert "This draft covers:" not in text
+
+
+def test_new_account_request_is_not_lost_when_extractor_omits_it(evidence):
+    evidence["request_fields"] = [
+        {
+            "source_id": "request",
+            "label": "Accounts covered",
+            "value": "Platform ISA and a new joint account",
+        }
+    ]
+    result = reconcile(evidence)
+    assert result["scope"]["complete"] is False
+    assert any(
+        "new joint account" in p["reference"]["reference_text"]
+        for p in result["scope"]["unresolved_requests"]
+    )

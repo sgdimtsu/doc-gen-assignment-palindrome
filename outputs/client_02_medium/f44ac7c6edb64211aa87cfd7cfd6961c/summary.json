@@ -1,0 +1,95 @@
+{
+  "run_id": "f44ac7c6edb64211aa87cfd7cfd6961c",
+  "client": "client_02_medium",
+  "state": "complete",
+  "validation_state": "failed",
+  "errors": [],
+  "tool_errors": [],
+  "inventory": [
+    {
+      "source_id": "source-0001",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "filename": "statement_summary.png",
+      "format": "png",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0007",
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "settings": {
+    "model": "gpt-4.1",
+    "max_model_calls": 40,
+    "max_tool_calls": 80,
+    "max_consecutive_tool_errors": 3,
+    "max_output_tokens": 16000,
+    "api_retries": 2,
+    "max_validation_attempts": 3,
+    "validation_model": "",
+    "validation_max_output_tokens": 8000,
+    "max_tool_output_bytes": 4000000,
+    "request_timeout_seconds": 60.0
+  },
+  "model_calls": 12,
+  "tool_calls": 11,
+  "usage": {
+    "input_tokens": 202990,
+    "output_tokens": 11831
+  },
+  "elapsed_seconds": 119.617,
+  "final_checks": {
+    "findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      }
+    ],
+    "errors": []
+  },
+  "validation_attempts": 3,
+  "validation_model_calls": 3,
+  "validation_usage": {
+    "input_tokens": 45523,
+    "output_tokens": 1441
+  }
+}

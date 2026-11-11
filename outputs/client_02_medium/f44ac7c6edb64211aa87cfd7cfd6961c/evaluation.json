@@ -1,0 +1,416 @@
+{
+  "client": "client_02_medium",
+  "outcome": "fail",
+  "model": "gpt-4.1",
+  "code_checks": [
+    {
+      "check": "Required sections and order",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "Mandatory wording: The value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns.",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "Mandatory wording: This firm is authorised and regulated by the Financial Conduct Authority.",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "Required table columns",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "No leaked internal references",
+      "passed": true,
+      "severity": "presentation"
+    },
+    {
+      "check": "No duplicated review markers",
+      "passed": true,
+      "severity": "presentation"
+    }
+  ],
+  "expected_outcomes": [
+    "David Clarke’s Holloway ISA is included in report scope.",
+    "Susan Clarke’s Holloway ISA is included in report scope.",
+    "The joint Holloway GIA is included in report scope.",
+    "The joint GIA is counted once, not twice because it appears under both holders.",
+    "David’s ISA valuation is 61,000 GBP.",
+    "Susan’s ISA valuation is 58,500 GBP.",
+    "The date attached to David’s database ISA valuation is 2026-04-30.",
+    "The date attached to Susan’s database ISA valuation is 2026-04-30.",
+    "If the historical GIA database valuation is reported, it is identified as 40,000 GBP dated 2026-03-15 rather than as a current live value.",
+    "The later live GIA observation of a little over 45,000 GBP is disclosed, or explicitly described as an unresolved observation. Omitting it entirely does not meet this outcome.",
+    "The later live GIA observation is associated with 2026-05-14 when reported.",
+    "The live GIA observation retains the qualification a little over rather than becoming an exact 45,000 GBP value.",
+    "The agreed action is to disinvest the joint GIA in full.",
+    "The GIA proceeds are to be split equally between the two existing ISAs.",
+    "The report does not invent exact ISA contribution amounts.",
+    "The report does not independently claim that remaining ISA allowances have been verified.",
+    "The agreed risk score is 5.",
+    "The agreed risk description is balanced.",
+    "The initial charge is 0%.",
+    "The report preserves that neither client currently needs portfolio income.",
+    "The ongoing platform charge is identified as requiring confirmation.",
+    "The ongoing advice charge is identified as requiring confirmation.",
+    "Potential CGT implications of the GIA disposal are included.",
+    "The tax discussion refers to the annual exempt amount.",
+    "The report does not invent a tax estimate.",
+    "The report does not invent acquisition costs or calculated gains.",
+    "The report does not invent a numerical capital-gains exemption.",
+    "The irrelevant holiday discussion is omitted; calling it irrelevant while including it does not meet this outcome."
+  ],
+  "judgment": {
+    "outcome_checks": {
+      "expected_1": {
+        "rating": "meets",
+        "explanation": "David Clarke’s Holloway ISA is explicitly included in the report scope and in the account table.",
+        "report_example": "| H-ISA-D | David Clarke | Holloway Stocks & Shares ISA | £61,000.0 (as at 2026-04-30) |",
+        "sources": [
+          "report_request.docx",
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_2": {
+        "rating": "meets",
+        "explanation": "Susan Clarke’s Holloway ISA is explicitly included in the report scope and in the account table.",
+        "report_example": "| H-ISA-S | Susan Clarke | Holloway Stocks & Shares ISA | £58,500.0 (as at 2026-04-30) |",
+        "sources": [
+          "report_request.docx",
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_3": {
+        "rating": "meets",
+        "explanation": "The joint Holloway GIA is included in the report scope and in the account table.",
+        "report_example": "| H-GIA-J | David Clarke, Susan Clarke | Holloway General Investment Account | £40,000.0 (as at 2026-03-15) |",
+        "sources": [
+          "report_request.docx",
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_4": {
+        "rating": "meets",
+        "explanation": "The joint GIA is counted once in the account table, not duplicated for each holder.",
+        "report_example": "| H-GIA-J | David Clarke, Susan Clarke | Holloway General Investment Account | £40,000.0 (as at 2026-03-15) |",
+        "sources": [
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_5": {
+        "rating": "meets",
+        "explanation": "David’s ISA valuation is correctly stated as £61,000.",
+        "report_example": "| H-ISA-D | David Clarke | Holloway Stocks & Shares ISA | £61,000.0 (as at 2026-04-30) |",
+        "sources": [
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_6": {
+        "rating": "meets",
+        "explanation": "Susan’s ISA valuation is correctly stated as £58,500.",
+        "report_example": "| H-ISA-S | Susan Clarke | Holloway Stocks & Shares ISA | £58,500.0 (as at 2026-04-30) |",
+        "sources": [
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_7": {
+        "rating": "meets",
+        "explanation": "The date attached to David’s ISA valuation is 2026-04-30.",
+        "report_example": "| H-ISA-D | David Clarke | Holloway Stocks & Shares ISA | £61,000.0 (as at 2026-04-30) |",
+        "sources": [
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_8": {
+        "rating": "meets",
+        "explanation": "The date attached to Susan’s ISA valuation is 2026-04-30.",
+        "report_example": "| H-ISA-S | Susan Clarke | Holloway Stocks & Shares ISA | £58,500.0 (as at 2026-04-30) |",
+        "sources": [
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_9": {
+        "rating": "meets",
+        "explanation": "The historical GIA valuation is reported as £40,000 dated 2026-03-15, not as a current value.",
+        "report_example": "| H-GIA-J | David Clarke, Susan Clarke | Holloway General Investment Account | £40,000.0 (as at 2026-03-15) |",
+        "sources": [
+          "client_data_db.json",
+          "statement_summary.png"
+        ]
+      },
+      "expected_10": {
+        "rating": "does_not_meet",
+        "explanation": "The later live GIA observation of a little over £45,000 is not disclosed or described as unresolved; it is omitted entirely.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_11": {
+        "rating": "does_not_meet",
+        "explanation": "The later live GIA observation (a little over £45,000 as at 2026-05-14) is not reported or associated with its date.",
+        "report_example": "No mention of the 2026-05-14 live GIA value.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_12": {
+        "rating": "does_not_meet",
+        "explanation": "The live GIA observation and its qualification ('a little over') are omitted entirely.",
+        "report_example": "No mention of 'a little over £45,000'.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_13": {
+        "rating": "meets",
+        "explanation": "The agreed action is to disinvest the joint GIA in full.",
+        "report_example": "We agreed to disinvest the joint General Investment Account in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs...",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_14": {
+        "rating": "meets",
+        "explanation": "The GIA proceeds are to be split equally between the two ISAs.",
+        "report_example": "...with the amount split equally between the two ISAs.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_15": {
+        "rating": "meets",
+        "explanation": "The report does not invent exact ISA contribution amounts; it avoids stating a specific figure.",
+        "report_example": "[REVIEW REQUIRED: Do not state an exact transaction amount; retain wording or request confirmation]",
+        "sources": [
+          "template_spec.md"
+        ]
+      },
+      "expected_16": {
+        "rating": "meets",
+        "explanation": "The report does not claim that remaining ISA allowances have been verified.",
+        "report_example": "No statement about verified ISA allowances.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_17": {
+        "rating": "meets",
+        "explanation": "The agreed risk score is 5.",
+        "report_example": "Your risk profile is recorded as 5 balanced.",
+        "sources": [
+          "report_request.docx"
+        ]
+      },
+      "expected_18": {
+        "rating": "meets",
+        "explanation": "The agreed risk description is 'balanced'.",
+        "report_example": "Your risk profile is recorded as 5 balanced.",
+        "sources": [
+          "report_request.docx"
+        ]
+      },
+      "expected_19": {
+        "rating": "meets",
+        "explanation": "The initial charge is 0%.",
+        "report_example": "Recorded initial charge: 0%. Status: explicitly confirmed.",
+        "sources": [
+          "report_request.docx"
+        ]
+      },
+      "expected_20": {
+        "rating": "meets",
+        "explanation": "The report preserves that neither client currently needs portfolio income.",
+        "report_example": "Neither of you has any income requirement from the portfolio at present.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_21": {
+        "rating": "meets",
+        "explanation": "The ongoing platform charge is identified as requiring confirmation.",
+        "report_example": "Your platform charge has not been supplied and requires confirmation before implementation.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_22": {
+        "rating": "meets",
+        "explanation": "The ongoing advice charge is identified as requiring confirmation.",
+        "report_example": "Recorded ongoing advice charge: Not supplied. Status: requires confirmation.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_23": {
+        "rating": "meets",
+        "explanation": "Potential CGT implications of the GIA disposal are included.",
+        "report_example": "Selling down the General Investment Account constitutes a disposal and may result in a capital gains position to consider.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_24": {
+        "rating": "meets",
+        "explanation": "The tax discussion refers to the annual exempt amount.",
+        "report_example": "...which will be assessed against your annual exempt amount.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_25": {
+        "rating": "meets",
+        "explanation": "The report does not invent a tax estimate.",
+        "report_example": "No numerical tax estimate is provided.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_26": {
+        "rating": "meets",
+        "explanation": "The report does not invent acquisition costs or calculated gains.",
+        "report_example": "No acquisition costs or calculated gains are mentioned.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_27": {
+        "rating": "meets",
+        "explanation": "The report does not invent a numerical capital-gains exemption.",
+        "report_example": "No numerical exemption is stated.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "expected_28": {
+        "rating": "does_not_meet",
+        "explanation": "The holiday discussion is included, even though it is stated as irrelevant. The expectation is that it should be omitted entirely.",
+        "report_example": "You mentioned briefly that you are planning a holiday in the autumn; while this does not affect the current advice, you wanted it to be noted.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      }
+    },
+    "criteria": {
+      "factual_correctness": {
+        "rating": "partly_meets",
+        "explanation": "Most material facts are correct and supported, but the omission of the later live GIA value and its qualification is a material factual gap. The holiday is included despite being irrelevant.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "completeness": {
+        "rating": "partly_meets",
+        "explanation": "The report covers all required accounts and actions, but omits the later live GIA value and its unresolved status, which is a required disclosure. The holiday is included when it should be omitted.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "uncertainty_handling": {
+        "rating": "partly_meets",
+        "explanation": "The report preserves uncertainty around fees and tax, but fails to disclose the unresolved status of the live GIA value, which is a required uncertainty.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "report_requirements": {
+        "rating": "partly_meets",
+        "explanation": "The report generally follows the template and requirements, but includes the irrelevant holiday and omits the required live GIA value disclosure.",
+        "report_example": "You mentioned briefly that you are planning a holiday in the autumn; while this does not affect the current advice, you wanted it to be noted.",
+        "sources": [
+          "template_spec.md",
+          "meeting_notes.docx"
+        ]
+      },
+      "readability_clarity": {
+        "rating": "meets",
+        "explanation": "The report is clear and understandable for a non-expert reader. Jargon is minimal and explanations are direct.",
+        "report_example": "The value of investments can fall as well as rise and you may get back less than you invest.",
+        "sources": [
+          "template_spec.md"
+        ]
+      },
+      "conciseness_relevance": {
+        "rating": "partly_meets",
+        "explanation": "The report is mostly concise, but includes an irrelevant holiday discussion, which reduces relevance.",
+        "report_example": "You mentioned briefly that you are planning a holiday in the autumn; while this does not affect the current advice, you wanted it to be noted.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      "tone_presentation": {
+        "rating": "meets",
+        "explanation": "The tone is professional, direct, and customer-focused throughout.",
+        "report_example": "Please contact us with any questions. Implementation is subject to adviser review and confirmation of all outstanding information.",
+        "sources": [
+          "template_spec.md"
+        ]
+      }
+    },
+    "findings": [
+      {
+        "criterion": "factual_correctness",
+        "severity": "critical",
+        "explanation": "The report omits the later live GIA value ('a little over £45,000' as at 2026-05-14), which is a material fact discussed in the meeting notes and required for disclosure.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      {
+        "criterion": "completeness",
+        "severity": "requirement",
+        "explanation": "The report does not disclose the unresolved status of the live GIA value, which is required for completeness.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      {
+        "criterion": "uncertainty_handling",
+        "severity": "requirement",
+        "explanation": "The report fails to preserve the uncertainty around the live GIA value by omitting it entirely, rather than describing it as unresolved.",
+        "report_example": "No mention of the live GIA value of a little over £45,000 or its date/status.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      },
+      {
+        "criterion": "report_requirements",
+        "severity": "requirement",
+        "explanation": "The report includes an irrelevant holiday discussion, which should have been omitted according to the requirements.",
+        "report_example": "You mentioned briefly that you are planning a holiday in the autumn; while this does not affect the current advice, you wanted it to be noted.",
+        "sources": [
+          "template_spec.md",
+          "meeting_notes.docx"
+        ]
+      },
+      {
+        "criterion": "conciseness_relevance",
+        "severity": "presentation",
+        "explanation": "The inclusion of the irrelevant holiday reduces the report's relevance and conciseness.",
+        "report_example": "You mentioned briefly that you are planning a holiday in the autumn; while this does not affect the current advice, you wanted it to be noted.",
+        "sources": [
+          "meeting_notes.docx"
+        ]
+      }
+    ]
+  },
+  "evaluation_errors": [],
+  "limitation": "Automated prototype evaluation only; no human review or human calibration was performed. A pass is not approval of financial advice."
+}

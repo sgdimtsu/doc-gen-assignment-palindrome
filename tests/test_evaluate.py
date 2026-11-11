@@ -1,6 +1,5 @@
 from copy import deepcopy
 import json
-from pathlib import Path
 from types import SimpleNamespace
 import shutil
 
@@ -12,19 +11,17 @@ from agent_pipeline.evaluation import evaluate as ev
 
 
 def judgment():
+    def assessment():
+        return {
+            "rating": "meets",
+            "explanation": "Supported by the supplied evidence.",
+            "report_example": "A paraphrased example, not an exact quotation.",
+            "sources": [],
+        }
+
     return {
-        "reviewed_sources": ["notes.md"],
-        "criteria": {
-            name: {
-                "rating": "meets",
-                "explanation": "Supported by the supplied evidence.",
-                "report_excerpt": "Recorded fact.",
-                "source_evidence": [
-                    {"filename": "notes.md", "source_excerpt": "Recorded fact."}
-                ],
-            }
-            for name in ev.GROUND + ev.QUALITY
-        },
+        "outcome_checks": {"expected_1": assessment()},
+        "criteria": {name: assessment() for name in ev.GROUND + ev.QUALITY},
         "findings": [],
     }
 
@@ -50,7 +47,7 @@ def test_quality_cannot_hide_or_create_critical_factual_failure(rating, expected
 def test_incomplete_or_rejected_judge_cannot_pass():
     assert ev.overall_outcome([], None, ["API failed"]) == "needs_review"
     assert (
-        ev.overall_outcome([], judgment(), ["Unsupported citation"]) == "needs_review"
+        ev.overall_outcome([], judgment(), ["Invalid JSON response"]) == "needs_review"
     )
     assert (
         ev.overall_outcome(
@@ -66,30 +63,15 @@ def test_incomplete_or_rejected_judge_cannot_pass():
     )
 
 
-def test_evidence_and_coverage_checks_reject_invented_references():
-    sources = [dict(filename="notes.md", text="Recorded fact.", image=None)]
+def test_missing_expected_fact_cannot_be_hidden_by_all_meets_global_ratings():
     result = judgment()
-    assert ev.validate_judgment(result, "Recorded fact.", sources) == []
-    result["reviewed_sources"] = []
-    result["criteria"]["factual_correctness"]["source_evidence"][0][
-        "source_excerpt"
-    ] = "Invented evidence."
-    errors = ev.validate_judgment(result, "Recorded fact.", sources)
-    assert any("every source" in e for e in errors)
-    assert any("source excerpt" in e for e in errors)
-
-
-def test_ground_truth_failure_requires_evidence_backed_finding():
-    result = judgment()
-    result["criteria"]["factual_correctness"]["rating"] = "does_not_meet"
-    assert any(
-        "lacks a finding" in e
-        for e in ev.validate_judgment(
-            result,
-            "Recorded fact.",
-            [dict(filename="notes.md", text="Recorded fact.", image=None)],
-        )
-    )
+    result["outcome_checks"]["expected_1"]["rating"] = "does_not_meet"
+    result["outcome_checks"]["expected_1"][
+        "explanation"
+    ] = "The newer qualified value is absent."
+    assert ev.overall_outcome([], result, []) == "fail"
+    result["outcome_checks"]["expected_1"]["rating"] = "unable_to_assess"
+    assert ev.overall_outcome([], result, []) == "needs_review"
 
 
 def test_code_checks_exact_requirements_without_formatting_financial_numbers():
@@ -122,7 +104,9 @@ Required warning.
             c["passed"] is False
             for c in ev.code_checks(changed, spec, dict(tax_section_required=False))
         )
-    assert ensure_strict_json_schema(ev.judge_schema(["notes.md"]))
+    assert ensure_strict_json_schema(
+        ev.judge_schema(["notes.md"], {"expected_1": "Required fact"})
+    )
 
 
 class FakeClient:
@@ -141,9 +125,10 @@ class FakeClient:
         self.requests.append(kwargs)
         payload = json.loads(kwargs["messages"][1]["content"][0]["text"])
         result = deepcopy(self.reply)
-        result["reviewed_sources"] = [s["filename"] for s in payload["sources"]]
-        for criterion in result["criteria"].values():
-            criterion["source_evidence"] = []
+        result["outcome_checks"] = {
+            key: deepcopy(result["outcome_checks"]["expected_1"])
+            for key in payload["expected_outcomes"]
+        }
         return SimpleNamespace(
             choices=[
                 SimpleNamespace(
@@ -217,14 +202,29 @@ def test_non_ground_truth_findings_cannot_be_critical_financial_failures():
             criterion="tone_presentation",
             severity="critical",
             explanation="Jargon.",
-            report_excerpt="Recorded fact.",
-            source_evidence=[],
+            report_example="Internal label.",
+            sources=[],
         )
     ]
-    errors = ev.validate_judgment(
-        result,
-        "Recorded fact.",
-        [dict(filename="notes.md", text="Recorded fact.", image=None)],
+    assert ev.overall_outcome([], result, []) == "needs_review"
+
+
+def test_judge_examples_are_advisory_not_substring_validated():
+    client = FakeClient(judgment())
+    result = ev.judge_report(
+        client,
+        "offline",
+        "Original report.",
+        [
+            dict(
+                filename="notes.md", text="Original source.", image=None, limitations=[]
+            )
+        ],
+        {"expected_outcomes": ["Required fact", "A newer value"]},
+        "Judge rubric",
     )
-    assert errors
-    assert ev.overall_outcome([], result, errors) == "needs_review"
+    assert result["criteria"]["factual_correctness"]["report_example"].startswith(
+        "A paraphrased example"
+    )
+    assert set(result["outcome_checks"]) == {"expected_1", "expected_2"}
+    assert len(client.requests) == 1

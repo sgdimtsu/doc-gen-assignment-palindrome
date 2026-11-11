@@ -14,6 +14,7 @@
     "For confirmed information, state the supported fact plainly. For ambiguity, preserve the stated possible meanings without choosing one. For conflicting assertions, retain the supplied alternatives and the unresolved status. For information not supplied, make clear that confirmation is needed; absence is not zero, none, agreement or evidence that a fact does not exist.",
     "Review notices are already reconciled and rendered by code. Read them to avoid contradicting the uncertainty in the narrative. A processing limitation is not a proven error in a client fact. Do not rewrite the notices, expose IDs or field names, or repeat them as REVIEW REQUIRED paragraphs.",
     "Never turn intended scope into confirmed scope, a withheld valuation into a claim that the source contains no value, or a proposed/conditional action into an agreed recommendation. Retain full-balance and approximate wording. Do not infer allowance availability, tax liability, fees or dates.",
-    "Return only the section/title/block_ids/paragraphs JSON. Do not add headings, tables, mandatory regulatory wording or review markers to paragraphs; code renders those once."
+    "Return only the section/title/block_ids/paragraphs JSON. Do not add headings, tables, mandatory regulatory wording or review markers to paragraphs; code renders those once.",
+    "State each fact once, in its most relevant section. Avoid repeating amounts, funding sources or instructions across paragraphs. Preserve distinct conditions, qualifications and unresolved concerns."
   ]
 }

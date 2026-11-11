@@ -1,5 +1,7 @@
 """Conservative account matching; observations and financial facts stay unchanged."""
 
+import re
+
 
 def _normalise(value):
     return " ".join(value.split()).casefold() if value else ""
@@ -7,7 +9,12 @@ def _normalise(value):
 
 def _type_matches(stated, known):
     stated, known = _normalise(stated), _normalise(known)
-    aliases = {"gia": "general investment account"}
+    aliases = {
+        "gia": "general investment account",
+        "gias": "general investment account",
+        "isas": "isa",
+        "sipps": "sipp",
+    }
     stated, known = aliases.get(stated, stated), aliases.get(known, known)
     # A generic ISA reference can match a subtype only when the full candidate
     # search yields one account. Never assume that an ISA is Stocks & Shares.
@@ -23,6 +30,42 @@ def _owner_matches(stated, owners):
         any(name == owner or name == owner.split()[0] for owner in owners)
         for name in names
     )
+
+
+def _group_names(observation, reference):
+    text = _normalise(reference.get("reference_text"))
+    if not re.search(r"\b(?:isas|sipps|gias|accounts|pensions)\b", text):
+        return []
+    named = []
+    for person in observation["data"].get("clients", []):
+        name = _normalise(person.get("name"))
+        if name and (
+            re.search(r"(?<!\w)" + re.escape(name) + r"(?!\w)", text)
+            or re.search(r"(?<!\w)" + re.escape(name.split()[0]) + r"(?!\w)", text)
+        ):
+            named.append(name)
+    return set(named)
+
+
+def _explicit_group(observation, reference, candidates, identities):
+    """A named plural scope reference can cover several individually unique accounts."""
+    named = _group_names(observation, reference)
+    selected = []
+    for name in set(named):
+        matches = [
+            account
+            for account in candidates
+            if any(
+                _owner_matches(name, set(identity[0]))
+                for identity in identities[(account["account_id"], account["proposed"])]
+            )
+        ]
+        if len(matches) != 1:
+            return []
+        selected.append(matches[0])
+    if len(selected) < 2 or len({a["account_key"] for a in selected}) != len(selected):
+        return []
+    return sorted(selected, key=lambda a: a["account_key"])
 
 
 def _identity(observation, reference):
@@ -149,6 +192,12 @@ def match_accounts(extraction: dict) -> dict:
         # platform/type only when exactly one identified account fits this case.
         description_only = observation["observation_type"] != "account" and all(pair)
         candidates = []
+        group_candidates = []
+        grouped_scope = observation[
+            "observation_type"
+        ] == "report_scope" and field.startswith(
+            ("included_accounts[", "excluded_accounts[")
+        )
         if not uncertain:
             for key, account in by_id.items():
                 if key[1] != proposed:
@@ -170,11 +219,23 @@ def match_accounts(extraction: dict) -> dict:
                     ]
                     owners = {owner for item in matching for owner in item[0]}
                     stated_owner = reference.get("owner_text")
+                    if matching and grouped_scope:
+                        group_candidates.append(account)
                     if matching and (
                         not stated_owner or _owner_matches(stated_owner, owners)
                     ):
                         candidates.append(account)
-        if len(candidates) == 1:
+        group = (
+            _explicit_group(observation, reference, group_candidates, identities)
+            if grouped_scope and not uncertain
+            else []
+        )
+        if group:
+            for account in group:
+                link(account, observation, field, "explicit_named_group")
+        elif len(candidates) == 1 and not (
+            grouped_scope and len(_group_names(observation, reference)) > 1
+        ):
             basis = (
                 "unique_owner_platform_type"
                 if identity is not None or reference.get("owner_text")

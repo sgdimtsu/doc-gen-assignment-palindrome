@@ -1,0 +1,1061 @@
+{
+  "scope": {
+    "included_account_keys": [
+      "account-0001",
+      "account-0002",
+      "account-0003"
+    ],
+    "excluded_account_keys": [],
+    "clients": [
+      "David Clarke",
+      "Susan Clarke"
+    ],
+    "unresolved_requests": [],
+    "complete": true,
+    "observation_ids": [
+      "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0001"
+    ]
+  },
+  "accounts": [
+    {
+      "account_key": "account-0001",
+      "account_id": "H-ISA-D",
+      "proposed": false,
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0017"
+      ],
+      "holders": [
+        "David Clarke"
+      ],
+      "platform": "Holloway",
+      "account_type": "Stocks & Shares ISA",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-ISA-D",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "owner_text": "David Clarke",
+            "reference_text": "H-ISA-D"
+          },
+          "amount": "61000.0",
+          "amount_text": "61000.0",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": "2026-04-30",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0018",
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0005"
+        ],
+        "source_text": "{\"account_id\": \"H-ISA-D\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"David Clarke\", \"status\": \"open\", \"value\": \"61000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": true
+    },
+    {
+      "account_key": "account-0002",
+      "account_id": "H-GIA-J",
+      "proposed": false,
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0019",
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0023"
+      ],
+      "holders": [
+        "David Clarke",
+        "Susan Clarke"
+      ],
+      "platform": "Holloway",
+      "account_type": "General Investment Account",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-GIA-J",
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "owner_text": "Joint",
+            "reference_text": "H-GIA-J"
+          },
+          "amount": "40000.0",
+          "amount_text": "40000.0",
+          "currency": "GBP",
+          "valuation_date": "2026-03-15",
+          "date_text": "2026-03-15",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0020",
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0024",
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0007"
+        ],
+        "source_text": "{\"account_id\": \"H-GIA-J\", \"platform\": \"Holloway\", \"type\": \"General Investment Account\", \"owner\": \"Joint\", \"status\": \"open\", \"value\": \"40000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-03-15\"}",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": true
+    },
+    {
+      "account_key": "account-0003",
+      "account_id": "H-ISA-S",
+      "proposed": false,
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0021"
+      ],
+      "holders": [
+        "Susan Clarke"
+      ],
+      "platform": "Holloway",
+      "account_type": "Stocks & Shares ISA",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-ISA-S",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "owner_text": "Susan Clarke",
+            "reference_text": "H-ISA-S"
+          },
+          "amount": "58500.0",
+          "amount_text": "58500.0",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": "2026-04-30",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0022",
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0006"
+        ],
+        "source_text": "{\"account_id\": \"H-ISA-S\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Susan Clarke\", \"status\": \"open\", \"value\": \"58500.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": true
+    }
+  ],
+  "actions": [
+    {
+      "data": {
+        "action_type": "sell",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "Joint"
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": "in full",
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "full_balance",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": "simplify",
+        "conditions": [],
+        "timing_text": null
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0009"
+      ],
+      "source_text": "We agreed to disinvest the joint GIA in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs for the new tax year, split equally between the two ISAs.",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [
+        "account-0002"
+      ],
+      "target_account_keys": []
+    },
+    {
+      "data": {
+        "action_type": "contribute",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "Joint"
+          }
+        ],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "ISA (David)",
+            "owner_text": "David"
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "ISA (Susan)",
+            "owner_text": "Susan"
+          }
+        ],
+        "amount": null,
+        "amount_text": "split equally between the two ISAs",
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": "split equally between the two ISAs",
+        "rationale_text": "use the proceeds to top up both ISAs for the new tax year",
+        "conditions": [],
+        "timing_text": null
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0010"
+      ],
+      "source_text": "We agreed to disinvest the joint GIA in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs for the new tax year, split equally between the two ISAs.",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[1].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [
+        "account-0002"
+      ],
+      "target_account_keys": [
+        "account-0001",
+        "account-0003"
+      ]
+    }
+  ],
+  "funding": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "origin_text": "Joint General Investment Account",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "joint GIA",
+          "owner_text": "Joint"
+        },
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "receipt_status": "received",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0011"
+      ],
+      "source_text": "Source of funds\tJoint General Investment Account",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "receipt_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "category": "risk_profile",
+        "timeframe_text": null,
+        "risk_score": "5",
+        "risk_description": "balanced"
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0002"
+      ],
+      "source_text": "Both are now retired. They confirmed their objectives and circumstances are unchanged since the last review, and both remain comfortable with the balanced approach to risk we agreed.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "category": "income_need",
+        "timeframe_text": null,
+        "risk_score": null,
+        "risk_description": "No income requirement"
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0003"
+      ],
+      "source_text": "Neither has any income requirement from the portfolio at the moment.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "category": "personal_circumstance",
+        "timeframe_text": "autumn",
+        "risk_score": null,
+        "risk_description": null
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0004"
+      ],
+      "source_text": "We talked briefly about a holiday they are planning for the autumn; this has no bearing on the advice but they were keen to mention it.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_description",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "people": [],
+        "category": "risk_profile",
+        "timeframe_text": null,
+        "risk_score": "5",
+        "risk_description": "balanced"
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0015"
+      ],
+      "source_text": "Agreed risk profile\n5 (balanced)",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "charges": [
+    {
+      "data": {
+        "charge_type": "ongoing_advice",
+        "account": null,
+        "platform": null,
+        "rate_percent": null,
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "requires_confirmation"
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0012"
+      ],
+      "source_text": "Susan asked what the ongoing charges would look like after the change. I said I would confirm the exact figures in the report rather than quote them from memory in the meeting.",
+      "sections": [
+        "fees_charges"
+      ],
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "rate_percent",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "charge_type": "initial",
+        "account": null,
+        "platform": null,
+        "rate_percent": "0",
+        "amount": null,
+        "currency": null,
+        "basis_text": "Initial charge",
+        "frequency_text": null,
+        "confirmation_status": "explicitly_confirmed"
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0016"
+      ],
+      "source_text": "Initial charge\n0%",
+      "sections": [
+        "fees_charges"
+      ],
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "tax_statements": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "Joint"
+          }
+        ],
+        "tax_type": "capital gains",
+        "amount": null,
+        "amount_text": "may have a capital gains position to consider",
+        "currency": null,
+        "precision": "unspecified",
+        "tax_period_text": null,
+        "confirmation_status": "not_stated"
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0013"
+      ],
+      "source_text": "We noted that selling down the GIA is a disposal and may have a capital gains position to consider; I will set that out in the report for them.",
+      "sections": [
+        "tax_implications"
+      ],
+      "field_states": [
+        {
+          "field": "accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "tax_period_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "data": {
+        "instruction_type": "mandatory_wording",
+        "scope_text": "conclusion section",
+        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns."
+      },
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0014"
+      ],
+      "source_text": "Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"\n- Then a closing line inviting the client to proceed.",
+      "sections": [
+        "conclusion"
+      ],
+      "field_states": []
+    }
+  ],
+  "unclassified": [],
+  "request_fields": [
+    {
+      "source_id": "source-0005",
+      "label": "Adviser",
+      "value": "Daniel Reeves"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Accounts covered",
+      "value": "Holloway ISAs (David and Susan) and the joint GIA"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Investment amount",
+      "value": "Full value of the joint GIA"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Source of funds",
+      "value": "Joint General Investment Account"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Selling existing investments?",
+      "value": "Yes"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Product recommended",
+      "value": "Top up of both Stocks & Shares ISAs"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Held in single or joint name?",
+      "value": "Joint clients, individual ISAs"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Agreed risk profile",
+      "value": "5 (balanced)"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Initial charge",
+      "value": "0%"
+    }
+  ],
+  "secondary_assertions": [],
+  "issues": [
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "ambiguous_reference",
+      "severity": "error",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0008"
+      ],
+      "account_keys": [],
+      "field": "account"
+    },
+    {
+      "issue_type": "amount_unconfirmed",
+      "message": "Do not state an exact transaction amount; retain wording or request confirmation",
+      "severity": "warning",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0010"
+      ],
+      "account_keys": [
+        "account-0002",
+        "account-0001",
+        "account-0003"
+      ],
+      "field": "amount"
+    },
+    {
+      "issue_type": "confirmation_required",
+      "message": "This charge requires human confirmation",
+      "severity": "warning",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0012"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "confirmation_required",
+      "message": "This tax_statement requires human confirmation",
+      "severity": "warning",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0013"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "extraction_ambiguous_reference",
+      "message": "Joint GIA referenced without an explicit account ID in meeting note and report request.",
+      "severity": "warning",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0008",
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0009",
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0010",
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0012"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_failed",
+      "message": "Validation is failed; this draft requires human verification",
+      "severity": "warning",
+      "observation_ids": [],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0001"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_omission",
+      "message": "Validator concern — verify: observation-0005, observation-0006, and observation-0007 (valuations) should explicitly include the 'Valued on' date from the statement as supporting evidence. The values, account type, and platform appear correct; however, verbatim excerpts from the image are required for evidence traceability per extraction guidance. Example – observation-0005.data.valuation_date: Add evidence excerpt: 'Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026' from the visible table.",
+      "severity": "error",
+      "observation_ids": [
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0005",
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0006",
+        "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0007"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "confirmation_required",
+      "message": "Confirm the platform charge before implementation.",
+      "observation_ids": []
+    }
+  ],
+  "validation_state": "failed",
+  "report": {
+    "title": "Investment Advice Report",
+    "sections": [
+      {
+        "title": "Introduction",
+        "requirements": "- One short paragraph. State which of the client's accounts the report covers (ISA, GIA, pension,\n  or a combination).\n- Keep the regulatory line about FCA authorisation as written.",
+        "include": true,
+        "block_ids": [
+          "block-0001"
+        ],
+        "fixed_text": [
+          "This firm is authorised and regulated by the Financial Conduct Authority."
+        ],
+        "review_notes": [
+          "An account reference could not be matched uniquely. Confirm its identity and intended use.",
+          "Automated review has not confirmed all extracted information. Verify this draft against the sources before proceeding.",
+          "An extracted evidence excerpt could not be verified verbatim. Check the cited source; this does not establish that its financial value is wrong.",
+          "Confirm the platform charge before implementation."
+        ]
+      },
+      {
+        "title": "Background & Objectives",
+        "requirements": "- A short, HIGH-LEVEL summary of the client's objectives and circumstances.\n- Then a table of the accounts covered: columns Account | Owner | Type | Value.\n- Keep this section high level. Specific transaction amounts (top-ups, sale proceeds, the size of\n  any new money, tax figures) belong in Recommendations and Tax Implications, NOT here.",
+        "include": true,
+        "block_ids": [
+          "block-0002",
+          "block-0003",
+          "block-0004",
+          "block-0005",
+          "block-0006",
+          "block-0007"
+        ],
+        "fixed_text": [],
+        "review_notes": []
+      },
+      {
+        "title": "Recommendations",
+        "requirements": "- What the client should do and why, including the amounts involved.\n- e.g. mention any platform charges relevant to the recommendation.",
+        "include": true,
+        "block_ids": [
+          "block-0008",
+          "block-0009",
+          "block-0010",
+          "block-0011",
+          "block-0012",
+          "block-0013",
+          "block-0014"
+        ],
+        "fixed_text": [],
+        "review_notes": [
+          "Some source information could not be fully processed. Verify the affected information before proceeding.",
+          "Do not state an exact transaction amount; retain wording or request confirmation"
+        ]
+      },
+      {
+        "title": "Tax Implications",
+        "requirements": "- Include this section ONLY if the recommendation involves selling or disposing of investments that\n  may create a taxable capital gain. If nothing is being sold, omit the section entirely.\n- State that the disposal may create a capital gains tax liability, assessed against the annual\n  exempt amount.",
+        "include": true,
+        "block_ids": [
+          "block-0018"
+        ],
+        "fixed_text": [],
+        "review_notes": [
+          "This tax_statement requires human confirmation"
+        ]
+      },
+      {
+        "title": "Fees & Charges",
+        "requirements": "- Set out the ongoing fees and charges that apply: the platform charge and the ongoing advice\n  charge.",
+        "include": true,
+        "block_ids": [
+          "block-0015",
+          "block-0016",
+          "block-0017"
+        ],
+        "fixed_text": [],
+        "review_notes": [
+          "This charge requires human confirmation"
+        ]
+      },
+      {
+        "title": "Conclusion",
+        "requirements": "- Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"\n- Then a closing line inviting the client to proceed.",
+        "include": true,
+        "block_ids": [
+          "block-0019"
+        ],
+        "fixed_text": [
+          "The value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns."
+        ],
+        "review_notes": []
+      }
+    ],
+    "blocks": {
+      "block-0001": {
+        "text": "This draft covers: Holloway Stocks & Shares ISA; Holloway General Investment Account; Holloway Stocks & Shares ISA.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0002": {
+        "text": "| Account | Owner | Type | Value |\n|---|---|---|---|\n| H-ISA-D | David Clarke | Holloway Stocks & Shares ISA | £61,000.0 (as at 2026-04-30) |\n| H-GIA-J | David Clarke, Susan Clarke | Holloway General Investment Account | £40,000.0 (as at 2026-03-15) |\n| H-ISA-S | Susan Clarke | Holloway Stocks & Shares ISA | £58,500.0 (as at 2026-04-30) |",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0003": {
+        "text": "Requested ownership arrangement: Joint clients, individual ISAs.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0004": {
+        "text": "Recorded risk profile: 5 balanced.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0002"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0005": {
+        "text": "Recorded circumstances: Neither has any income requirement from the portfolio at the moment.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0003"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0006": {
+        "text": "Recorded circumstances: We talked briefly about a holiday they are planning for the autumn; this has no bearing on the advice but they were keen to mention it.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0004"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0007": {
+        "text": "Recorded risk profile: 5 balanced.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0015"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0008": {
+        "text": "Report instruction — investment amount: Full value of the joint GIA.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0009": {
+        "text": "Report instruction — source of funds: Joint General Investment Account.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0010": {
+        "text": "Report instruction — product recommended: Top up of both Stocks & Shares ISAs.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0011": {
+        "text": "Report instruction — selling existing investments?: Yes.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0012": {
+        "text": "Recorded action (agreed): We agreed to disinvest the joint GIA in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs for the new tax year, split equally between the two ISAs.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0009"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "Some source information could not be fully processed. Verify the affected information before proceeding."
+        ]
+      },
+      "block-0013": {
+        "text": "Recorded action (agreed): We agreed to disinvest the joint GIA in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs for the new tax year, split equally between the two ISAs.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0010"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "Do not state an exact transaction amount; retain wording or request confirmation",
+          "Some source information could not be fully processed. Verify the affected information before proceeding."
+        ]
+      },
+      "block-0014": {
+        "text": "Recorded funding: Source of funds\tJoint General Investment Account",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0011"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0015": {
+        "text": "Recorded ongoing advice charge: Not supplied. Status: requires confirmation.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0012"
+        ],
+        "locked": true,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "This charge requires human confirmation",
+          "Some source information could not be fully processed. Verify the affected information before proceeding."
+        ]
+      },
+      "block-0016": {
+        "text": "Recorded initial charge: 0%. Status: explicitly confirmed.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0016"
+        ],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0017": {
+        "text": "Your platform charge has not been supplied and requires confirmation before implementation.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0018": {
+        "text": "Recorded tax information: We noted that selling down the GIA is a disposal and may have a capital gains position to consider; I will set that out in the report for them.",
+        "observation_ids": [
+          "f44ac7c6edb64211aa87cfd7cfd6961c:observation-0013"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "This tax_statement requires human confirmation"
+        ]
+      },
+      "block-0019": {
+        "text": "Please contact us with any questions. Implementation is subject to adviser review and confirmation of all outstanding information.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      }
+    },
+    "review_notes": [
+      "An account reference could not be matched uniquely. Confirm its identity and intended use.",
+      "Do not state an exact transaction amount; retain wording or request confirmation",
+      "This charge requires human confirmation",
+      "This tax_statement requires human confirmation",
+      "Some source information could not be fully processed. Verify the affected information before proceeding.",
+      "Automated review has not confirmed all extracted information. Verify this draft against the sources before proceeding.",
+      "An extracted evidence excerpt could not be verified verbatim. Check the cited source; this does not establish that its financial value is wrong.",
+      "Confirm the platform charge before implementation."
+    ]
+  },
+  "requires_review": true
+}

@@ -123,7 +123,7 @@ def load_sources(client_dir):
     return sources, errors
 
 
-def judge_schema(filenames):
+def judge_schema(filenames, expected_outcomes):
     def obj(properties):
         return dict(
             type="object",
@@ -133,21 +133,15 @@ def judge_schema(filenames):
         )
 
     string = {"type": "string"}
-    evidence = {
-        "type": "array",
-        "items": obj(
-            {
-                "filename": {"type": "string", "enum": filenames},
-                "source_excerpt": string,
-            }
-        ),
-    }
-    criterion = obj(
+    assessment = obj(
         {
             "rating": {"type": "string", "enum": list(RATINGS)},
             "explanation": string,
-            "report_excerpt": string,
-            "source_evidence": evidence,
+            "report_example": string,
+            "sources": {
+                "type": "array",
+                "items": {"type": "string", "enum": filenames},
+            },
         }
     )
     finding = obj(
@@ -158,96 +152,61 @@ def judge_schema(filenames):
                 "enum": ["critical", "requirement", "presentation", "unverified"],
             },
             "explanation": string,
-            "report_excerpt": string,
-            "source_evidence": evidence,
+            "report_example": string,
+            "sources": {
+                "type": "array",
+                "items": {"type": "string", "enum": filenames},
+            },
         }
     )
     return obj(
         {
-            "reviewed_sources": {
-                "type": "array",
-                "items": {"type": "string", "enum": filenames},
-            },
-            "criteria": obj({name: criterion for name in GROUND + QUALITY}),
+            "outcome_checks": obj({key: assessment for key in expected_outcomes}),
+            "criteria": obj({name: assessment for name in GROUND + QUALITY}),
             "findings": {"type": "array", "items": finding},
         }
     )
 
 
-def validate_judgment(judgment, report, sources):
-    errors = []
-    known = {s["filename"]: s for s in sources}
-    if sorted(judgment["reviewed_sources"]) != sorted(known):
-        errors.append("Judge did not cover every source exactly once")
-    for item in list(judgment["criteria"].values()) + judgment["findings"]:
-        if not item["explanation"].strip():
-            errors.append("Judge returned an empty explanation")
-        if item["report_excerpt"] and normalise(
-            item["report_excerpt"]
-        ) not in normalise(report):
-            errors.append("Judge report excerpt could not be located")
-        for evidence in item["source_evidence"]:
-            source = known.get(evidence["filename"])
-            if not source or not evidence["source_excerpt"].strip():
-                errors.append("Judge evidence has an unknown source or empty excerpt")
-            elif not source["image"] and normalise(
-                evidence["source_excerpt"]
-            ) not in normalise(source["text"]):
-                errors.append(
-                    "Judge source excerpt could not be located: " + evidence["filename"]
-                )
-    for finding in judgment["findings"]:
-        if finding["criterion"] in QUALITY and finding["severity"] in {
-            "critical",
-            "requirement",
-        }:
-            errors.append(
-                "Presentation finding incorrectly graded as a factual/requirement failure"
-            )
-        if judgment["criteria"][finding["criterion"]]["rating"] == "meets":
-            errors.append("Judge finding contradicts a meets rating")
-        if (
-            finding["criterion"] != "completeness"
-            and not finding["report_excerpt"].strip()
-        ):
-            errors.append("Judge finding lacks an affected report excerpt")
-    for name in GROUND:
-        if judgment["criteria"][name]["rating"] == "does_not_meet" and not any(
-            f["criterion"] == name for f in judgment["findings"]
-        ):
-            errors.append("Ground-truth failure lacks a finding: " + name)
-    return errors
-
-
 def overall_outcome(checks, judgment, errors):
     if any(c["passed"] is False and c["severity"] == "requirement" for c in checks):
         return "fail"
-    if (
-        judgment
-        and not errors
-        and any(
-            f["severity"] in {"critical", "requirement"} for f in judgment["findings"]
-        )
+    if errors or not judgment:
+        return "needs_review"
+    if any(c["rating"] == "does_not_meet" for c in judgment["outcome_checks"].values()):
+        return "fail"
+    if any(judgment["criteria"][name]["rating"] == "does_not_meet" for name in GROUND):
+        return "fail"
+    if any(
+        f["criterion"] in GROUND and f["severity"] in {"critical", "requirement"}
+        for f in judgment["findings"]
     ):
         return "fail"
-    if errors or not judgment or any(c["passed"] is not True for c in checks):
-        return "needs_review"
-    if judgment["findings"] or any(
-        c["rating"] != "meets" for c in judgment["criteria"].values()
+    ratings = list(judgment["outcome_checks"].values()) + list(
+        judgment["criteria"].values()
+    )
+    if (
+        any(c["passed"] is not True for c in checks)
+        or judgment["findings"]
+        or any(c["rating"] != "meets" for c in ratings)
     ):
         return "needs_review"
     return "pass"
 
 
 def judge_report(client, model, report, sources, expected, prompt):
-    schema = judge_schema([s["filename"] for s in sources])
+    outcomes = {
+        f"expected_{i + 1}": text
+        for i, text in enumerate(expected["expected_outcomes"])
+    }
+    schema = judge_schema([s["filename"] for s in sources], outcomes)
     content = [
         {
             "type": "text",
             "text": json.dumps(
                 {
                     "report": report,
-                    "expected_outcomes": expected["expected_outcomes"],
+                    "expected_outcomes": outcomes,
                     "sources": [
                         {k: v for k, v in s.items() if k != "image"} for s in sources
                     ],
@@ -305,7 +264,9 @@ def main(argv=None):
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--data-dir", type=Path, default=ROOT / "data")
     parser.add_argument(
-        "--expectations", type=Path, default=ROOT / "evaluation/expectations.json"
+        "--expectations",
+        type=Path,
+        default=Path(__file__).with_name("expectations.json"),
     )
     parser.add_argument("--model", help="Overrides EVALUATION_MODEL; default gpt-4.1")
     args = parser.parse_args(argv)
@@ -323,7 +284,7 @@ def main(argv=None):
         ):
             raise ValueError("Expected outcomes are missing or invalid")
         sources, errors = load_sources(client_dir)
-        prompt = (ROOT / "evaluation/judge_prompt.md").read_text()
+        prompt = (Path(__file__).with_name("judge_prompt.md")).read_text()
     except (OSError, ValueError, KeyError) as error:
         parser.error("Cannot load evaluation inputs: " + str(error))
     checks = code_checks(report, specification, expected)
@@ -336,7 +297,6 @@ def main(argv=None):
                 judgment = judge_report(
                     client, model, report, sources, expected, prompt
                 )
-            errors += validate_judgment(judgment, report, sources)
         except Exception as error:
             # SDK errors can contain credentials or source content; save only type.
             errors.append("Evaluator failed: " + type(error).__name__)
@@ -346,6 +306,7 @@ def main(argv=None):
         outcome=outcome,
         model=model,
         code_checks=checks,
+        expected_outcomes=expected["expected_outcomes"],
         judgment=judgment,
         evaluation_errors=errors,
         limitation=LIMITATION,

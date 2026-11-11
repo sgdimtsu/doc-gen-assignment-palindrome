@@ -58,10 +58,10 @@ def reconcile(
             }
         )
 
-    links = {}
+    links = defaultdict(set)
     for account in matches["accounts"]:
         for ref in account["references"]:
-            links[(ref["observation_id"], ref["field"])] = account["account_key"]
+            links[(ref["observation_id"], ref["field"])].add(account["account_key"])
     for problem in matches["issues"]:
         oid = problem.get("observation_id")
         issue(
@@ -138,6 +138,8 @@ def reconcile(
         "included_account_keys": [],
         "excluded_account_keys": [],
         "clients": [],
+        "unresolved_requests": [],
+        "complete": False,
         "observation_ids": [o["observation_id"] for o in scopes],
     }
     source_scopes = defaultdict(lambda: {"included": set(), "excluded": set()})
@@ -151,9 +153,19 @@ def reconcile(
         )
         for category in ("included", "excluded"):
             for i, _ in enumerate(observation["data"][category + "_accounts"]):
-                key = links.get((oid, f"{category}_accounts[{i}]"))
-                if key:
-                    source_scopes[observation["source_id"]][category].add(key)
+                keys = links.get((oid, f"{category}_accounts[{i}]"), set())
+                if keys:
+                    source_scopes[observation["source_id"]][category].update(keys)
+                else:
+                    scope["unresolved_requests"].append(
+                        dict(
+                            category=category,
+                            reference=deepcopy(
+                                observation["data"][category + "_accounts"][i]
+                            ),
+                            observation_id=oid,
+                        )
+                    )
     for category in ("included", "excluded"):
         scope[category + "_account_keys"] = sorted(
             {key for item in source_scopes.values() for key in item[category]}
@@ -177,6 +189,57 @@ def reconcile(
         issue(
             "scope_missing",
             "A supported non-empty report scope could not be established",
+            scope["observation_ids"],
+            critical=True,
+        )
+
+    # Preserve explicitly requested new accounts even if the model omitted their
+    # reference entirely. Keep the original request, never invent an account ID.
+    new_account = r"\b(?:new|proposed)\b.*?\baccount\b"
+    represented_new = any(
+        re.search(new_account, ref.get("reference_text") or "", re.I)
+        for obs in scopes
+        for ref in obs["data"]["included_accounts"]
+    )
+    represented_new = represented_new or any(
+        a["proposed"] and a["account_key"] in scope["included_account_keys"]
+        for a in accounts
+    )
+    if not represented_new:
+        for field in extraction.get("request_fields", []):
+            if field["label"].strip().casefold() == "accounts covered" and re.search(
+                new_account, field["value"], re.I
+            ):
+                scope["unresolved_requests"].append(
+                    dict(
+                        category="included",
+                        reference=dict(
+                            reference_text=field["value"],
+                            account_id=None,
+                            owner_text=None,
+                            platform=None,
+                            account_type=None,
+                        ),
+                        observation_id=None,
+                    )
+                )
+                issue(
+                    "scope_incomplete",
+                    "The report request includes a new/proposed account whose description was not preserved in scope observations",
+                    critical=True,
+                )
+
+    scope["complete"] = bool(
+        scopes
+        and scope["included_account_keys"]
+        and not scope["unresolved_requests"]
+        and len(signatures) <= 1
+        and not overlap
+    )
+    if scope["included_account_keys"] and scope["unresolved_requests"]:
+        issue(
+            "scope_incomplete",
+            "Some requested accounts remain unresolved; the matched accounts do not establish complete scope",
             scope["observation_ids"],
             critical=True,
         )
@@ -217,7 +280,8 @@ def reconcile(
             fact[direction + "_account_keys"] = sorted(
                 {
                     key
-                    for (oid, field), key in links.items()
+                    for (oid, field), keys in links.items()
+                    for key in keys
                     if oid == observation["observation_id"]
                     and field.startswith(direction + "_accounts[")
                 }

@@ -92,6 +92,7 @@ class ExtractionValidator:
                 "source_id": sid,
                 "filename": name,
                 "format": current[name]["format"],
+                "role": original[name]["role"],
                 "text": text,
                 "image": image,
                 "code_records": tools.protected.get(current[name]["source_id"], []),

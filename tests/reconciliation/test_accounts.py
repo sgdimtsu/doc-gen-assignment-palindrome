@@ -334,3 +334,65 @@ def test_proposed_joint_account_is_not_matched_to_existing_joint_gia():
     )
     assert result["issues"][0]["reason"] == "no_match"
     assert "new" not in result["accounts"][0]["observation_ids"]
+
+
+def grouped_scope(names=("Alex", "Sam"), text="Platform ISAs (Alex and Sam)"):
+    return {
+        "observation_id": "scope",
+        "observation_type": "report_scope",
+        "data": {
+            "clients": [{"name": name} for name in names],
+            "included_accounts": [
+                {
+                    "account_id": None,
+                    "platform": "Platform",
+                    "account_type": "ISA",
+                    "owner_text": None,
+                    "reference_text": text,
+                }
+            ],
+        },
+    }
+
+
+def test_explicit_named_plural_scope_links_each_unique_account_without_mutation():
+    scope = grouped_scope()
+    before = deepcopy(scope)
+    result = match(
+        account("alex", "A", owner="Alex"),
+        account("sam", "S", owner="Sam"),
+        account("third", "T", owner="Taylor"),
+        scope,
+    )
+    assert result["issues"] == []
+    assert {
+        a["account_id"] for a in result["accounts"] if "scope" in a["observation_ids"]
+    } == {"A", "S"}
+    assert scope == before
+
+
+def test_plural_scope_does_not_guess_when_one_person_has_two_possible_accounts():
+    result = match(
+        account("alex1", "A1", owner="Alex"),
+        account("alex2", "A2", owner="Alex"),
+        account("sam", "S", owner="Sam"),
+        grouped_scope(),
+    )
+    assert result["issues"]
+    assert all("scope" not in a["observation_ids"] for a in result["accounts"])
+
+
+def test_named_group_is_not_reduced_to_the_one_account_that_matched():
+    result = match(account("alex", "A", owner="Alex"), grouped_scope())
+    assert result["issues"]
+    assert "scope" not in result["accounts"][0]["observation_ids"]
+
+
+def test_generic_plural_scope_without_names_is_not_permission_to_include_everyone():
+    result = match(
+        account("alex", "A", owner="Alex"),
+        account("sam", "S", owner="Sam"),
+        grouped_scope(text="Platform ISAs"),
+    )
+    assert result["issues"]
+    assert all("scope" not in a["observation_ids"] for a in result["accounts"])

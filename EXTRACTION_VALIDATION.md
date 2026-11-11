@@ -17,6 +17,12 @@ Check that IDs, owner_text, platform, account type, names, scores and figures at
 
 The supplied sources include code_records imported directly from recognised account JSON and request fields. Validate these against the parsed source structure, not substring equality against pretty-printed JSON. A formatting difference is not missing or unsupported financial data. Do not demand model copies of these records. Other observations remain source-local: do not copy database IDs into meeting notes. A contribution instruction is not an account valuation, and an ownership arrangement is not a person's name. Distinguish unresolved report information from a failure to verify an extracted statement; do not claim that a failed quote check proves the underlying financial value is incorrect.
 
+## Scope and live-value coverage
+
+Check the request source by source: every explicitly named individual account and every proposed account description should survive extraction, including when matching is unresolved. A plural request must not be compressed into one generic singular reference. owner_text must be a literal source name or ownership phrase, not a rationale or reconstructed identity. Do not demand an account ID or a full name absent from that source.
+
+Independently inspect relevant documents for explicit live account readings and values, including values described as showing, worth or valued. Check that each has a valuation observation for the correct account, amount wording, date and precision; a database record from another source does not cover the assertion. Capture later approximate observations as well as older exact figures. Do not choose the winner here. A clearly dated meeting supplies the observation date only when the source states the value was seen at that meeting; otherwise preserve the missing date. If relevant information cannot be classified, require preserved unclassified evidence rather than discarding it.
+
 ## Account-reference completeness
 
 Use `extraction_field_definitions` as the extraction contract. Inspect every account reference against the cited document, including clearly applicable surrounding paragraphs or table labels in that same document. Annotating a field `not_stated` does not make its omission correct if the source supplies it.

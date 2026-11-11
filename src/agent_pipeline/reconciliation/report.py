@@ -61,6 +61,7 @@ def review_note(issue):
     kind = issue["issue_type"]
     messages = {
         "unresolved_account_match": "An account reference could not be matched uniquely. Confirm its identity and intended use.",
+        "scope_incomplete": "Only part of the requested scope could be matched. Confirm the unresolved accounts before finalising this report.",
         "scope_missing": "Report scope is unconfirmed. Verify which accounts this draft should cover.",
         "scope_conflict": "Report scope instructions conflict. Confirm which accounts should be covered.",
         "action_outside_scope": "An action refers to an account outside the confirmed scope. Confirm the intended scope and action.",
@@ -115,7 +116,12 @@ def build_report(facts, specification):
         names = [
             " ".join(filter(None, [a["platform"], a["account_type"]])) for a in included
         ]
-        add("scope", "This draft covers: " + "; ".join(names) + ".")
+        prefix = (
+            "This draft covers: "
+            if facts["scope"].get("complete", True)
+            else "Confirmed accounts within the requested scope: "
+        )
+        add("scope", prefix + "; ".join(names) + ".")
     else:
         intended = request.get("accounts covered", [])
         add(
@@ -126,6 +132,32 @@ def build_report(facts, specification):
                 if intended
                 else ""
             ),
+        )
+    for pending in facts["scope"].get("unresolved_requests", []):
+        ref = pending["reference"]
+        description = (
+            ref.get("reference_text")
+            or " ".join(
+                filter(
+                    None,
+                    [
+                        ref.get("owner_text"),
+                        ref.get("platform"),
+                        ref.get("account_type"),
+                    ],
+                )
+            )
+            or "Unspecified account"
+        )
+        add(
+            "scope",
+            "Requested "
+            + pending["category"]
+            + " account not yet confirmed: "
+            + description
+            + ".",
+            [pending["observation_id"]] if pending["observation_id"] else [],
+            locked=True,
         )
     if included:
         rows = ["| Account | Owner | Type | Value |", "|---|---|---|---|"]
