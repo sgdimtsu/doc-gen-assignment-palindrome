@@ -1,0 +1,1166 @@
+{
+  "scope": {
+    "included_account_keys": [
+      "account-0001",
+      "account-0002",
+      "account-0003"
+    ],
+    "excluded_account_keys": [],
+    "clients": [
+      "Jean Fletcher",
+      "Robert Fletcher"
+    ],
+    "observation_ids": [
+      "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+    ]
+  },
+  "accounts": [
+    {
+      "account_key": "account-0001",
+      "account_id": "H-ISA-R",
+      "proposed": false,
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0021"
+      ],
+      "holders": [
+        "Robert Fletcher"
+      ],
+      "platform": "Holloway",
+      "account_type": "Stocks & Shares ISA",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-ISA-R",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "owner_text": "Robert Fletcher",
+            "reference_text": "H-ISA-R"
+          },
+          "amount": "70000.0",
+          "amount_text": "70000.0",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": "2026-04-30",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0022",
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0014"
+        ],
+        "source_text": "{\"account_id\": \"H-ISA-R\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Robert Fletcher\", \"status\": \"open\", \"value\": \"70000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": true
+    },
+    {
+      "account_key": "account-0002",
+      "account_id": "H-GIA-JF",
+      "proposed": false,
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0023",
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0029"
+      ],
+      "holders": [
+        "Jean Fletcher",
+        "Robert Fletcher"
+      ],
+      "platform": "Holloway",
+      "account_type": "General Investment Account",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "GIA",
+            "reference_text": "General Investment Account (Joint)",
+            "owner_text": "Joint"
+          },
+          "amount": null,
+          "amount_text": "around £38,000",
+          "currency": "GBP",
+          "valuation_date": "2026-05-16",
+          "date_text": "meeting 16 May 2026",
+          "precision": "approximate"
+        },
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0005"
+        ],
+        "source_text": "it was showing around £38,000, a little higher than the figure on the last statement they had to hand.",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": [
+          {
+            "field": "amount",
+            "state": "qualified_value"
+          }
+        ]
+      },
+      "in_report_scope": true
+    },
+    {
+      "account_key": "account-0003",
+      "account_id": "H-ISA-JE",
+      "proposed": false,
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0025"
+      ],
+      "holders": [
+        "Jean Fletcher"
+      ],
+      "platform": "Holloway",
+      "account_type": "Stocks & Shares ISA",
+      "status": "open",
+      "valuation": {
+        "data": {
+          "account": {
+            "account_id": "H-ISA-JE",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "owner_text": "Jean Fletcher",
+            "reference_text": "H-ISA-JE"
+          },
+          "amount": "66000.0",
+          "amount_text": "66000.0",
+          "currency": "GBP",
+          "valuation_date": "2026-04-30",
+          "date_text": "2026-04-30",
+          "precision": "exact"
+        },
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0026",
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0016"
+        ],
+        "source_text": "{\"account_id\": \"H-ISA-JE\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Jean Fletcher\", \"status\": \"open\", \"value\": \"66000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+        "sections": [
+          "background_objectives"
+        ],
+        "field_states": []
+      },
+      "in_report_scope": true
+    },
+    {
+      "account_key": "account-0004",
+      "account_id": "H-CASH-JE",
+      "proposed": false,
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0027"
+      ],
+      "holders": [
+        "Jean Fletcher"
+      ],
+      "platform": "Holloway",
+      "account_type": "Cash Account",
+      "status": "open",
+      "valuation": null,
+      "in_report_scope": false
+    }
+  ],
+  "actions": [
+    {
+      "data": {
+        "action_type": "sell",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "GIA",
+            "reference_text": "General Investment Account (Joint)",
+            "owner_text": "Joint"
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "full_balance",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": null
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+      ],
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "sections": [
+        "recommendations",
+        "tax_implications"
+      ],
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [
+        "account-0002"
+      ],
+      "target_account_keys": []
+    },
+    {
+      "data": {
+        "action_type": "contribute",
+        "source_accounts": [],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Holloway ISA (Robert)",
+            "owner_text": "Robert"
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Holloway ISA (Jean)",
+            "owner_text": "Jean"
+          }
+        ],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": "fund both Robert's and Jean's ISAs for the new tax year",
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": "new tax year"
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+      ],
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[1].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [],
+      "target_account_keys": [
+        "account-0001",
+        "account-0003"
+      ]
+    },
+    {
+      "data": {
+        "action_type": "open_account",
+        "source_accounts": [],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": null,
+            "account_type": null,
+            "reference_text": "new jointly-held investment account",
+            "owner_text": "Joint"
+          }
+        ],
+        "amount": null,
+        "amount_text": "for the balance",
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": "open a new jointly-held investment account for the balance",
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": null
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+      ],
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "sections": [
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_type",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "source_account_keys": [],
+      "target_account_keys": []
+    }
+  ],
+  "funding": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean Fletcher"
+          }
+        ],
+        "origin_text": "Inheritance from her late mother's estate",
+        "account": null,
+        "amount": null,
+        "amount_text": "around £120,000",
+        "currency": "GBP",
+        "precision": "approximate",
+        "receipt_status": "received",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+      ],
+      "source_text": "Jean has received an inheritance of around £120,000 from her late mother's estate, which has now cleared. The couple would like to put this to work alongside their existing portfolio.",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "amount",
+          "state": "qualified_value"
+        },
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "receipt_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert Fletcher"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean Fletcher"
+          }
+        ],
+        "category": "objective",
+        "timeframe_text": "long-term growth",
+        "risk_score": "4",
+        "risk_description": "moderate risk level"
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0002"
+      ],
+      "source_text": "Their objectives are unchanged from the last review: long-term growth, with no income required from the portfolio for the foreseeable future. Both remain at a moderate risk level and were comfortable keeping it there.",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "field_states": []
+    },
+    {
+      "data": {
+        "people": [],
+        "category": "risk_profile",
+        "timeframe_text": null,
+        "risk_score": "4",
+        "risk_description": "moderate"
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0019"
+      ],
+      "source_text": "Agreed risk profile\n4 (moderate)",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "charges": [
+    {
+      "data": {
+        "charge_type": "initial",
+        "account": null,
+        "platform": null,
+        "rate_percent": "0.5",
+        "amount": null,
+        "currency": null,
+        "basis_text": "Initial charge",
+        "frequency_text": null,
+        "confirmation_status": "explicitly_confirmed"
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0020"
+      ],
+      "source_text": "Initial charge\n0.5%",
+      "sections": [
+        "fees_charges"
+      ],
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "tax_statements": [
+    {
+      "data": {
+        "people": [
+          {
+            "name": "Robert Fletcher",
+            "reference_text": "Robert Fletcher"
+          },
+          {
+            "name": "Jean Fletcher",
+            "reference_text": "Jean Fletcher"
+          }
+        ],
+        "accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "GIA",
+            "reference_text": "General Investment Account (Joint)",
+            "owner_text": "Joint"
+          }
+        ],
+        "tax_type": "capital gains",
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "tax_period_text": null,
+        "confirmation_status": "not_stated"
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+      ],
+      "source_text": "Selling down the GIA is a disposal, so there is a capital gains position to set out in the report.",
+      "sections": [
+        "tax_implications"
+      ],
+      "field_states": [
+        {
+          "field": "accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "tax_period_text",
+          "state": "not_stated"
+        }
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "data": {
+        "instruction_type": "tone",
+        "scope_text": "Background section, reference to funding origin",
+        "exact_wording": null
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0010"
+      ],
+      "source_text": "The new money being invested is an inheritance the client received following the recent death of her mother. Reference its origin with appropriate sensitivity.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [
+        {
+          "field": "exact_wording",
+          "state": "not_stated"
+        }
+      ]
+    },
+    {
+      "data": {
+        "instruction_type": "mandatory_wording",
+        "scope_text": "conclusion",
+        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest.\nPast performance is not a guide to future returns."
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0011"
+      ],
+      "source_text": "Must include this risk warning, word for word:\n\"The value of investments can fall as well as rise and you may get back less than you invest.\nPast performance is not a guide to future returns.\"",
+      "sections": [
+        "conclusion"
+      ],
+      "field_states": []
+    }
+  ],
+  "unclassified": [
+    {
+      "data": {
+        "reason_unclassified": "unclear_meaning"
+      },
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0012"
+      ],
+      "source_text": "Jean mentioned in passing that she has another small cash account from some years ago, but she could not recall the balance and was not even sure it was still active. She will dig out the paperwork and we will confirm it before anything is finalised.",
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": []
+    }
+  ],
+  "request_fields": [
+    {
+      "source_id": "source-0006",
+      "label": "Adviser",
+      "value": "Daniel Reeves"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Accounts covered",
+      "value": "Holloway ISAs (Robert and Jean), the joint GIA, and a new joint account"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Investment amount",
+      "value": "GBP 120,000 inheritance plus the full joint GIA value"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Source of funds",
+      "value": "Inheritance (Jean) and the joint General Investment Account"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Selling existing investments?",
+      "value": "Yes"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Product recommended",
+      "value": "ISA top-ups and a new joint investment account"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Held in single or joint name?",
+      "value": "Joint clients, individual ISAs plus a joint account"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Agreed risk profile",
+      "value": "4 (moderate)"
+    },
+    {
+      "source_id": "source-0006",
+      "label": "Initial charge",
+      "value": "0.5%"
+    }
+  ],
+  "secondary_assertions": [],
+  "issues": [
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+      ],
+      "account_keys": [],
+      "field": "included_accounts[3]"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "no_match",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0004"
+      ],
+      "account_keys": [],
+      "field": "account"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+      ],
+      "account_keys": [],
+      "field": "target_accounts[0]"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+      ],
+      "account_keys": [],
+      "field": "account"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+      ],
+      "account_keys": [],
+      "field": "account"
+    },
+    {
+      "issue_type": "unresolved_account_match",
+      "message": "insufficient_identity",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+      ],
+      "account_keys": [],
+      "field": "account"
+    },
+    {
+      "issue_type": "valuation_unresolved",
+      "message": "Valuation dates are missing or invalid; no latest value was selected",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0028"
+      ],
+      "account_keys": [
+        "account-0004"
+      ],
+      "field": "valuation"
+    },
+    {
+      "issue_type": "amount_unconfirmed",
+      "message": "Do not state an exact transaction amount; retain wording or request confirmation",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+      ],
+      "account_keys": [
+        "account-0001",
+        "account-0003"
+      ],
+      "field": "amount"
+    },
+    {
+      "issue_type": "amount_unconfirmed",
+      "message": "Do not state an exact transaction amount; retain wording or request confirmation",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+      ],
+      "account_keys": [],
+      "field": "amount"
+    },
+    {
+      "issue_type": "confirmation_required",
+      "message": "This tax_statement requires human confirmation",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "interpretation_required",
+      "message": "Source guidance or unclassified evidence needs review; fixed rules do not interpret free-text policy",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0012"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_failed",
+      "message": "Validation is failed; this draft requires human verification",
+      "severity": "warning",
+      "observation_ids": [],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Null field lacks an explicit state: account.account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0005"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Field state path must resolve relative to data: account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_omission",
+      "message": "Validator concern — verify: Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, field account.account_type: The account type in the extraction is 'Stocks & Shares ISA', as shown in the image source (source-0007), but in the cross-referenced included accounts in observation-0001 (from source-0006), the account type is listed as only 'ISA'. The more precise type 'Stocks & Shares ISA' is explicitly stated in the image (source-0007) and should be used wherever this account is referenced based on this source.",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_omission",
+      "message": "Validator concern — verify: Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015, field account.account_type: The account type in the extraction is 'Stocks & Shares ISA', as shown explicitly in the image (source-0007), but in the included_accounts in observation-0001 it appears as only 'ISA'. Confirm that the more precise 'Stocks & Shares ISA' is used for this account in all fields when deriving from this source.",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_omission",
+      "message": "Validator concern — verify: Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017, field account.account_type: The account type is given as 'General Investment Account' in the image (source-0007), but in included_accounts (observation-0001, source-0006) it is just 'GIA'. The full type should be extracted from the image where supported.",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_omission",
+      "message": "Validator concern — verify: Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, field account.platform: The platform for all these accounts is 'Holloway', which is implicit from both the account naming convention in the table and the section heading ('Holloway Account Statement'), but it is not always explicitly attached as a field value in every observation in the extraction that references the table. The extractor should use this when the context from the image applies.",
+      "severity": "warning",
+      "observation_ids": [
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0013",
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0015",
+        "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "confirmation_required",
+      "message": "Confirm the platform charge before implementation.",
+      "observation_ids": []
+    },
+    {
+      "issue_type": "confirmation_required",
+      "message": "Confirm the ongoing advice charge before implementation.",
+      "observation_ids": []
+    }
+  ],
+  "validation_state": "failed",
+  "report": {
+    "title": "Investment Advice Report",
+    "sections": [
+      {
+        "title": "Introduction",
+        "requirements": "- One short paragraph. State which of the client's accounts the report covers (ISA, GIA, pension,\n  or a combination).\n- Keep the regulatory line about FCA authorisation as written.",
+        "include": true,
+        "block_ids": [
+          "block-0001"
+        ],
+        "fixed_text": [
+          "This firm is authorised and regulated by the Financial Conduct Authority."
+        ],
+        "review_notes": [
+          "An account valuation could not be selected. The supplied values, dates or qualifications require review.",
+          "Supporting guidance or unclassified evidence requires adviser review.",
+          "Automated review has not confirmed all extracted information. Verify this draft against the sources before proceeding.",
+          "Confirm the platform charge before implementation.",
+          "Confirm the ongoing advice charge before implementation."
+        ]
+      },
+      {
+        "title": "Background & Objectives",
+        "requirements": "- A short, HIGH-LEVEL summary of the client's objectives and circumstances.\n- Then a table of the accounts covered: columns Account | Owner | Type | Value.\n- Keep this section high level. Specific transaction amounts (top-ups, sale proceeds, the size of\n  any new money, tax figures) belong in Recommendations and Tax Implications, NOT here.",
+        "include": true,
+        "block_ids": [
+          "block-0002",
+          "block-0003",
+          "block-0004",
+          "block-0005"
+        ],
+        "fixed_text": [],
+        "review_notes": []
+      },
+      {
+        "title": "Recommendations",
+        "requirements": "- What the client should do and why, including the amounts involved.\n- e.g. mention any platform charges relevant to the recommendation.",
+        "include": true,
+        "block_ids": [
+          "block-0006",
+          "block-0007",
+          "block-0008",
+          "block-0009",
+          "block-0010",
+          "block-0011",
+          "block-0012",
+          "block-0013"
+        ],
+        "fixed_text": [],
+        "review_notes": [
+          "The extraction contains incomplete uncertainty annotations. Verify the affected information against its source.",
+          "Do not state an exact transaction amount; retain wording or request confirmation",
+          "An account reference could not be matched uniquely. Confirm its identity and intended use."
+        ]
+      },
+      {
+        "title": "Tax Implications",
+        "requirements": "- Include this section ONLY if the recommendation involves selling or disposing of investments that\n  may create a taxable capital gain. If nothing is being sold, omit the section entirely.\n- State that the disposal may create a capital gains tax liability, assessed against the annual\n  exempt amount.",
+        "include": true,
+        "block_ids": [
+          "block-0017"
+        ],
+        "fixed_text": [],
+        "review_notes": [
+          "This tax_statement requires human confirmation"
+        ]
+      },
+      {
+        "title": "Fees & Charges",
+        "requirements": "- Set out the ongoing fees and charges that apply: the platform charge and the ongoing advice\n  charge.",
+        "include": true,
+        "block_ids": [
+          "block-0014",
+          "block-0015",
+          "block-0016"
+        ],
+        "fixed_text": [],
+        "review_notes": []
+      },
+      {
+        "title": "Conclusion",
+        "requirements": "- Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"\n- Then a closing line inviting the client to proceed.",
+        "include": true,
+        "block_ids": [
+          "block-0018"
+        ],
+        "fixed_text": [
+          "The value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns."
+        ],
+        "review_notes": []
+      }
+    ],
+    "blocks": {
+      "block-0001": {
+        "text": "This draft covers: Holloway Stocks & Shares ISA; Holloway General Investment Account; Holloway Stocks & Shares ISA.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0002": {
+        "text": "| Account | Owner | Type | Value |\n|---|---|---|---|\n| H-ISA-R | Robert Fletcher | Holloway Stocks & Shares ISA | £70,000.0 (as at 2026-04-30) |\n| H-GIA-JF | Jean Fletcher, Robert Fletcher | Holloway General Investment Account | around £38,000 (as at 2026-05-16) |\n| H-ISA-JE | Jean Fletcher | Holloway Stocks & Shares ISA | £66,000.0 (as at 2026-04-30) |",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0003": {
+        "text": "Requested ownership arrangement: Joint clients, individual ISAs plus a joint account.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0004": {
+        "text": "Recorded circumstances: Their objectives are unchanged from the last review: long-term growth, with no income required from the portfolio for the foreseeable future. Both remain at a moderate risk level and were comfortable keeping it there.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0002"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0005": {
+        "text": "Recorded risk profile: 4 moderate.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0019"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0006": {
+        "text": "Report instruction — investment amount: GBP 120,000 inheritance plus the full joint GIA value.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0007": {
+        "text": "Report instruction — source of funds: Inheritance (Jean) and the joint General Investment Account.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0008": {
+        "text": "Report instruction — product recommended: ISA top-ups and a new joint investment account.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0009": {
+        "text": "Report instruction — selling existing investments?: Yes.",
+        "observation_ids": [],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0010": {
+        "text": "Recorded action (agreed): The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "The extraction contains incomplete uncertainty annotations. Verify the affected information against its source."
+        ]
+      },
+      "block-0011": {
+        "text": "Recorded action (agreed): The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "Do not state an exact transaction amount; retain wording or request confirmation",
+          "The extraction contains incomplete uncertainty annotations. Verify the affected information against its source."
+        ]
+      },
+      "block-0012": {
+        "text": "Recorded action (agreed): The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "An account reference could not be matched uniquely. Confirm its identity and intended use.",
+          "Do not state an exact transaction amount; retain wording or request confirmation",
+          "The extraction contains incomplete uncertainty annotations. Verify the affected information against its source."
+        ]
+      },
+      "block-0013": {
+        "text": "Recorded funding: Jean has received an inheritance of around £120,000 from her late mother's estate, which has now cleared. The couple would like to put this to work alongside their existing portfolio.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "locked": false,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0014": {
+        "text": "Recorded initial charge: 0.5%. Status: explicitly confirmed.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0020"
+        ],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0015": {
+        "text": "Your platform charge has not been supplied and requires confirmation before implementation.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0016": {
+        "text": "Your ongoing advice charge has not been supplied and requires confirmation before implementation.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      },
+      "block-0017": {
+        "text": "Recorded tax information: Selling down the GIA is a disposal, so there is a capital gains position to set out in the report.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "locked": false,
+        "certainty": "requires_verification",
+        "review_notes": [
+          "This tax_statement requires human confirmation",
+          "The extraction contains incomplete uncertainty annotations. Verify the affected information against its source."
+        ]
+      },
+      "block-0018": {
+        "text": "Please contact us with any questions. Implementation is subject to adviser review and confirmation of all outstanding information.",
+        "observation_ids": [],
+        "locked": true,
+        "certainty": "as_recorded",
+        "review_notes": []
+      }
+    },
+    "review_notes": [
+      "An account reference could not be matched uniquely. Confirm its identity and intended use.",
+      "An account valuation could not be selected. The supplied values, dates or qualifications require review.",
+      "Do not state an exact transaction amount; retain wording or request confirmation",
+      "This tax_statement requires human confirmation",
+      "Supporting guidance or unclassified evidence requires adviser review.",
+      "Automated review has not confirmed all extracted information. Verify this draft against the sources before proceeding.",
+      "The extraction contains incomplete uncertainty annotations. Verify the affected information against its source.",
+      "Confirm the platform charge before implementation.",
+      "Confirm the ongoing advice charge before implementation."
+    ]
+  },
+  "requires_review": true
+}

@@ -1,0 +1,88 @@
+{
+  "run_id": "acced663627f4901af02fb34da01041b",
+  "client": "client_03_hard",
+  "state": "complete",
+  "validation_state": "passed",
+  "errors": [],
+  "tool_errors": [],
+  "inventory": [
+    {
+      "source_id": "source-0001",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "filename": "portfolio_pack.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0007",
+      "filename": "statement_summary.png",
+      "format": "png",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0008",
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "settings": {
+    "model": "gpt-4.1",
+    "max_model_calls": 40,
+    "max_tool_calls": 80,
+    "max_consecutive_tool_errors": 3,
+    "max_output_tokens": 16000,
+    "api_retries": 2,
+    "max_validation_attempts": 3,
+    "validation_model": "",
+    "validation_max_output_tokens": 8000,
+    "max_tool_output_bytes": 4000000,
+    "request_timeout_seconds": 60.0
+  },
+  "model_calls": 13,
+  "tool_calls": 12,
+  "usage": {
+    "input_tokens": 222974,
+    "output_tokens": 9821
+  },
+  "elapsed_seconds": 114.175,
+  "final_checks": {
+    "findings": [],
+    "errors": []
+  },
+  "validation_attempts": 4,
+  "validation_model_calls": 4,
+  "validation_usage": {
+    "input_tokens": 62045,
+    "output_tokens": 1586
+  }
+}

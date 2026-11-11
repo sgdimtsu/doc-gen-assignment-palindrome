@@ -1,0 +1,1136 @@
+[
+  {
+    "state": "incomplete",
+    "evidence_review_complete": false,
+    "deterministic_findings": [],
+    "review_findings": [],
+    "errors": [
+      "Reported incomplete reading: source-0007"
+    ],
+    "candidate_sha256": "5469f5511b61a22c44ea02056d24c7f171e40a66d5ef965da85c64564d3860a8"
+  },
+  {
+    "state": "failed",
+    "evidence_review_complete": true,
+    "deterministic_findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: included_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: included_accounts[1].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: included_accounts[2].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: included_accounts[3].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: included_accounts[3].platform Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: included_accounts[3].account_type Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account.account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account.account_type Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account.platform Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account.owner_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account.reference_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: account Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: receipt_date Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: account.account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: source_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: target_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: target_accounts[1].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Unknown/missing state contradicts populated field: precision Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: target_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: target_accounts[0].platform Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: target_accounts[0].account_type Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: tax_period_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: exact_wording Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0010"
+        ],
+        "source_ids": [
+          "source-0002"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013 account.account_type should be 'Stocks & Shares ISA' as stated in the table under Type column. Evidence specifically lists this type for 'Holloway ISA (Robert)'.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "| Holloway ISA (Robert) | Stocks & Shares ISA        | £70,000  | 30 Apr 2026 |"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015 account.account_type should be 'Stocks & Shares ISA' as stated in the table under Type column. Evidence lists this for 'Holloway ISA (Jean)'.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "| Holloway ISA (Jean)   | Stocks & Shares ISA        | £66,000  | 30 Apr 2026 |"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017 account.account_type should be 'General Investment Account' as stated in the table under Type column for Holloway GIA (Joint).",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "| Holloway GIA (Joint)  | General Investment Account | £30,000  | 10 Mar 2026 |"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "candidate_sha256": "f46a96337866b6d0fa69e12a1a81c6102041096cb6d0610d21fa421a4e6ef0c3",
+    "usage": {
+      "input_tokens": 19690,
+      "output_tokens": 509
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "8e04497ab44274e319f1f552e631b8186b9ba88494e97e4d840c11a2f97d4b90",
+    "review_diagnostics": {
+      "expected_source_ids": [
+        "source-0006",
+        "source-0008",
+        "source-0001",
+        "source-0002",
+        "source-0003",
+        "source-0004",
+        "source-0005",
+        "source-0007"
+      ],
+      "response": {
+        "reviewed_source_ids": [
+          "source-0006",
+          "source-0008",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004",
+          "source-0005",
+          "source-0007"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013 account.account_type should be 'Stocks & Shares ISA' as stated in the table under Type column. Evidence specifically lists this type for 'Holloway ISA (Robert)'.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "| Holloway ISA (Robert) | Stocks & Shares ISA        | £70,000  | 30 Apr 2026 |"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015 account.account_type should be 'Stocks & Shares ISA' as stated in the table under Type column. Evidence lists this for 'Holloway ISA (Jean)'.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "| Holloway ISA (Jean)   | Stocks & Shares ISA        | £66,000  | 30 Apr 2026 |"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017 account.account_type should be 'General Investment Account' as stated in the table under Type column for Holloway GIA (Joint).",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "| Holloway GIA (Joint)  | General Investment Account | £30,000  | 10 Mar 2026 |"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    }
+  },
+  {
+    "state": "failed",
+    "evidence_review_complete": true,
+    "deterministic_findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0001"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: account.account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, account.account_type: The account_type field should be populated as 'Stocks & Shares ISA' as directly stated in the statement table for 'Holloway ISA (Robert)'.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "Holloway ISA (Robert) | Stocks & Shares ISA        | £70,000  | 30 Apr 2026"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015, account.account_type: The account_type field should be populated as 'Stocks & Shares ISA' as directly stated in the statement table for 'Holloway ISA (Jean)'.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "Holloway ISA (Jean)   | Stocks & Shares ISA        | £66,000  | 30 Apr 2026"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017, account.account_type: The account_type field should be populated as 'General Investment Account' as directly stated in the statement table for 'Holloway GIA (Joint)'.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "Holloway GIA (Joint)  | General Investment Account | £30,000  | 10 Mar 2026"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "candidate_sha256": "b3e9319c93eb9ad23d56873beca00689da779b2072f4d76ac25a82c6ca84c87d",
+    "usage": {
+      "input_tokens": 17100,
+      "output_tokens": 520
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "7cdf8102f0ebe73d42957465b1ead093d51c450d39428e688188518b00be7d3d",
+    "review_diagnostics": {
+      "expected_source_ids": [
+        "source-0006",
+        "source-0008",
+        "source-0001",
+        "source-0002",
+        "source-0003",
+        "source-0004",
+        "source-0005",
+        "source-0007"
+      ],
+      "response": {
+        "reviewed_source_ids": [
+          "source-0006",
+          "source-0008",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004",
+          "source-0005",
+          "source-0007"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, account.account_type: The account_type field should be populated as 'Stocks & Shares ISA' as directly stated in the statement table for 'Holloway ISA (Robert)'.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "Holloway ISA (Robert) | Stocks & Shares ISA        | £70,000  | 30 Apr 2026"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015, account.account_type: The account_type field should be populated as 'Stocks & Shares ISA' as directly stated in the statement table for 'Holloway ISA (Jean)'.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "Holloway ISA (Jean)   | Stocks & Shares ISA        | £66,000  | 30 Apr 2026"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017, account.account_type: The account_type field should be populated as 'General Investment Account' as directly stated in the statement table for 'Holloway GIA (Joint)'.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "Holloway GIA (Joint)  | General Investment Account | £30,000  | 10 Mar 2026"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    }
+  },
+  {
+    "state": "failed",
+    "deterministic_findings": [
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: account.account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0006"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0007"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Field state path must resolve relative to data: account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "warning",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, field account.account_type: The account type in the extraction is 'Stocks & Shares ISA', as shown in the image source (source-0007), but in the cross-referenced included accounts in observation-0001 (from source-0006), the account type is listed as only 'ISA'. The more precise type 'Stocks & Shares ISA' is explicitly stated in the image (source-0007) and should be used wherever this account is referenced based on this source.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "| Holloway ISA (Robert) | Stocks & Shares ISA        | £70,000  | 30 Apr 2026 |"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "warning",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015, field account.account_type: The account type in the extraction is 'Stocks & Shares ISA', as shown explicitly in the image (source-0007), but in the included_accounts in observation-0001 it appears as only 'ISA'. Confirm that the more precise 'Stocks & Shares ISA' is used for this account in all fields when deriving from this source.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "| Holloway ISA (Jean)   | Stocks & Shares ISA        | £66,000  | 30 Apr 2026 |"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "warning",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017, field account.account_type: The account type is given as 'General Investment Account' in the image (source-0007), but in included_accounts (observation-0001, source-0006) it is just 'GIA'. The full type should be extracted from the image where supported.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "| Holloway GIA (Joint)  | General Investment Account | £30,000  | 10 Mar 2026 |"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "warning",
+        "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, field account.platform: The platform for all these accounts is 'Holloway', which is implicit from both the account naming convention in the table and the section heading ('Holloway Account Statement'), but it is not always explicitly attached as a field value in every observation in the extraction that references the table. The extractor should use this when the context from the image applies.",
+        "observation_ids": [
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0013",
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0015",
+          "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0007",
+            "source_text": "Holloway Account Statement"
+          }
+        ]
+      }
+    ],
+    "evidence_review_complete": true,
+    "errors": [],
+    "usage": {
+      "input_tokens": 17007,
+      "output_tokens": 866
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "449718fae530a4a3ed8adae03d0906b44e233b87a3bb3d7ba9ce6861355330b1",
+    "review_diagnostics": {
+      "expected_source_ids": [
+        "source-0006",
+        "source-0008",
+        "source-0001",
+        "source-0002",
+        "source-0003",
+        "source-0004",
+        "source-0005",
+        "source-0007"
+      ],
+      "response": {
+        "reviewed_source_ids": [
+          "source-0006",
+          "source-0008",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004",
+          "source-0005",
+          "source-0007"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "warning",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, field account.account_type: The account type in the extraction is 'Stocks & Shares ISA', as shown in the image source (source-0007), but in the cross-referenced included accounts in observation-0001 (from source-0006), the account type is listed as only 'ISA'. The more precise type 'Stocks & Shares ISA' is explicitly stated in the image (source-0007) and should be used wherever this account is referenced based on this source.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0013"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "| Holloway ISA (Robert) | Stocks & Shares ISA        | £70,000  | 30 Apr 2026 |"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "warning",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0015, field account.account_type: The account type in the extraction is 'Stocks & Shares ISA', as shown explicitly in the image (source-0007), but in the included_accounts in observation-0001 it appears as only 'ISA'. Confirm that the more precise 'Stocks & Shares ISA' is used for this account in all fields when deriving from this source.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0015"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "| Holloway ISA (Jean)   | Stocks & Shares ISA        | £66,000  | 30 Apr 2026 |"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "warning",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0017, field account.account_type: The account type is given as 'General Investment Account' in the image (source-0007), but in included_accounts (observation-0001, source-0006) it is just 'GIA'. The full type should be extracted from the image where supported.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "| Holloway GIA (Joint)  | General Investment Account | £30,000  | 10 Mar 2026 |"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "warning",
+            "message": "Observation c8634984098d494b9ef12a6c65bf58dc:observation-0013, field account.platform: The platform for all these accounts is 'Holloway', which is implicit from both the account naming convention in the table and the section heading ('Holloway Account Statement'), but it is not always explicitly attached as a field value in every observation in the extraction that references the table. The extractor should use this when the context from the image applies.",
+            "observation_ids": [
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0013",
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0015",
+              "c8634984098d494b9ef12a6c65bf58dc:observation-0017"
+            ],
+            "source_ids": [
+              "source-0007"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0007",
+                "source_text": "Holloway Account Statement"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    },
+    "candidate_sha256": "dcbe46c46ae0dfd6c854e85b7958dd18cb249d0dabd4f9003adb59c5175184d2"
+  }
+]

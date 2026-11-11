@@ -1,0 +1,1014 @@
+{
+  "sources": [
+    {
+      "source_id": "source-0001",
+      "role": "account_records",
+      "document_date": "2026-04-30",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "role": "internal_guidance",
+      "document_date": null,
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "role": "meeting_notes",
+      "document_date": "2026-05-14",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "role": "general_background",
+      "document_date": null,
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "role": "report_request",
+      "document_date": null,
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "role": "statement",
+      "document_date": null,
+      "filename": "statement_summary.png",
+      "format": "png",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0007",
+      "role": "report_specification",
+      "document_date": null,
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "observations": [
+    {
+      "observation_type": "report_scope",
+      "source_id": "source-0005",
+      "source_text": "Accounts covered, Holloway ISAs (David and Susan) and the joint GIA",
+      "sections": [
+        "introduction"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "clients": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David and Susan"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "David and Susan"
+          }
+        ],
+        "included_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "ISA",
+            "reference_text": "Holloway ISAs (David and Susan)",
+            "owner_text": null
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "joint"
+          }
+        ],
+        "excluded_accounts": []
+      },
+      "field_states": [
+        {
+          "field": "included_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[0].owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "included_accounts[1].account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0001"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0006",
+      "source_text": "Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway ISA (David)",
+          "owner_text": "David"
+        },
+        "holders": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0002"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0006",
+      "source_text": "Holloway ISA (Susan) | Stocks & Shares ISA | £58,500 | 30 Apr 2026",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway ISA (Susan)",
+          "owner_text": "Susan"
+        },
+        "holders": [
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0003"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0006",
+      "source_text": "Holloway GIA (Joint) | General Investment Account | £40,000 | 15 Mar 2026",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "Holloway GIA (Joint)",
+          "owner_text": "joint"
+        },
+        "holders": [
+          {
+            "name": null,
+            "reference_text": "Joint"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "holders[0].name",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0006",
+      "source_text": "Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway ISA (David)",
+          "owner_text": "David"
+        },
+        "amount": "61000",
+        "amount_text": "£61,000",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": "30 Apr 2026",
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0005"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0006",
+      "source_text": "Holloway ISA (Susan) | Stocks & Shares ISA | £58,500 | 30 Apr 2026",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway ISA (Susan)",
+          "owner_text": "Susan"
+        },
+        "amount": "58500",
+        "amount_text": "£58,500",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": "30 Apr 2026",
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0006",
+      "source_text": "Holloway GIA (Joint) | General Investment Account | £40,000 | 15 Mar 2026",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "Holloway GIA (Joint)",
+          "owner_text": "joint"
+        },
+        "amount": "40000",
+        "amount_text": "£40,000",
+        "currency": "GBP",
+        "valuation_date": "2026-03-15",
+        "date_text": "15 Mar 2026",
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0007"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "Both are now retired. They confirmed their objectives and circumstances are unchanged since the last review, and both remain comfortable with the balanced approach to risk we agreed.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "Both"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Both"
+          }
+        ],
+        "category": "personal_circumstance",
+        "timeframe_text": null,
+        "risk_score": "5",
+        "risk_description": "balanced"
+      },
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0008"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "Neither has any income requirement from the portfolio at the moment.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "Neither"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Neither"
+          }
+        ],
+        "category": "income_need",
+        "timeframe_text": null,
+        "risk_score": null,
+        "risk_description": null
+      },
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        },
+        {
+          "field": "risk_description",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0009"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "We agreed to disinvest the joint GIA in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs for the new tax year, split equally between the two ISAs.",
+      "sections": [
+        "recommendations",
+        "tax_implications"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "sell",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "joint"
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "full_balance",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": "simplify",
+        "conditions": [],
+        "timing_text": "for the new tax year"
+      },
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0010"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "We agreed to disinvest the joint GIA in full and use the proceeds to top up both David's and Susan's Stocks & Shares ISAs for the new tax year, split equally between the two ISAs.",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "contribute",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "joint"
+          }
+        ],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "David's ISA",
+            "owner_text": "David"
+          },
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Susan's ISA",
+            "owner_text": "Susan"
+          }
+        ],
+        "amount": null,
+        "amount_text": "split equally between the two ISAs",
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "partial_unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": "split equally between the two ISAs",
+        "rationale_text": null,
+        "conditions": [],
+        "timing_text": "for the new tax year"
+      },
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[1].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "rationale_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0011"
+    },
+    {
+      "observation_type": "funding",
+      "source_id": "source-0005",
+      "source_text": "Source of funds, Joint General Investment Account",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "Joint"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Joint"
+          }
+        ],
+        "origin_text": "Joint General Investment Account",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "reference_text": "joint GIA",
+          "owner_text": "joint"
+        },
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "receipt_status": "expected",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0012"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0003",
+      "source_text": "Susan asked what the ongoing charges would look like after the change. I said I would confirm the exact figures in the report rather than quote them from memory in the meeting.",
+      "sections": [
+        "fees_charges"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "ongoing_advice",
+        "account": null,
+        "platform": null,
+        "rate_percent": null,
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "requires_confirmation"
+      },
+      "field_states": [
+        {
+          "field": "rate_percent",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0013"
+    },
+    {
+      "observation_type": "tax_statement",
+      "source_id": "source-0003",
+      "source_text": "We noted that selling down the GIA is a disposal and may have a capital gains position to consider; I will set that out in the report for them.",
+      "sections": [
+        "tax_implications"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David"
+          },
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan"
+          }
+        ],
+        "accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "General Investment Account",
+            "reference_text": "joint GIA",
+            "owner_text": "joint"
+          }
+        ],
+        "tax_type": "capital gains",
+        "amount": null,
+        "amount_text": "may have a capital gains position to consider",
+        "currency": null,
+        "precision": "unspecified",
+        "tax_period_text": null,
+        "confirmation_status": "not_stated"
+      },
+      "field_states": [
+        {
+          "field": "accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "tax_period_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0014"
+    },
+    {
+      "observation_type": "instruction",
+      "source_id": "source-0002",
+      "source_text": "The db is where account structure and ownership live. The meeting note is where the conversation and the decisions live. The two are produced at different times and for different reasons, so read the date on a figure before you rely on it.",
+      "sections": [],
+      "evidence_scope": "client_specific",
+      "data": {
+        "instruction_type": "source_authority",
+        "scope_text": "database vs meeting note: read the date on a figure before you rely on it",
+        "exact_wording": null
+      },
+      "field_states": [
+        {
+          "field": "exact_wording",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0015"
+    },
+    {
+      "observation_type": "instruction",
+      "source_id": "source-0007",
+      "source_text": "Introduction\n- One short paragraph. State which of the client's accounts the report covers (ISA, GIA, pension,\n  or a combination).\n- Keep the regulatory line about FCA authorisation as written.\n\nBackground & Objectives\n- A short, HIGH-LEVEL summary of the client's objectives and circumstances.\n- Then a table of the accounts covered: columns Account | Owner | Type | Value.\n- Keep this section high level. Specific transaction amounts (top-ups, sale proceeds, the size of\n  any new money, tax figures) belong in Recommendations and Tax Implications, NOT here.\n\nRecommendations\n- What the client should do and why, including the amounts involved.\n- e.g. mention any platform charges relevant to the recommendation.\n\nTax Implications\n- Include this section ONLY if the recommendation involves selling or disposing of investments that\n  may create a taxable capital gain. If nothing is being sold, omit the section entirely.\n- State that the disposal may create a capital gains tax liability, assessed against the annual\n  exempt amount.\n\nFees & Charges\n- Set out the ongoing fees and charges that apply: the platform charge and the ongoing advice\n  charge.\n\nConclusion\n- Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"\n- Then a closing line inviting the client to proceed.\n",
+      "sections": [],
+      "evidence_scope": "general_illustrative",
+      "data": {
+        "instruction_type": "report_content",
+        "scope_text": "Each section requirement",
+        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns."
+      },
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0016"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0005",
+      "source_text": "Agreed risk profile\n5 (balanced)",
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [],
+        "category": "risk_profile",
+        "timeframe_text": null,
+        "risk_score": "5",
+        "risk_description": "balanced"
+      },
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0017"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0005",
+      "source_text": "Initial charge\n0%",
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "initial",
+        "account": null,
+        "platform": null,
+        "rate_percent": "0",
+        "amount": null,
+        "currency": null,
+        "basis_text": "Initial charge",
+        "frequency_text": null,
+        "confirmation_status": "explicitly_confirmed"
+      },
+      "sections": [
+        "fees_charges"
+      ],
+      "field_states": [
+        {
+          "field": "account",
+          "state": "not_stated"
+        },
+        {
+          "field": "platform",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0018"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-ISA-D\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"David Clarke\", \"status\": \"open\", \"value\": \"61000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-D",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "owner_text": "David Clarke",
+          "reference_text": "H-ISA-D"
+        },
+        "holders": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          }
+        ],
+        "status": "open"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0019"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-ISA-D\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"David Clarke\", \"status\": \"open\", \"value\": \"61000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-D",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "owner_text": "David Clarke",
+          "reference_text": "H-ISA-D"
+        },
+        "amount": "61000.0",
+        "amount_text": "61000.0",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": "2026-04-30",
+        "precision": "exact"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0020"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-GIA-J\", \"platform\": \"Holloway\", \"type\": \"General Investment Account\", \"owner\": \"Joint\", \"status\": \"open\", \"value\": \"40000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-03-15\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-GIA-J",
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "owner_text": "Joint",
+          "reference_text": "H-GIA-J"
+        },
+        "holders": [
+          {
+            "name": "David Clarke",
+            "reference_text": "David Clarke"
+          }
+        ],
+        "status": "open"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0021"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-GIA-J\", \"platform\": \"Holloway\", \"type\": \"General Investment Account\", \"owner\": \"Joint\", \"status\": \"open\", \"value\": \"40000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-03-15\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-GIA-J",
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "owner_text": "Joint",
+          "reference_text": "H-GIA-J"
+        },
+        "amount": "40000.0",
+        "amount_text": "40000.0",
+        "currency": "GBP",
+        "valuation_date": "2026-03-15",
+        "date_text": "2026-03-15",
+        "precision": "exact"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0022"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-ISA-S\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Susan Clarke\", \"status\": \"open\", \"value\": \"58500.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-S",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "owner_text": "Susan Clarke",
+          "reference_text": "H-ISA-S"
+        },
+        "holders": [
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "status": "open"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0023"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-ISA-S\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Susan Clarke\", \"status\": \"open\", \"value\": \"58500.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-S",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "owner_text": "Susan Clarke",
+          "reference_text": "H-ISA-S"
+        },
+        "amount": "58500.0",
+        "amount_text": "58500.0",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": "2026-04-30",
+        "precision": "exact"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0024"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-GIA-J\", \"platform\": \"Holloway\", \"type\": \"General Investment Account\", \"owner\": \"Joint\", \"status\": \"open\", \"value\": \"40000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-03-15\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-GIA-J",
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "owner_text": "Joint",
+          "reference_text": "H-GIA-J"
+        },
+        "holders": [
+          {
+            "name": "Susan Clarke",
+            "reference_text": "Susan Clarke"
+          }
+        ],
+        "status": "open"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0025"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-GIA-J\", \"platform\": \"Holloway\", \"type\": \"General Investment Account\", \"owner\": \"Joint\", \"status\": \"open\", \"value\": \"40000.0\", \"currency\": \"GBP\", \"valuation_date\": \"2026-03-15\"}",
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-GIA-J",
+          "platform": "Holloway",
+          "account_type": "General Investment Account",
+          "owner_text": "Joint",
+          "reference_text": "H-GIA-J"
+        },
+        "amount": "40000.0",
+        "amount_text": "40000.0",
+        "currency": "GBP",
+        "valuation_date": "2026-03-15",
+        "date_text": "2026-03-15",
+        "precision": "exact"
+      },
+      "sections": [
+        "background_objectives"
+      ],
+      "field_states": [],
+      "observation_id": "6dbbc98f62ec4f6bb88379d37a779791:observation-0026"
+    }
+  ],
+  "extraction_issues": [],
+  "request_fields": [
+    {
+      "source_id": "source-0005",
+      "label": "Adviser",
+      "value": "Daniel Reeves"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Accounts covered",
+      "value": "Holloway ISAs (David and Susan) and the joint GIA"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Investment amount",
+      "value": "Full value of the joint GIA"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Source of funds",
+      "value": "Joint General Investment Account"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Selling existing investments?",
+      "value": "Yes"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Product recommended",
+      "value": "Top up of both Stocks & Shares ISAs"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Held in single or joint name?",
+      "value": "Joint clients, individual ISAs"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Agreed risk profile",
+      "value": "5 (balanced)"
+    },
+    {
+      "source_id": "source-0005",
+      "label": "Initial charge",
+      "value": "0%"
+    }
+  ]
+}

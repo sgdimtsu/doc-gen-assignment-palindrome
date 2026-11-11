@@ -1,0 +1,154 @@
+{
+  "client": "client_01_clean",
+  "outcome": "needs_review",
+  "model": "gpt-4.1",
+  "code_checks": [
+    {
+      "check": "Required sections and order",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "Mandatory wording: The value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns.",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "Mandatory wording: This firm is authorised and regulated by the Financial Conduct Authority.",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "Required table columns",
+      "passed": true,
+      "severity": "requirement"
+    },
+    {
+      "check": "No leaked internal references",
+      "passed": true,
+      "severity": "presentation"
+    },
+    {
+      "check": "No duplicated review markers",
+      "passed": true,
+      "severity": "presentation"
+    }
+  ],
+  "judgment": {
+    "reviewed_sources": [
+      "report_request.docx",
+      "template_spec.md",
+      "client_data_db.json",
+      "fde_notes.md",
+      "meeting_notes.docx",
+      "platform_market_update.docx"
+    ],
+    "criteria": {
+      "factual_correctness": {
+        "rating": "meets",
+        "explanation": "All material facts in the report are supported by the sources: the account covered is Margaret Hughes's Holloway Stocks & Shares ISA, with the correct value and date; the agreed action is a £20,000 top-up from the Holloway cash account, with no sale of investments; risk profile, ownership, and fee status are all correctly stated. No unsupported or incorrect figures or recommendations are present.",
+        "report_excerpt": "| H-ISA-01 | Margaret Hughes | Holloway Stocks & Shares ISA | £52,000.0 (as at 2026-04-30) |\n...\nThe agreed recommendation is to invest GBP 20,000.\n\nThe source of these funds is the cash you hold on deposit in your Holloway cash account.\n\nThis will involve making a top up to your existing Stocks & Shares ISA.\n\nThis recommendation does not involve selling any existing investments.",
+        "source_evidence": [
+          {
+            "filename": "client_data_db.json",
+            "source_excerpt": "{\"account_id\": \"H-ISA-01\", ... \"owner\": \"Margaret Hughes\", ... \"value\": 52000.0, ... \"valuation_date\": \"2026-04-30\"}"
+          },
+          {
+            "filename": "meeting_notes.docx",
+            "source_excerpt": "We agreed she would move £20,000 from the cash account into the Stocks & Shares ISA. No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved."
+          },
+          {
+            "filename": "report_request.docx",
+            "source_excerpt": "Accounts covered\tHolloway Stocks & Shares ISA\nInvestment amount\tGBP 20,000\nSource of funds\tCash held on deposit in the Holloway cash account\nSelling existing investments?\tNo"
+          }
+        ]
+      },
+      "completeness": {
+        "rating": "meets",
+        "explanation": "The report covers all required information: account, owner, value, action, funding source, risk profile, fee status, and the future gifting aspiration. It also clearly states when information (such as platform and advice charges) is missing and requires confirmation. No required content is omitted.",
+        "report_excerpt": "Your platform charge has not been supplied and requires confirmation before implementation.\n\nYour ongoing advice charge has not been supplied and requires confirmation before implementation.",
+        "source_evidence": [
+          {
+            "filename": "template_spec.md",
+            "source_excerpt": "Set out the ongoing fees and charges that apply: the platform charge and the ongoing advice charge."
+          },
+          {
+            "filename": "meeting_notes.docx",
+            "source_excerpt": "Next steps: I will prepare the advice report covering the ISA top-up and confirm the ongoing charges with her once the report is issued."
+          }
+        ]
+      },
+      "uncertainty_handling": {
+        "rating": "meets",
+        "explanation": "The report preserves all relevant uncertainties: it flags missing platform and advice charges, does not invent any rates or remaining ISA allowance, and clearly distinguishes between agreed actions and future aspirations (gifting). It also includes review markers for information that could not be fully verified.",
+        "report_excerpt": "Your platform charge has not been supplied and requires confirmation before implementation.\n\nYour ongoing advice charge has not been supplied and requires confirmation before implementation.\n...\nYou mentioned that you may wish to discuss gifting to your grandchildren in the future, but confirmed that nothing should be done about this at present.",
+        "source_evidence": [
+          {
+            "filename": "fde_notes.md",
+            "source_excerpt": "Some numbers are not ours to produce in the draft. The capital gains tax on any disposal, and the platform and adviser fee rates, are confirmed or inserted by a person before the report goes to the client, so the draft must not estimate or invent them."
+          },
+          {
+            "filename": "meeting_notes.docx",
+            "source_excerpt": "She mentioned she may want to discuss gifting to her grandchildren at some point in the future, but was clear that is not for today and nothing should be actioned on it now."
+          }
+        ]
+      },
+      "report_requirements": {
+        "rating": "meets",
+        "explanation": "The report follows the required structure and content as per the template specification: correct sectioning, high-level background, account table, recommendations with amounts, omission of Tax Implications (since no sale), explicit fee section, and the required risk warning in the conclusion. No section is missing or misplaced.",
+        "report_excerpt": "## Background & Objectives\n...\n## Recommendations\n...\n## Fees & Charges\n...\n## Conclusion\n\nThe value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns.",
+        "source_evidence": [
+          {
+            "filename": "template_spec.md",
+            "source_excerpt": "What each section of the report must contain. The same specification applies to every client."
+          }
+        ]
+      },
+      "readability_clarity": {
+        "rating": "meets",
+        "explanation": "The report is clear and understandable for a non-expert reader. Jargon is minimal and explained where present. The actions, next steps, and outstanding confirmations are clearly stated. Review markers are explicit and do not obscure the main content.",
+        "report_excerpt": "This will involve making a top up to your existing Stocks & Shares ISA.\n\nThis recommendation does not involve selling any existing investments.\n...\nYour platform charge has not been supplied and requires confirmation before implementation.",
+        "source_evidence": [
+          {
+            "filename": "template_spec.md",
+            "source_excerpt": "A reader without finance expertise can understand the report. Explain necessary jargon and make the proposed actions, next steps and outstanding confirmations clear."
+          }
+        ]
+      },
+      "conciseness_relevance": {
+        "rating": "meets",
+        "explanation": "The report is concise and relevant, with no unnecessary repetition or tangents. All included detail is justified by the client's request and the section purposes. There are no promotional or irrelevant statements.",
+        "report_excerpt": "Margaret is retired and there have been no changes to her circumstances or objectives since last year's review. She remains comfortable with the moderate approach to risk that was previously agreed and is satisfied with how the portfolio has performed in line with this.",
+        "source_evidence": [
+          {
+            "filename": "template_spec.md",
+            "source_excerpt": "Keep this section high level. Specific transaction amounts ... belong in Recommendations and Tax Implications, NOT here."
+          }
+        ]
+      },
+      "tone_presentation": {
+        "rating": "meets",
+        "explanation": "The tone is professional, direct, and addressed to the client. There is no inappropriate internal language or insensitivity to the client's circumstances. Review markers are clearly for adviser attention and do not detract from the client-facing tone.",
+        "report_excerpt": "Please contact us with any questions. Implementation is subject to adviser review and confirmation of all outstanding information.",
+        "source_evidence": [
+          {
+            "filename": "template_spec.md",
+            "source_excerpt": "professional, direct, consistently addressed to the customer and sensitive to personal circumstances"
+          }
+        ]
+      }
+    },
+    "findings": []
+  },
+  "evaluation_errors": [
+    "Judge report excerpt could not be located",
+    "Judge source excerpt could not be located: client_data_db.json",
+    "Judge report excerpt could not be located",
+    "Judge report excerpt could not be located",
+    "Judge report excerpt could not be located",
+    "Judge source excerpt could not be located: template_spec.md",
+    "Judge source excerpt could not be located: template_spec.md",
+    "Judge source excerpt could not be located: template_spec.md"
+  ],
+  "limitation": "Automated prototype evaluation only; no human review or human calibration was performed. A pass is not approval of financial advice."
+}

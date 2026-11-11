@@ -1,0 +1,761 @@
+[
+  {
+    "state": "failed",
+    "evidence_review_complete": true,
+    "deterministic_findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timeframe_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0002"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timeframe_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_score Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_description Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: source_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: receipt_date Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: tax_period_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: exact_wording Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0009"
+        ],
+        "source_ids": [
+          "source-0002"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0010"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "warning",
+        "message": "Observation account and valuation records from code in source-0001 are supported by a matching table in source-0006. The image states: \"Holloway ISA (David)\", type \"Stocks & Shares ISA\", value £61,000, 30 Apr 2026; \"Holloway ISA (Susan)\", type \"Stocks & Shares ISA\", value £58,500, 30 Apr 2026; \"Holloway GIA (Joint)\", type \"General Investment Account\", value £40,000, 15 Mar 2026. No explicit account ID or distinct owner than the table label, but this supports the extractions with matching statements. If additional full verbatim references were needed for value/existence, the table text would serve. No error, just add the explicit reference text string for any data fields that rely on this document.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0013",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0014",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0015",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0016",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0017",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0018",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0019",
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0020"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0006",
+            "source_text": "Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026\nHolloway ISA (Susan) | Stocks & Shares ISA | £58,500 | 30 Apr 2026\nHolloway GIA (Joint) | General Investment Account | £40,000 | 15 Mar 2026"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "candidate_sha256": "664aa62c7dbe6223bf442c14b295cd7d6fe1da7b7d33bf5d7d6e9c1891445a00",
+    "usage": {
+      "input_tokens": 14369,
+      "output_tokens": 539
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "d6bcb449a816809afdb4ccb309db07748dd47f99d9464c283b38b044a35d592e",
+    "review_diagnostics": {
+      "response": {
+        "reviewed_source_ids": [
+          "source-0005",
+          "source-0007",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004",
+          "source-0006"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "warning",
+            "message": "Observation account and valuation records from code in source-0001 are supported by a matching table in source-0006. The image states: \"Holloway ISA (David)\", type \"Stocks & Shares ISA\", value £61,000, 30 Apr 2026; \"Holloway ISA (Susan)\", type \"Stocks & Shares ISA\", value £58,500, 30 Apr 2026; \"Holloway GIA (Joint)\", type \"General Investment Account\", value £40,000, 15 Mar 2026. No explicit account ID or distinct owner than the table label, but this supports the extractions with matching statements. If additional full verbatim references were needed for value/existence, the table text would serve. No error, just add the explicit reference text string for any data fields that rely on this document.",
+            "observation_ids": [
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0013",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0014",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0015",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0016",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0017",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0018",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0019",
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0020"
+            ],
+            "source_ids": [
+              "source-0006"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0006",
+                "source_text": "Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026\nHolloway ISA (Susan) | Stocks & Shares ISA | £58,500 | 30 Apr 2026\nHolloway GIA (Joint) | General Investment Account | £40,000 | 15 Mar 2026"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    }
+  },
+  {
+    "state": "failed",
+    "evidence_review_complete": true,
+    "deterministic_findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: source_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: source_accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: account.account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: accounts[0].account_id Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0008"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0010"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation(s) related to account listings (e.g. included_accounts/valuation/account) did not reference or integrate source-0006, which provides explicit and recent verbatim evidence for accounts: Holloway ISA (David), Holloway ISA (Susan), and Holloway GIA (Joint), including account names, types, values, and valuation dates. This original statement evidence should be cited to fully support extracted account-related facts.",
+        "observation_ids": [],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0006",
+            "source_text": "Holloway Account Statement\n\nAccount                   Type                            Value      Valued on\nHolloway ISA (David)      Stocks & Shares ISA             £61,000    30 Apr 2026\nHolloway ISA (Susan)      Stocks & Shares ISA             £58,500    30 Apr 2026\nHolloway GIA (Joint)      General Investment Account      £40,000    15 Mar 2026"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "candidate_sha256": "12dd668b25c192481f5d74ffba9b66f5a9d57c4b17d322ed3fb6a10c11b220d3",
+    "usage": {
+      "input_tokens": 13937,
+      "output_tokens": 265
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "08c64a9c57d7dde0f20a64f23db2893b029a9f97f9cf09c3559f076220c07bdc",
+    "review_diagnostics": {
+      "response": {
+        "reviewed_source_ids": [
+          "source-0005",
+          "source-0007",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004",
+          "source-0006"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation(s) related to account listings (e.g. included_accounts/valuation/account) did not reference or integrate source-0006, which provides explicit and recent verbatim evidence for accounts: Holloway ISA (David), Holloway ISA (Susan), and Holloway GIA (Joint), including account names, types, values, and valuation dates. This original statement evidence should be cited to fully support extracted account-related facts.",
+            "observation_ids": [],
+            "source_ids": [
+              "source-0006"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0006",
+                "source_text": "Holloway Account Statement\n\nAccount                   Type                            Value      Valued on\nHolloway ISA (David)      Stocks & Shares ISA             £61,000    30 Apr 2026\nHolloway ISA (Susan)      Stocks & Shares ISA             £58,500    30 Apr 2026\nHolloway GIA (Joint)      General Investment Account      £40,000    15 Mar 2026"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    }
+  },
+  {
+    "state": "failed",
+    "deterministic_findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0010"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0010"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0010"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0012"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: amount_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0012"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: currency Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0012"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: receipt_date Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0012"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0012"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0016"
+        ],
+        "source_ids": [
+          "source-0007"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation 6dbbc98f62ec4f6bb88379d37a779791:observation-0002: The extracted field account.owner_text is \"David\", but the image source (source-0006) only states \"Holloway ISA (David)\". The actual owner name is not explicitly given, only the label in brackets, so the strict output should be owner_text: null since explicit person naming is not present. Evidence: 'Holloway ISA (David)'",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0002"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0006",
+            "source_text": "Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation 6dbbc98f62ec4f6bb88379d37a779791:observation-0003: The extracted field account.owner_text is \"Susan\", but the image source (source-0006) only states \"Holloway ISA (Susan)\". The owner name is not literally present; label only. owner_text should be null unless explicit naming is shown. Evidence: 'Holloway ISA (Susan)'",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0003"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0006",
+            "source_text": "Holloway ISA (Susan) | Stocks & Shares ISA | £58,500 | 30 Apr 2026"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation 6dbbc98f62ec4f6bb88379d37a779791:observation-0004: The extracted field account.owner_text is 'joint', but the image source (source-0006) only states 'Holloway GIA (Joint)'. 'Joint' is not an explicit owner, just a label. owner_text should be null unless explicit joint ownership text or person names are present. Evidence: 'Holloway GIA (Joint)'",
+        "observation_ids": [
+          "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+        ],
+        "source_ids": [
+          "source-0006"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0006",
+            "source_text": "Holloway GIA (Joint) | General Investment Account | £40,000 | 15 Mar 2026"
+          }
+        ]
+      }
+    ],
+    "evidence_review_complete": true,
+    "errors": [],
+    "usage": {
+      "input_tokens": 15248,
+      "output_tokens": 617
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "9e71661cd6ebdbc71d0c6d015514092c7a1bd18a083bd72db3197b6ee28b0a20",
+    "review_diagnostics": {
+      "response": {
+        "reviewed_source_ids": [
+          "source-0005",
+          "source-0007",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004",
+          "source-0006"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation 6dbbc98f62ec4f6bb88379d37a779791:observation-0002: The extracted field account.owner_text is \"David\", but the image source (source-0006) only states \"Holloway ISA (David)\". The actual owner name is not explicitly given, only the label in brackets, so the strict output should be owner_text: null since explicit person naming is not present. Evidence: 'Holloway ISA (David)'",
+            "observation_ids": [
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0002"
+            ],
+            "source_ids": [
+              "source-0006"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0006",
+                "source_text": "Holloway ISA (David) | Stocks & Shares ISA | £61,000 | 30 Apr 2026"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation 6dbbc98f62ec4f6bb88379d37a779791:observation-0003: The extracted field account.owner_text is \"Susan\", but the image source (source-0006) only states \"Holloway ISA (Susan)\". The owner name is not literally present; label only. owner_text should be null unless explicit naming is shown. Evidence: 'Holloway ISA (Susan)'",
+            "observation_ids": [
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0003"
+            ],
+            "source_ids": [
+              "source-0006"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0006",
+                "source_text": "Holloway ISA (Susan) | Stocks & Shares ISA | £58,500 | 30 Apr 2026"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation 6dbbc98f62ec4f6bb88379d37a779791:observation-0004: The extracted field account.owner_text is 'joint', but the image source (source-0006) only states 'Holloway GIA (Joint)'. 'Joint' is not an explicit owner, just a label. owner_text should be null unless explicit joint ownership text or person names are present. Evidence: 'Holloway GIA (Joint)'",
+            "observation_ids": [
+              "6dbbc98f62ec4f6bb88379d37a779791:observation-0004"
+            ],
+            "source_ids": [
+              "source-0006"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0006",
+                "source_text": "Holloway GIA (Joint) | General Investment Account | £40,000 | 15 Mar 2026"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    },
+    "candidate_sha256": "99917e022d8a2e8bc857447d51a83dd3a11162ae919e1afaaec4e2d148e8ade5"
+  }
+]

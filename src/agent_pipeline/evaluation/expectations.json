@@ -1,0 +1,50 @@
+{
+  "client_01_clean": {
+    "tax_section_required": false,
+    "expected_outcomes": [
+      "Cover Margaret Hughes’s Holloway Stocks & Shares ISA only; cash is funding, not an additional covered holding.",
+      "ISA H-ISA-01 is owned by Margaret; value 52,000 GBP dated 2026-04-30. The cash account has 25,000 GBP at that date, but is not a covered table row.",
+      "Agreed contribution is 20,000 GBP from the Holloway cash account to the existing ISA. No sale is recommended; omit Tax Implications.",
+      "Risk profile 4 (moderate); initial charge 0%. Preserve no current income requirement and unchanged circumstances.",
+      "Ongoing platform and advice charges need confirmation; do not invent rates or remaining ISA allowance.",
+      "Gifting to grandchildren is a future discussion, not a current recommendation."
+    ]
+  },
+  "client_02_medium": {
+    "tax_section_required": true,
+    "expected_outcomes": [
+      "Cover David Clarke’s ISA, Susan Clarke’s ISA and one jointly held Holloway GIA; do not count the GIA twice because it appears under both holders.",
+      "Database ISA values are 61,000 GBP for David and 58,500 GBP for Susan dated 2026-04-30.",
+      "The joint GIA database value is 40,000 GBP dated 2026-03-15; the later live observation on 2026-05-14 is a little over 45,000 GBP. Preserve that qualification and dated distinction, not an exact 45,000 GBP current value.",
+      "Agreed action is to sell the joint GIA in full and split the proceeds equally between the two existing ISAs. Do not invent exact contributions or independently verify remaining allowances.",
+      "Risk 5 (balanced), initial charge 0%, no current income need. Ongoing charges require confirmation.",
+      "Include potential CGT implications and annual exempt amount wording; do not invent a tax estimate, acquisition cost, gain or numerical exemption. Holiday discussion is irrelevant."
+    ]
+  },
+  "client_03_hard": {
+    "tax_section_required": true,
+    "expected_outcomes": [
+      "Cover Robert Fletcher’s ISA, Jean Fletcher’s ISA, their single joint Holloway GIA and the intended new joint investment account. Proposed account details remain unconfirmed.",
+      "Database ISA values are 70,000 GBP (Robert) and 66,000 GBP (Jean), dated 2026-04-30.",
+      "GIA database value 30,000 GBP dated 2026-03-10 is older than the live observation around 38,000 GBP on 2026-05-16. Preserve approximation and dates.",
+      "Jean’s inheritance is around 120,000 GBP and has cleared; acknowledge its bereavement context sensitively. The request gives 120,000 GBP, so do not erase the meeting’s qualification.",
+      "Agreed plan: sell the GIA, combine proceeds with inheritance, fund both ISAs, and invest the balance in a new joint account. Allocations and final amounts are not supplied.",
+      "Jean’s other small cash account has an unknown balance and uncertain active status; confirm, do not invent a value or merge it into another account.",
+      "Risk 4 (moderate), initial charge 0.5%. Confirm ongoing/new-account charges and CGT; no invented figures."
+    ]
+  },
+  "client_04_stretch": {
+    "tax_section_required": true,
+    "expected_outcomes": [
+      "Cover James and Caroline Whitmore’s individual Holloway ISAs and Brightwell SIPPs, the two distinct joint GIAs (Holloway and Brightwell), the joint Meridian offshore bond and proposed new joint account. Do not double-count joint records or merge platforms.",
+      "Database ISAs: 85,000 GBP James and 82,000 GBP Caroline; SIPPs: 610,000 GBP James and 430,000 GBP Caroline, dated 2026-04-30.",
+      "Holloway joint GIA is 240,000 GBP dated 2026-02-28 in the database versus around 255,000 GBP observed live on 2026-05-20. Brightwell joint GIA is 95,000 GBP and Meridian bond 180,000 GBP dated 2026-04-30.",
+      "Completion proceeds of 850,000 GBP were received and are in a solicitor client account. Of that, 200,000 GBP is committed to a bridging-loan repayment. It is not all freely investable.",
+      "Earnout is up to 400,000 GBP over two years, contingent on performance, not received and not guaranteed. Do not treat it as available cash.",
+      "Preserve the three-year goal of replacing James’s income after stepping back from work, balanced-to-moderate risk profile 4, and no current portfolio income requirement.",
+      "Agreed plan: ISA and appropriate SIPP contributions, add to Holloway GIA, new joint account for the remainder, partial Holloway GIA disposal/rebalance. Do not invent exact allocations, pension limits or verified allowance capacity. Leave the offshore bond unchanged.",
+      "Confirm Caroline’s Meridian cash balance and bridging-loan repayment timing. Her closed Meridian account is zero and should not be treated as missing or active.",
+      "Initial charge 0.5%; confirm ongoing charges across platforms and CGT, rather than estimate. Future school fees/charity are not current instructions; French property is irrelevant."
+    ]
+  }
+}
