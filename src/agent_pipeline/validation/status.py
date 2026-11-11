@@ -16,6 +16,8 @@ def validation_state(candidate, reports, result=None):
     if not reports:
         return "not_reviewed"
     report = reports[-1]
+    if report.get("state") == "not_reviewed" and "extraction_sha256" not in report:
+        return "not_reviewed"
     if candidate is not None and report.get("candidate_sha256") != candidate_hash(
         candidate
     ):

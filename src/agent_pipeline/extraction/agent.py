@@ -27,6 +27,7 @@ from agent_pipeline.extraction.tools import TOOL_DEFINITIONS
 from agent_pipeline.extraction.models import ExtractionRun, ExtractionSettings
 from agent_pipeline.validation.tool import CandidateValidationTool
 from agent_pipeline.validation.status import execution_errors
+from agent_pipeline.validation.checks import check_extraction
 
 
 class CheckedChatCompletionsModel(OpenAIChatCompletionsModel):
@@ -247,9 +248,7 @@ class ExtractionAgent:
                     "Sources not delivered: "
                     + ", ".join(sorted(set(sources.sources) - delivered))
                 )
-            run.errors.extend(
-                execution_errors(sources.list_files()["sources"])
-            )
+            run.errors.extend(execution_errors(sources.list_files()["sources"]))
             if not run.errors:
                 run.state = "complete"
         except Exception as error:
@@ -258,5 +257,27 @@ class ExtractionAgent:
                 run.errors.append("API HTTP status: " + str(error.status_code))
         finally:
             run.inventory = sources.list_files()["sources"]
+            if run.response is not None:
+                try:
+                    final = validation_tool.store.assemble(
+                        run.response, run.inventory, run.run_id
+                    )
+                    evidence = validation_tool.reviewer._load_evidence(
+                        client_dir, final
+                    )
+                    run.final_checks = {
+                        "findings": check_extraction(
+                            final, evidence, validation_tool.store.result_validator
+                        ),
+                        "errors": [],
+                    }
+                except Exception as error:
+                    run.final_checks = {
+                        "findings": [],
+                        "errors": [
+                            "Final deterministic checks could not complete: "
+                            + type(error).__name__
+                        ],
+                    }
             run.elapsed_seconds = round(time.monotonic() - started, 3)
         return run

@@ -178,6 +178,7 @@ def save_run(
             "tool_calls": run.tool_calls,
             "usage": run.usage,
             "elapsed_seconds": run.elapsed_seconds,
+            "final_checks": run.final_checks,
             "validation_attempts": len(run.validation_reports),
             "validation_model_calls": sum(
                 r.get("model_calls", 0) for r in run.validation_reports

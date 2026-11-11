@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Draft is visibly labelled",
+    "pattern": "DRAFT.*HUMAN REVIEW",
+    "present": true
+  },
+  {
+    "name": "Risk score and description are both present",
+    "pattern": "(?:risk[^\\n.]*4[^\\n.]*moderate|moderate[^\\n.]*risk[^\\n.]*4)",
+    "present": true
+  },
+  {
+    "name": "Agreed contribution amount is retained",
+    "pattern": "\u00a320,?000",
+    "present": true
+  },
+  {
+    "name": "Covered ISA valuation is retained",
+    "pattern": "\u00a352,?000",
+    "present": true
+  },
+  {
+    "name": "Cash funding account is not a covered-account table row",
+    "pattern": "^\\|[^\\n]*cash[^\\n]*\\|",
+    "present": false
+  },
+  {
+    "name": "Tax section is omitted when no disposal is recommended",
+    "pattern": "^##\\s+Tax Implications",
+    "present": false
+  },
+  {
+    "name": "Internal issue references are absent",
+    "pattern": "\\[Issues?\\s+\\d",
+    "present": false
+  },
+  {
+    "name": "Review markers are not doubled",
+    "pattern": "REVIEW REQUIRED:\\s*REVIEW REQUIRED:",
+    "present": false
+  },
+  {
+    "name": "Allowance availability is not asserted",
+    "pattern": "(?:will|shall)\\s+(?:utilise|use up)\\s+your\\s+(?:current\\s+)?ISA allowance",
+    "present": false
+  }
+]

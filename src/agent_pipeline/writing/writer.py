@@ -107,7 +107,7 @@ def write_report(
         "only when the specification makes that section conditional and its condition is not met. "
         "Do not put report headings in content. For each issue in reconciled_facts.issues, put its "
         "zero-based issue_index and a plain-language review note in the most relevant included section. "
-        "Account for every issue exactly once, including uncertainty about scope, proposed accounts "
+        "Account for every issue using review_notes only, including uncertainty about scope, proposed accounts "
         "and validation quality. Translate technical concerns into a need to verify the affected "
         "information; do not expose internal IDs or file paths. Do not put notes in omitted sections."
     )
@@ -161,7 +161,12 @@ def _fallback_note(issue):
         return "An account reference in the supporting information could not be matched uniquely. Confirm the account details before proceeding."
     if kind == "interpretation_required":
         return "Some supporting instructions or circumstances need adviser interpretation before this draft is finalised."
-    if kind.startswith("validation_"):
+    if kind in {
+        "validation_stale",
+        "validation_failed",
+        "validation_incomplete",
+        "validation_not_reviewed",
+    }:
         return "The supporting information and this draft require human verification; automated review has not confirmed the final version."
     # Retain the substantive concern, stripping internal observation identifiers.
     return re.sub(
@@ -171,12 +176,34 @@ def _fallback_note(issue):
     )
 
 
+def _clean_text(text):
+    text = re.sub(r"\[(?:Issue|Issues)\s+\d+(?:[\s,–-]+\d+)*\]", "", text, flags=re.I)
+    text = re.sub(r"\b[0-9a-f]{32}:observation-\d+\b", "a supporting observation", text)
+    return text.strip()
+
+
+def _note_text(text):
+    text = _clean_text(text)
+    # Accept legacy/model-generated wrappers, but render the marker only once.
+    text = re.sub(r"^(?:\[?REVIEW REQUIRED\s*:\s*)+", "", text, flags=re.I)
+    return text.rstrip("]").strip()
+
+
 def render_report(result, specification, facts):
     sections = specification_sections(specification)
     issues = facts.get("issues", [])
     if [s["title"] for s in result["sections"]] != [s["title"] for s in sections]:
         raise WriterOutputError("Writer changed the specified section order")
-    rendered, covered = [], set()
+    rendered, covered, notes_seen = [], set(), set()
+
+    def append_note(content, text):
+        text = _note_text(text)
+        key = " ".join(text.casefold().split())
+        if not text or key in notes_seen:
+            return content
+        notes_seen.add(key)
+        return content + "\n\n[REVIEW REQUIRED: " + text + "]"
+
     for section, definition in zip(result["sections"], sections):
         fixed = _fixed_wording(definition["requirements"])
         if not section["include"]:
@@ -188,6 +215,16 @@ def render_report(result, specification, facts):
             raise WriterOutputError(
                 "Writer must return section content without report headings"
             )
+        # Review prose belongs to the structured notes, with issue fallbacks below.
+        content = re.sub(r"\[REVIEW REQUIRED:.*?\]", "", content, flags=re.I | re.S)
+        content = "\n\n".join(
+            paragraph
+            for paragraph in content.split("\n\n")
+            if not re.match(r"^REVIEW REQUIRED\s*:", paragraph.strip(), re.I)
+        )
+        content = _clean_text(content)
+        if not content:
+            content = "The information for this section requires confirmation."
         for text in fixed:
             if text not in content:
                 content = (
@@ -199,18 +236,32 @@ def render_report(result, specification, facts):
             if not note["text"].strip() or note["issue_index"] in covered:
                 continue
             covered.add(note["issue_index"])
-            content += "\n\n[REVIEW REQUIRED: " + note["text"].strip() + "]"
+            content = append_note(content, note["text"])
         rendered.append({"title": section["title"], "content": content})
     if not rendered:
         raise WriterOutputError("Writer returned no report sections")
     for index in sorted(set(range(len(issues))) - covered):
-        rendered[0]["content"] += (
-            "\n\n[REVIEW REQUIRED: " + _fallback_note(issues[index]) + "]"
+        rendered[0]["content"] = append_note(
+            rendered[0]["content"], _fallback_note(issues[index])
         )
-    if facts.get("validation_state", "not_reviewed") != "passed":
-        rendered[0][
-            "content"
-        ] += "\n\n[REVIEW REQUIRED: Automated validation has not confirmed this final draft. Verify the report against the source information before proceeding.]"
+    processing_notice = any(
+        issue["issue_type"]
+        in {
+            "validation_stale",
+            "validation_failed",
+            "validation_incomplete",
+            "validation_not_reviewed",
+        }
+        for issue in issues
+    )
+    if (
+        facts.get("validation_state", "not_reviewed") != "passed"
+        and not processing_notice
+    ):
+        rendered[0]["content"] = append_note(
+            rendered[0]["content"],
+            "Automated review has not confirmed the final extraction. Verify this draft against the source information before proceeding.",
+        )
     title_match = re.search(r"^#[ \t]+(.+)$", specification, re.MULTILINE)
     title = (
         title_match[1].removeprefix("Report specification: ").strip()

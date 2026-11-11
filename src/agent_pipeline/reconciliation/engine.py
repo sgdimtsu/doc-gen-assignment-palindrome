@@ -387,12 +387,24 @@ def reconcile(extraction: dict, validation_reports=None, run_errors=()) -> dict:
             else "Validation is " + state + "; this draft requires human verification"
         )
         issue("validation_" + state, message)
+    final_checks = reports[-1].get("final_checks") if reports else None
+    if final_checks is not None:
+        for finding in final_checks["findings"]:
+            issue(
+                "validation_" + finding["category"],
+                "Extraction check — verify: " + finding["message"],
+                finding.get("observation_ids", []),
+                critical=finding.get("severity") == "error",
+            )
+        for error in final_checks["errors"]:
+            issue("validation_incomplete", error)
     if reports and state != "stale":
         report = reports[-1]
         seen = set()
-        for finding in report.get("deterministic_findings", []) + report.get(
-            "review_findings", []
-        ):
+        findings = report.get("review_findings", [])
+        if final_checks is None:
+            findings = report.get("deterministic_findings", []) + findings
+        for finding in findings:
             ids = finding.get("observation_ids", [])
             key = (
                 finding["category"],

@@ -179,3 +179,22 @@ client template_spec.md + report_request.docx + V2 rules → writer
 Account references now require `owner_text` (string or null). Existing extraction
 examples remain historical artifacts; rerun extraction to produce the updated
 contract. Do not add guessed ownership or IDs to old results.
+
+## Report evaluation
+
+Run the manually authored clean-client checklist against a generated report:
+
+```bash
+python -m agent_pipeline.evaluate --report outputs/client_01_clean/71518aa17e0745d7b387ce7487afd362/report.md --checks evaluation/client_01_clean.json
+```
+
+It checks selected request details, scope and presentation regressions. These
+text checks are a starting point, not proof of correct advice or complete
+extraction. Compare facts, qualifications and outstanding concerns against the
+original sources manually; the extraction reviewer does not evaluate final prose.
+The retained report predates the latest writer changes and may fail these checks.
+
+Every new extraction also saves `final_checks` in `summary.json`. These code
+checks run on the final candidate without another model call. Reconciliation
+retains their findings even when the earlier LLM review is stale. Validation
+remains advisory. Older saved runs without final checks remain readable.

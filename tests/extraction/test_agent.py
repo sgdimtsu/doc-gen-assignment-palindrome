@@ -444,6 +444,7 @@ def test_changed_candidate_is_marked_stale_without_blocking(case):
     assert run.validation_reports[-1]["state"] == "passed"
     assert run.state == "complete"
     assert validation_state(run.response, run.validation_reports) == "stale"
+    assert run.final_checks == {"findings": [], "errors": []}
 
 
 def test_reviewer_failure_can_be_repaired_and_validated_again(case):
@@ -610,3 +611,21 @@ def test_rejected_review_is_saved_but_not_sent_as_repair_findings(case):
     }
     assert feedback["review_findings"] == []
     assert "missing=" in feedback["errors"][0]
+
+
+def test_final_checks_find_error_added_after_llm_review(case):
+    changed = deepcopy(case.data)
+    changed["observations"] = [observation(case)]
+    changed["observations"][0][
+        "source_text"
+    ] = "This assertion is absent from the source."
+    run, fake, _ = run_agent(
+        case, case.reads + validated(case.data)[:-1] + [final(changed)]
+    )
+    assert run.state == "complete"
+    assert validation_state(run.response, run.validation_reports) == "stale"
+    assert run.final_checks["errors"] == []
+    assert any(f["category"] == "quote" for f in run.final_checks["findings"])
+    assert len(fake.requests) == run.model_calls + sum(
+        report.get("model_calls", 0) for report in run.validation_reports
+    )

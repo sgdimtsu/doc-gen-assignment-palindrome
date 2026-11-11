@@ -47,6 +47,10 @@ def load_extraction(run_dir: Path):
     for issue in extraction["extraction_issues"]:
         if not set(issue["observation_ids"]).issubset(observation_ids):
             raise ValueError("Issue references an unknown observation")
+    # Final code checks are separate from the last (possibly stale) LLM review.
+    if summary.get("final_checks") is not None:
+        reports = [dict(r) for r in reports] or [{"state": "not_reviewed"}]
+        reports[-1]["final_checks"] = summary["final_checks"]
     errors = list(summary.get("errors", []))
     if summary.get("state") != "complete":
         errors.append(

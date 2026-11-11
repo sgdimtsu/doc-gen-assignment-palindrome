@@ -60,6 +60,8 @@ After inspecting all sources, validate the structured extraction before returnin
 
 Before final output, compare each relevant source against the information needs established by the request and specification. Look for omitted amounts, dates, separate actions, conditions and required confirmations. This check must not invent observations where evidence is absent.
 
+Check every populated report-request table row, not just account scope. Preserve the agreed risk score AND its wording as risk_profile observations; investment amounts and sale/no-sale instructions as action observations; funding as funding observations; and initial/ongoing charges as separate charge observations. Keep each assertion source-local. A populated request row must not disappear into a scope summary. Use the existing observation types; do not add fields or calculate missing values.
+
 ### Section tagging
 
 Use the specification's meanings: scoped accounts support Introduction; objectives, circumstances and existing account valuations support Background & Objectives; agreed actions, transaction amounts and funding support Recommendations; disposal/tax statements support Tax Implications; applicable charges support Fees & Charges and, where relevant, Recommendations. Instructions can support their affected sections. A source can support multiple sections, but do not tag all observations as Background. Tags do not decide inclusion or resolve ambiguity.

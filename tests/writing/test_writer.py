@@ -344,3 +344,46 @@ def test_risk_warning_precedes_closing_text():
     assert report.index("This is the required warning.") < report.index(
         "Please review this draft."
     )
+
+
+def test_review_markers_and_internal_references_are_cleaned_once():
+    data = result()
+    data["sections"][0][
+        "content"
+    ] += "\n\nREVIEW REQUIRED: Duplicate body warning. [Issue 0]"
+    data["sections"][0]["review_notes"][0][
+        "text"
+    ] = "REVIEW REQUIRED: REVIEW REQUIRED: Confirm the ongoing charge. [Issue 0]"
+    data["sections"][2]["review_notes"] = [
+        {"issue_index": 1, "text": "Confirm the ongoing charge."}
+    ]
+    concerns = facts()
+    concerns["issues"].append(deepcopy(concerns["issues"][0]))
+    report = write_report(FakeClient(data), "test", SPEC, {}, concerns, config())
+    assert "REVIEW REQUIRED: REVIEW REQUIRED" not in report
+    assert "[Issue" not in report
+    assert "Duplicate body warning" not in report
+    assert report.count("Confirm the ongoing charge.") == 1
+
+
+def test_processing_notice_is_not_added_twice():
+    data = result()
+    concerns = facts()
+    concerns["issues"][0]["issue_type"] = "validation_stale"
+    data["sections"][0]["review_notes"][0][
+        "text"
+    ] = "Verify the final extraction against the sources."
+    report = write_report(FakeClient(data), "test", SPEC, {}, concerns, config())
+    assert report.count("[REVIEW REQUIRED:") == 1
+
+
+def test_missing_information_fallback_keeps_the_substantive_concern():
+    data = result()
+    data["sections"][0]["review_notes"] = []
+    concerns = facts()
+    concerns["issues"][0].update(
+        issue_type="validation_missing_information",
+        message="Confirm the ongoing advice fee.",
+    )
+    report = write_report(FakeClient(data), "test", SPEC, {}, concerns, config())
+    assert "Confirm the ongoing advice fee." in report

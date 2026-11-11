@@ -615,3 +615,31 @@ def test_unspecified_contribution_still_requires_amount_confirmation(evidence):
     evidence["observations"].append(contribution)
     result = reconcile(evidence)
     assert any(i["issue_type"] == "amount_unconfirmed" for i in result["issues"])
+
+
+def test_final_code_checks_survive_stale_llm_review(evidence):
+    report = {
+        "state": "passed",
+        "extraction_sha256": "old-candidate",
+        "review_findings": [{"category": "omission", "message": "Outdated finding."}],
+        "final_checks": {
+            "findings": [
+                {
+                    "category": "quote",
+                    "message": "Final evidence is unsupported.",
+                    "observation_ids": [],
+                    "severity": "error",
+                }
+            ],
+            "errors": [],
+        },
+    }
+    reconciled = reconcile(evidence, [report])
+    assert reconciled["validation_state"] == "stale"
+    assert any(
+        "Final evidence is unsupported" in issue["message"]
+        for issue in reconciled["issues"]
+    )
+    assert not any(
+        "Outdated finding" in issue["message"] for issue in reconciled["issues"]
+    )
