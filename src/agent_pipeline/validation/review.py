@@ -94,6 +94,7 @@ class ExtractionValidator:
                 "format": current[name]["format"],
                 "text": text,
                 "image": image,
+                "code_records": tools.protected.get(current[name]["source_id"], []),
             }
         return evidence
 
@@ -191,7 +192,6 @@ class ExtractionValidator:
             )
             return report
         report["review_diagnostics"] = {
-            "expected_source_ids": list(evidence),
             "response": None,
             "rejection_reasons": [],
         }

@@ -6,12 +6,19 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# Generated runs are local; retain only the three submitted examples.
-outputs/*/
+# Ignore generated outputs except selected submission examples and baseline reports.
+outputs/*
+!outputs/.gitkeep
+!outputs/client_01_clean.md
+!outputs/client_02_medium.md
 !outputs/client_01_clean/
-outputs/client_01_clean/*/
-!outputs/client_01_clean/71518aa17e0745d7b387ce7487afd362/
+outputs/client_01_clean/*
+!outputs/client_01_clean/7f88df2d3adf4f29906e342e5b7c97e8/
+!outputs/client_01_clean/d6ce11d208844cfd8a70a1e9e5899d68/
+!outputs/client_01_clean/53918319fa5043f0a46e15c86629e481/
+!outputs/client_02_medium/
+outputs/client_02_medium/*
+!outputs/client_02_medium/597d8615189d43bfbac8e0b3335763dc/
 !outputs/client_03_hard/
-outputs/client_03_hard/*/
-!outputs/client_03_hard/38aa7eff8a754c88ad615c60179b90b9/
-!outputs/client_03_hard/5073cccf2d59422d9152a44466c87683/
+outputs/client_03_hard/*
+!outputs/client_03_hard/cfb55807eb474858a28281dedbad44d4/

@@ -102,8 +102,29 @@ def check_extraction(extraction, evidence, validator):
             continue
         text = source["text"]
         quote = observation["source_text"]
-        if not quote.strip() or (
-            text is not None and normalise_text(quote) not in normalise_text(text)
+        code_records = source.get("code_records", [])
+        code_match = any(
+            o["observation_type"] == observation["observation_type"]
+            and o["data"] == observation["data"]
+            for o in code_records
+        )
+        if (
+            source.get("format") == "json"
+            and code_records
+            and not code_match
+            and observation["observation_type"] not in {"unclassified", "instruction"}
+        ):
+            findings.append(
+                _finding(
+                    "identity",
+                    "Structured fields differ from the original account record",
+                    observation,
+                    sid,
+                )
+            )
+        if not code_match and (
+            not quote.strip()
+            or (text is not None and normalise_text(quote) not in normalise_text(text))
         ):
             findings.append(
                 _finding(

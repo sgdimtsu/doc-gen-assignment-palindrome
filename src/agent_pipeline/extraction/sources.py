@@ -8,6 +8,8 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
 
+from agent_pipeline.extraction.structured import account_records, request_records
+
 
 REQUIRED_FILES = ("report_request.docx", "template_spec.md")
 FORMATS = {
@@ -46,6 +48,9 @@ class SourceTools:
         self.root = client_dir.resolve(strict=True)
         if not self.root.is_dir():
             raise ValueError("Client path must be a directory")
+        self.protected = {}
+        self.roles = {}
+        self.request_fields = []
         self.sources = {}
         self._paths = {}
         for index, path in enumerate(sorted(self.root.rglob("*")), start=1):
@@ -151,9 +156,21 @@ class SourceTools:
 
             text = path.read_text(encoding="utf-8")
             data = json.loads(
-                text, parse_constant=reject_constant, object_pairs_hook=unique_keys
+                text,
+                parse_constant=reject_constant,
+                object_pairs_hook=unique_keys,
+                parse_float=str,
+                parse_int=str,
             )
+            records = account_records(data, source_id)
+            if records is not None:
+                self.protected[source_id] = records
+                self.roles[source_id] = "account_records"
+            else:
+                self.roles[source_id] = "unknown"
             return {
+                "code_owned_observations": records or [],
+                "structured_layout_supported": records is not None,
                 "data": data,
                 "raw_text": text,
             }
@@ -203,6 +220,10 @@ class SourceTools:
                         )
                 if root.findall(".//" + W + "txbxContent"):
                     limitations.append("Text boxes require additional reading")
+                if self.sources[source_id]["filename"] == "report_request.docx":
+                    self.request_fields, records = request_records(blocks, source_id)
+                    self.protected[source_id] = records
+                    self.roles[source_id] = "report_request"
                 return {
                     "blocks": blocks,
                     "limitations": limitations,

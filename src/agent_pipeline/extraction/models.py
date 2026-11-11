@@ -42,6 +42,7 @@ class ExtractionRun:
     run_id: str = field(default_factory=lambda: uuid4().hex)
     validation_reports: list[dict] = field(default_factory=list)
     final_checks: dict | None = None
+    structured: dict = field(default_factory=dict)
     state: str = "partial"
     response: dict | None = None
     errors: list[str] = field(default_factory=list)

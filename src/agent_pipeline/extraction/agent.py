@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from copy import deepcopy
 import json
 from pathlib import Path
 import time
@@ -26,7 +25,7 @@ from agent_pipeline.extraction.sources import SourceTools
 from agent_pipeline.extraction.tools import TOOL_DEFINITIONS
 from agent_pipeline.extraction.models import ExtractionRun, ExtractionSettings
 from agent_pipeline.validation.tool import CandidateValidationTool
-from agent_pipeline.validation.status import execution_errors
+from agent_pipeline.validation.status import execution_errors, validation_state
 from agent_pipeline.validation.checks import check_extraction
 
 
@@ -257,6 +256,8 @@ class ExtractionAgent:
                 run.errors.append("API HTTP status: " + str(error.status_code))
         finally:
             run.inventory = sources.list_files()["sources"]
+            run.structured = validation_tool.structured_evidence()
+            validation_tool.store.structured = run.structured
             if run.response is not None:
                 try:
                     final = validation_tool.store.assemble(
@@ -265,6 +266,17 @@ class ExtractionAgent:
                     evidence = validation_tool.reviewer._load_evidence(
                         client_dir, final
                     )
+                    if validation_state(None, run.validation_reports, final) in {
+                        "stale",
+                        "not_reviewed",
+                    }:
+                        report = await validation_tool.reviewer.validate(
+                            final, client_dir, self.client
+                        )
+                        from agent_pipeline.validation.status import candidate_hash
+
+                        report["candidate_sha256"] = candidate_hash(run.response)
+                        run.validation_reports.append(report)
                     run.final_checks = {
                         "findings": check_extraction(
                             final, evidence, validation_tool.store.result_validator

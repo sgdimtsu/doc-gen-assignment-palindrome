@@ -43,6 +43,15 @@ class CandidateValidationTool:
             extraction_schema_path=schema_path,
         )
 
+    def structured_evidence(self):
+        return dict(
+            protected=[
+                o for records in self.sources.protected.values() for o in records
+            ],
+            roles=self.sources.roles,
+            request_fields=self.sources.request_fields,
+        )
+
     def definition(self):
         definition = validation_definition(self.store.response_schema)
         self.parameters = definition["parameters"]
@@ -106,6 +115,7 @@ class CandidateValidationTool:
             if problems:
                 report["errors"] = problems
             else:
+                self.store.structured = self.structured_evidence()
                 enriched = self.store.assemble(
                     candidate,
                     self.sources.list_files()["sources"],

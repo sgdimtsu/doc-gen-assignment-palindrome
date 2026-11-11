@@ -1,5 +1,7 @@
 """Choose a dated current valuation without converting qualifications to exact values."""
 
+import re
+
 from datetime import date
 from decimal import Decimal, InvalidOperation
 
@@ -7,6 +9,18 @@ from decimal import Decimal, InvalidOperation
 def select_valuation(observations):
     if not observations:
         return None, "No valuation was extracted"
+    rejected = [
+        o
+        for o in observations
+        if re.search(
+            r"\b(?:move|contribut\w*|top[ -]?up|transfer)\b", o["source_text"], re.I
+        )
+        and not re.search(r"\b(?:valu\w*|balance|worth)\b", o["source_text"], re.I)
+    ]
+    observations = [o for o in observations if o not in rejected]
+    if not observations:
+        return None, "Transaction instructions were not accepted as account valuations"
+
     currencies = {o["data"]["currency"] for o in observations if o["data"]["currency"]}
     if len(currencies) > 1:
         return None, "Valuation currencies disagree; no conversion was inferred"
@@ -62,4 +76,8 @@ def select_valuation(observations):
         return None, "Latest valuation is missing; an older value was not substituted"
     if data["amount"] is None and not data["amount_text"]:
         return None, "Latest valuation has no stated amount"
-    return candidates, None
+    return candidates, (
+        "A transaction assertion was excluded from account valuations; verify its extraction classification"
+        if rejected
+        else None
+    )

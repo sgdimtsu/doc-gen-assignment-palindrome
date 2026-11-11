@@ -643,3 +643,13 @@ def test_final_code_checks_survive_stale_llm_review(evidence):
     assert not any(
         "Outdated finding" in issue["message"] for issue in reconciled["issues"]
     )
+
+
+def test_contribution_assertion_cannot_replace_known_account_value(evidence):
+    mistaken = valuation("contribution-misclassified", amount="20000", when=None)
+    mistaken["source_text"] = "We agreed to move £20,000 from cash into the ISA."
+    evidence["observations"].append(mistaken)
+    result = reconcile(evidence)
+    account = next(a for a in result["accounts"] if a["account_id"] == "A1")
+    assert account["valuation"]["data"]["amount"] != "20000"
+    assert any(i["issue_type"] == "valuation_unresolved" for i in result["issues"])

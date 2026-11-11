@@ -1,5 +1,8 @@
 # doc-gen-assignment
 
+For current installation, commands, output files and retained examples, see
+[the pipeline setup and running guide](PIPELINE_README.md).
+
 A small config-driven pipeline that turns a client's source material into an advice report. Start
 with `PROJECT_GUIDANCE.md`; it describes the exercise.
 
@@ -25,27 +28,23 @@ writer call. Intermediate extraction, validation and reconciliation files remain
 in that same directory. Unresolved review issues do not block draft writing;
 unusable input or a malformed API response can still cause a technical failure.
 
-To write from an existing reconciliation without extracting again:
+To reuse a saved extraction without extracting again:
 
 ```bash
-python -m agent_pipeline.generate --client client_03_hard --run-dir outputs/client_03_hard/38aa7eff8a754c88ad615c60179b90b9
+python -m agent_pipeline.generate --client client_03_hard --run-dir outputs/client_03_hard/cfb55807eb474858a28281dedbad44d4
 ```
 
-If the specified run has extraction but no reconciliation, the command reconciles
-it before writing. `--model` overrides extraction and writer models. Otherwise
+The command rebuilds reconciliation from the selected extraction before writing. `--model` overrides extraction and writer models. Otherwise
 extraction uses `EXTRACTION_MODEL`, then `OPENAI_MODEL`, then `gpt-4.1`; writing
 uses `WRITER_MODEL` if set, otherwise the extraction model. Numeric stage limits
 remain in extraction settings. `--data-dir` and `--output-dir` allow other folders.
 
-Writer rules are in `config/template_config_v2.json`; it has no fixed section list.
-The writer reads the selected client's `template_spec.md` for headings, order,
-requirements and conditional inclusion, and `report_request.docx` for report scope
-and instructions. Reconciled facts and all review concerns are supplied alongside
-those documents. Each concern must have a plain-language review note in an
-included section. Exact mandatory wording is preserved by code and the existing
-formatter remains unchanged. The draft is explicitly labelled for human review.
-The original `template_config.json` and example Markdown reports remain reference
-artifacts; the generation command now uses V2.
+Writer rules are in `config/template_config_v2.json`. The client specification
+supplies section requirements to reconciliation. Reconciliation supplies the writer
+with a report plan containing supported facts, request instructions and review
+concerns; raw source files are not sent to the writer. Code renders tables, mandatory
+wording and review notes. The supplied formatter remains unchanged. The original
+`template_config.json` and top-level Markdown reports are baseline references.
 
 Available clients live under `data/`:
 
@@ -54,9 +53,9 @@ Available clients live under `data/`:
 - `client_03_hard`
 - `client_04_stretch` (large and messy on purpose; a deliberate stretch)
 
-Generated runs are ignored by Git, except for three retained examples: the final
-clean report and two hard-client runs showing different extraction outcomes. The
-two original Markdown reports remain as baseline references. Background experiment
+Generated runs are ignored by Git, except for five retained examples: the latest
+three clean iterations and the latest saved medium and hard runs. The two original
+Markdown reports remain as baseline references. Background experiment
 files and older runs have been removed.
 
 ## Extraction agent
@@ -171,7 +170,7 @@ check, run the extraction command above and inspect its run directory.
 ```text
 client source files → extraction + advisory validation → reconciliation
                                                               ↓
-client template_spec.md + report_request.docx + V2 rules → writer
+client specification → reconciliation → report plan + V2 rules → writer
                                                               ↓
                                                      run/report.md
 ```
@@ -185,7 +184,7 @@ contract. Do not add guessed ownership or IDs to old results.
 Run the manually authored clean-client checklist against a generated report:
 
 ```bash
-python -m agent_pipeline.evaluate --report outputs/client_01_clean/71518aa17e0745d7b387ce7487afd362/report.md --checks evaluation/client_01_clean.json
+python -m agent_pipeline.evaluate --report outputs/client_01_clean/7f88df2d3adf4f29906e342e5b7c97e8/report.md --checks evaluation/client_01_clean.json
 ```
 
 It checks selected request details, scope and presentation regressions. These
@@ -194,7 +193,8 @@ extraction. Compare facts, qualifications and outstanding concerns against the
 original sources manually; the extraction reviewer does not evaluate final prose.
 The retained report predates the latest writer changes and may fail these checks.
 
-Every new extraction also saves `final_checks` in `summary.json`. These code
-checks run on the final candidate without another model call. Reconciliation
+Every new extraction also saves `final_checks` in `summary.json`. These deterministic
+checks run on the final candidate. Code additionally requests a final advisory LLM
+review if the final candidate changed after review or was never reviewed. Reconciliation
 retains their findings even when the earlier LLM review is stale. Validation
 remains advisory. Older saved runs without final checks remain readable.

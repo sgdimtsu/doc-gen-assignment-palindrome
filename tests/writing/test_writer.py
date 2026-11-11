@@ -1,35 +1,26 @@
+"""The writer cannot change, add, omit or move reconciled facts."""
+
 from copy import deepcopy
 import json
-from pathlib import Path
+import shutil
 from types import SimpleNamespace
-from zipfile import ZipFile
 
 import pytest
 
 from agent_pipeline import ROOT, generate
-from agent_pipeline.writing.writer import FCA_LINE, write_report
-
-
-SPEC = """# Report specification: Example advice
-
-## Your account
-Keep the FCA authorisation sentence as written.
-
-## Disposal details
-Include ONLY if a disposal is recommended.
-
-## Closing
-Must include this warning, word for word:
-"This is the required warning.
-Preserve both sentences."
-"""
+from agent_pipeline.extraction.models import ExtractionRun, ExtractionSettings
+from agent_pipeline.extraction.results import save_run
+from agent_pipeline.extraction.sources import SourceTools
+from agent_pipeline.reconciliation.engine import reconcile
+from agent_pipeline.reconciliation.report import FCA_LINE
+from agent_pipeline.writing.writer import write_report, render_report, WriterOutputError
 
 
 class FakeClient:
-    def __init__(self, result):
-        self.result = result
+    def __init__(self, change=None):
         self.requests = []
         self.chat = SimpleNamespace(completions=self)
+        self.change = change
 
     def __enter__(self):
         return self
@@ -39,351 +30,369 @@ class FakeClient:
 
     def create(self, **kwargs):
         self.requests.append(kwargs)
+        plan = json.loads(kwargs["messages"][1]["content"])["reconciled_report"]
+        result = {
+            "sections": [
+                {"title": s["title"], "block_ids": s["block_ids"], "paragraphs": []}
+                for s in plan["sections"]
+                if s["include"]
+            ]
+        }
+        if self.change:
+            self.change(result)
         return SimpleNamespace(
             choices=[
                 SimpleNamespace(
                     finish_reason="stop",
-                    message=SimpleNamespace(
-                        content=json.dumps(self.result), refusal=None
-                    ),
+                    message=SimpleNamespace(content=json.dumps(result), refusal=None),
                 )
             ]
         )
-
-
-def result():
-    return {
-        "sections": [
-            {
-                "title": "Your account",
-                "include": True,
-                "content": "The supplied account facts.",
-                "review_notes": [
-                    {
-                        "issue_index": 0,
-                        "text": "Confirm the ongoing charge before proceeding.",
-                    }
-                ],
-            },
-            {
-                "title": "Disposal details",
-                "include": False,
-                "content": "",
-                "review_notes": [],
-            },
-            {
-                "title": "Closing",
-                "include": True,
-                "content": "Please review this draft.",
-                "review_notes": [],
-            },
-        ]
-    }
 
 
 def config():
     return json.loads((ROOT / "config/template_config_v2.json").read_text())
 
 
-def facts():
-    return {
-        "validation_state": "failed",
-        "requires_review": True,
-        "issues": [
-            {
-                "issue_type": "confirmation_required",
-                "severity": "error",
-                "message": "Charge unknown.",
-            }
-        ],
-    }
-
-
-def test_client_spec_controls_structure_and_code_preserves_wording_and_notes():
-    client = FakeClient(result())
-    request = {
-        "blocks": [{"cells": ["Agreed risk profile", "4 (moderate)"]}],
-        "limitations": [],
-    }
-    report = write_report(client, "test-model", SPEC, request, facts(), config())
-    assert "## Your account\n" in report and "## Closing\n" in report
-    assert "## Disposal details" not in report
-    assert "## Introduction" not in report
-    assert report.index("## Your account") < report.index("## Closing")
-    assert FCA_LINE in report
-    assert "This is the required warning. Preserve both sentences." in report
-    assert "[REVIEW REQUIRED: Confirm the ongoing charge before proceeding.]" in report
-    assert "DRAFT — FOR HUMAN REVIEW" in report
-    payload = json.loads(client.requests[0]["messages"][1]["content"])
-    assert payload["report_request"] == request
-    assert payload["reconciled_facts"] == facts()
-    assert payload["template_spec"] == SPEC
-    assert client.requests[0]["store"] is False
-    assert len(client.requests) == 1
-    assert "sections" not in config()
-
-
-def test_another_client_can_change_headings_without_changing_config():
-    spec = SPEC.replace("Your account", "Different scope").replace(
-        "Closing", "Next steps"
+@pytest.fixture
+def inputs(tmp_path):
+    folder = tmp_path / "data" / "example"
+    shutil.copytree(ROOT / "data/client_01_clean", folder)
+    sources = SourceTools(folder)
+    inv = sources.list_files()["sources"]
+    for name in ["report_request.docx", "template_spec.md"]:
+        sources.read_source(next(s["source_id"] for s in inv if s["filename"] == name))
+    for source in inv:
+        if source["filename"] not in {"report_request.docx", "template_spec.md"}:
+            sources.read_source(source["source_id"])
+    structured = dict(
+        protected=[o for rows in sources.protected.values() for o in rows],
+        roles=sources.roles,
+        request_fields=sources.request_fields,
     )
-    data = result()
-    data["sections"][0]["title"] = "Different scope"
-    data["sections"][2]["title"] = "Next steps"
-    report = write_report(FakeClient(data), "test", spec, {}, facts(), config())
-    assert "## Different scope" in report and "## Next steps" in report
+    sid = next(s["source_id"] for s in inv if s["filename"] == "report_request.docx")
+    ref = dict(
+        account_id=None,
+        platform="Holloway",
+        account_type="Stocks & Shares ISA",
+        owner_text=None,
+        reference_text="Holloway Stocks & Shares ISA",
+    )
+    candidate = dict(
+        sources=[
+            dict(source_id=s["source_id"], role="unknown", document_date=None)
+            for s in inv
+        ],
+        observations=[
+            dict(
+                observation_type="report_scope",
+                source_id=sid,
+                source_text="Holloway Stocks & Shares ISA",
+                sections=["introduction"],
+                evidence_scope="client_specific",
+                data=dict(clients=[], included_accounts=[ref], excluded_accounts=[]),
+                field_states=[
+                    dict(field="included_accounts[0].account_id", state="not_stated"),
+                    dict(field="included_accounts[0].owner_text", state="not_stated"),
+                ],
+            )
+        ],
+        extraction_issues=[],
+    )
+    run = ExtractionRun(
+        state="complete",
+        response=candidate,
+        inventory=sources.list_files()["sources"],
+        structured=structured,
+    )
+    from agent_pipeline.extraction.results import ExtractionRecords
+
+    extraction = ExtractionRecords(structured=structured).assemble(
+        candidate, run.inventory, run.run_id
+    )
+    specification = (folder / "template_spec.md").read_text()
+    facts = reconcile(extraction, specification=specification)
+    return SimpleNamespace(
+        folder=folder,
+        run=run,
+        facts=facts,
+        specification=specification,
+        output=tmp_path / "outputs",
+    )
+
+
+def test_writer_receives_only_reconciliation_and_code_preserves_values(inputs):
+    client = FakeClient()
+    report = write_report(client, "test", inputs.facts, config())
+    payload = json.loads(client.requests[0]["messages"][1]["content"])
+    assert set(payload) == {"reconciled_report"}
+    assert "report_request" not in payload
+    assert "£52,000.0" in report
+    assert "GBP 20,000" in report
+    assert "4 moderate" in report
+    assert "## Tax Implications" not in report
+    assert report.count(FCA_LINE) == 1
+    assert "DRAFT — FOR HUMAN REVIEW" in report
+    warning = "The value of investments can fall as well as rise"
+    assert report.index(warning) < report.index("Please contact us")
+    assert "subject to adviser review" in report
+    assert len(client.requests) == 1
 
 
 @pytest.mark.parametrize(
     "failure",
-    [
-        "section_order",
-        "extra_heading",
-    ],
+    ["invented_block", "omission", "duplicate", "section_order", "free_prose"],
 )
-def test_malformed_writer_structure_is_rejected(failure):
-    data = result()
-    if failure == "section_order":
-        data["sections"].reverse()
-    else:
-        data["sections"][0][
-            "content"
-        ] = "## An extra report section\nUnexpected structure."
-    with pytest.raises(ValueError):
-        write_report(FakeClient(data), "test", SPEC, {}, facts(), config())
+def test_invalid_writer_arrangement_falls_back_without_changing_facts(inputs, failure):
+    def change(result):
+        if failure == "invented_block":
+            result["sections"][0]["block_ids"] += ["£999999"]
+        if failure == "omission":
+            result["sections"][0]["block_ids"] = []
+        if failure == "duplicate":
+            result["sections"][0]["block_ids"] *= 2
+        if failure == "section_order":
+            result["sections"].reverse()
+        if failure == "free_prose":
+            result["sections"][0]["content"] = "Your gain is £999999."
+
+    report = write_report(FakeClient(change), "test", inputs.facts, config())
+    assert "£999999" not in report
+    assert "£52,000.0" in report
+    assert "writer arrangement could not be verified" in report
 
 
-def test_fixed_wording_is_not_duplicated():
-    data = result()
-    data["sections"][0]["content"] += "\n\n" + FCA_LINE
-    report = write_report(FakeClient(data), "test", SPEC, {}, facts(), config())
-    assert report.count(FCA_LINE) == 1
+def test_pure_renderer_rejects_moved_blocks(inputs):
+    plan = inputs.facts["report"]
+    sections = [
+        {"title": s["title"], "block_ids": list(s["block_ids"])}
+        for s in plan["sections"]
+        if s["include"]
+    ]
+    sections[1]["block_ids"].append(sections[0]["block_ids"].pop())
+    with pytest.raises(WriterOutputError):
+        render_report({"sections": sections}, inputs.facts)
 
 
-def test_no_issues_requires_no_artificial_review_notes():
-    data = result()
-    data["sections"][0]["review_notes"] = []
-    report = write_report(
-        FakeClient(data),
-        "test",
-        SPEC,
-        {},
-        {"issues": [], "validation_state": "passed"},
-        config(),
+def test_changed_headings_come_from_client_specification(inputs):
+    spec = inputs.specification.replace("## Introduction", "## Your covered accounts")
+    # The requirements, rather than hard-coded titles, control block placement.
+    from agent_pipeline.reconciliation.report import build_report
+
+    facts = deepcopy(inputs.facts)
+    facts["report"] = build_report(facts, spec)
+    report = write_report(FakeClient(), "test", facts, config())
+    assert "## Your covered accounts" in report
+    assert "## Introduction" not in report
+
+
+def test_generate_reuses_extraction_not_current_raw_request_or_cached_reconciliation(
+    inputs, monkeypatch
+):
+    folder = save_run(
+        inputs.output, "example", inputs.run, ExtractionSettings(model="offline")
     )
-    assert "REVIEW REQUIRED" not in report
-
-
-@pytest.fixture
-def writer_run(tmp_path, monkeypatch):
-    client_dir = tmp_path / "data" / "example"
-    client_dir.mkdir(parents=True)
-    (client_dir / "template_spec.md").write_text(SPEC)
-    with ZipFile(client_dir / "report_request.docx", "w") as archive:
-        archive.writestr(
-            "word/document.xml",
-            '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
-            "<w:body><w:tbl><w:tr><w:tc><w:p><w:r><w:t>Agreed risk profile</w:t></w:r></w:p></w:tc>"
-            "<w:tc><w:p><w:r><w:t>4 (moderate)</w:t></w:r></w:p></w:tc></w:tr></w:tbl></w:body></w:document>",
-        )
-    folder = tmp_path / "outputs" / "example" / "run1"
-    folder.mkdir(parents=True)
-    (folder / "summary.json").write_text(
-        json.dumps({"client": "example", "state": "partial"})
-    )
-    (folder / "reconciliation.json").write_text(json.dumps(facts()))
-    client = FakeClient(result())
+    (folder / "reconciliation.json").write_text('{"fabricated": "£999999"}')
+    (inputs.folder / "report_request.docx").unlink()
+    client = FakeClient()
     monkeypatch.setattr(generate, "OpenAI", lambda **kwargs: client)
     monkeypatch.setattr(generate, "load_environment", lambda: None)
-    return (
-        folder,
-        client,
-        [
-            "--client",
-            "example",
-            "--data-dir",
-            str(tmp_path / "data"),
-            "--run-dir",
-            str(folder),
-        ],
+    assert (
+        generate.main(
+            [
+                "--client",
+                "example",
+                "--data-dir",
+                str(inputs.folder.parent),
+                "--run-dir",
+                str(folder),
+                "--model",
+                "chosen-model",
+            ]
+        )
+        == 0
     )
-
-
-def test_command_writes_run_report_from_request_spec_and_reconciliation(writer_run):
-    folder, client, args = writer_run
-    generate.main(args + ["--model", "chosen-model"])
-    assert (folder / "report.md").exists()
+    assert "£52,000.0" in (folder / "report.md").read_text()
+    assert "£999999" not in (folder / "report.md").read_text()
     assert client.requests[0]["model"] == "chosen-model"
-    payload = json.loads(client.requests[0]["messages"][1]["content"])
-    assert payload["report_request"]["blocks"] == [
-        {"cells": ["Agreed risk profile", "4 (moderate)"]}
-    ]
-    assert payload["reconciled_facts"]["validation_state"] == "failed"
 
 
-def test_command_rejects_mixed_client_inputs_before_any_api_call(writer_run):
-    folder, client, args = writer_run
-    (folder / "summary.json").write_text(json.dumps({"client": "another-client"}))
-    with pytest.raises(SystemExit):
-        generate.main(args)
-    assert client.requests == []
-
-
-def test_one_command_extracts_reconciles_and_writes_despite_advisory_errors(
-    writer_run, monkeypatch
-):
-    from agent_pipeline.extraction.models import ExtractionRun
-    from agent_pipeline.extraction.results import ExtractionRecords
-    from agent_pipeline.extraction.sources import SourceTools
-    from agent_pipeline.validation.status import candidate_hash
-    import hashlib
-
-    folder, _, args = writer_run
-    pipeline_args = args[:-2] + [
-        "--output-dir",
-        str(folder.parent.parent),
-        "--model",
-        "pipeline-model",
-    ]
-    async_client = SimpleNamespace(closed=False)
+def test_one_command_extracts_reconciles_and_writes(inputs, monkeypatch):
+    client = FakeClient()
+    monkeypatch.setattr(generate, "OpenAI", lambda **kwargs: client)
+    monkeypatch.setattr(generate, "load_environment", lambda: None)
+    async_client = SimpleNamespace()
 
     async def close():
-        async_client.closed = True
+        pass
 
     async_client.close = close
     monkeypatch.setattr(generate, "AsyncOpenAI", lambda: async_client)
 
-    class Extraction:
-        def __init__(self, client, settings):
-            assert client is async_client
-            assert settings.model == "pipeline-model"
+    class Extractor:
+        def __init__(self, *args):
+            pass
 
-        async def run(self, client_dir):
-            inventory = SourceTools(client_dir).list_files()["sources"]
-            for source in inventory:
-                source["read_status"] = "read"
-            candidate = {
-                "sources": [
-                    {
-                        "source_id": s["source_id"],
-                        "role": "unknown",
-                        "document_date": None,
-                    }
-                    for s in inventory
-                ],
-                "observations": [],
-                "extraction_issues": [],
-            }
-            run = ExtractionRun(
-                state="complete", response=candidate, inventory=inventory
-            )
-            assembled = ExtractionRecords().assemble(
-                run.response, run.inventory, run.run_id
-            )
-            run.validation_reports = [
-                {
-                    "state": "failed",
-                    "evidence_review_complete": True,
-                    "errors": [],
-                    "candidate_sha256": candidate_hash(candidate),
-                    "extraction_sha256": hashlib.sha256(
-                        json.dumps(assembled, sort_keys=True).encode()
-                    ).hexdigest(),
-                    "deterministic_findings": [],
-                    "review_findings": [
-                        {
-                            "category": "omission",
-                            "severity": "error",
-                            "message": "Check a missing source fact.",
-                            "observation_ids": [],
-                        }
-                    ],
-                }
+        async def run(self, folder):
+            return inputs.run
+
+    monkeypatch.setattr(generate, "ExtractionAgent", Extractor)
+    assert (
+        generate.main(
+            [
+                "--client",
+                "example",
+                "--data-dir",
+                str(inputs.folder.parent),
+                "--output-dir",
+                str(inputs.output),
             ]
-            return run
-
-    monkeypatch.setattr(generate, "ExtractionAgent", Extraction)
-
-    class Writer(FakeClient):
-        def create(self, **kwargs):
-            payload = json.loads(kwargs["messages"][1]["content"])
-            self.result["sections"][0]["review_notes"] = [
-                {
-                    "issue_index": i,
-                    "text": "Please verify this source concern before proceeding.",
-                }
-                for i, _ in enumerate(payload["reconciled_facts"]["issues"])
-            ]
-            return super().create(**kwargs)
-
-    writer = Writer(result())
-    monkeypatch.setattr(generate, "OpenAI", lambda **kwargs: writer)
-    assert generate.main(pipeline_args) == 0
-    generated = [p for p in folder.parent.iterdir() if p != folder]
-    assert len(generated) == 1
-    run_dir = generated[0]
+        )
+        == 0
+    )
+    folder = inputs.output / "example" / inputs.run.run_id
     assert {
         "summary.json",
-        "validation.json",
         "extraction.json",
+        "validation.json",
         "reconciliation.json",
         "report.md",
-    } <= {p.name for p in run_dir.iterdir()}
+    } <= {p.name for p in folder.iterdir()}
+
+
+def test_mixed_client_run_is_rejected_before_api_call(inputs, monkeypatch):
+    folder = save_run(
+        inputs.output, "other-client", inputs.run, ExtractionSettings(model="offline")
+    )
+    client = FakeClient()
+    monkeypatch.setattr(generate, "OpenAI", lambda **kwargs: client)
+    monkeypatch.setattr(generate, "load_environment", lambda: None)
+    with pytest.raises(SystemExit):
+        generate.main(
+            [
+                "--client",
+                "example",
+                "--data-dir",
+                str(inputs.folder.parent),
+                "--run-dir",
+                str(folder),
+            ]
+        )
+    assert client.requests == []
+
+
+def test_writer_can_write_grounded_narrative_with_code_owned_values(inputs):
+    def change(result):
+        for section in result["sections"]:
+            for bid in section["block_ids"]:
+                block = inputs.facts["report"]["blocks"][bid]
+                if block["text"].startswith("Recorded risk profile:"):
+                    section["paragraphs"].append(
+                        {
+                            "block_id": bid,
+                            "text": "Your recorded risk profile is {{value-1}} (moderate).",
+                        }
+                    )
+
+    report = write_report(FakeClient(change), "test", inputs.facts, config())
+    assert "Your recorded risk profile is 4 (moderate)." in report
+    assert "writer arrangement could not be verified" not in report
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Your risk profile is 99 (moderate).",
+        "Your risk profile is moderate.",
+        "Your risk profile is {{value-1}} with a guaranteed 10% return.",
+    ],
+)
+def test_writer_cannot_change_add_or_drop_values(inputs, text):
+    def change(result):
+        for section in result["sections"]:
+            for bid in section["block_ids"]:
+                if inputs.facts["report"]["blocks"][bid]["text"].startswith(
+                    "Recorded risk profile:"
+                ):
+                    section["paragraphs"].append({"block_id": bid, "text": text})
+
+    report = write_report(FakeClient(change), "test", inputs.facts, config())
+    assert "affected paragraphs retain the reconciled wording" in report
+    assert "guaranteed" not in report
+    assert "99" not in report
+
+
+def test_natural_negation_is_allowed_and_locked_table_is_rendered_separately(inputs):
+    from agent_pipeline.writing.writer import restore_values
+
     assert (
-        json.loads((run_dir / "summary.json").read_text())["validation_state"]
-        == "failed"
-    )
-    assert "REVIEW REQUIRED" in (run_dir / "report.md").read_text()
-    assert async_client.closed
-    assert writer.requests[0]["model"] == "pipeline-model"
-    assert len(writer.requests) == 1
-
-
-def test_risk_warning_precedes_closing_text():
-    report = write_report(FakeClient(result()), "test", SPEC, {}, facts(), config())
-    assert report.index("This is the required warning.") < report.index(
-        "Please review this draft."
+        restore_values(
+            "The contribution of £20,000 does not involve selling investments.",
+            "No investments are sold for the £20,000 contribution.",
+        )
+        == "The contribution of £20,000 does not involve selling investments."
     )
 
+    def change(result):
+        for section in result["sections"]:
+            for bid in section["block_ids"]:
+                if inputs.facts["report"]["blocks"][bid]["text"].startswith(
+                    "| Account"
+                ):
+                    section["paragraphs"].append(
+                        {"block_id": bid, "text": "No holdings."}
+                    )
 
-def test_review_markers_and_internal_references_are_cleaned_once():
-    data = result()
-    data["sections"][0][
-        "content"
-    ] += "\n\nREVIEW REQUIRED: Duplicate body warning. [Issue 0]"
-    data["sections"][0]["review_notes"][0][
-        "text"
-    ] = "REVIEW REQUIRED: REVIEW REQUIRED: Confirm the ongoing charge. [Issue 0]"
-    data["sections"][2]["review_notes"] = [
-        {"issue_index": 1, "text": "Confirm the ongoing charge."}
-    ]
-    concerns = facts()
-    concerns["issues"].append(deepcopy(concerns["issues"][0]))
-    report = write_report(FakeClient(data), "test", SPEC, {}, concerns, config())
-    assert "REVIEW REQUIRED: REVIEW REQUIRED" not in report
-    assert "[Issue" not in report
-    assert "Duplicate body warning" not in report
-    assert report.count("Confirm the ongoing charge.") == 1
+    report = write_report(FakeClient(change), "test", inputs.facts, config())
+    assert "£52,000.0" in report
+    assert "No holdings." not in report
+    assert "writer arrangement could not be verified" not in report
 
 
-def test_processing_notice_is_not_added_twice():
-    data = result()
-    concerns = facts()
-    concerns["issues"][0]["issue_type"] = "validation_stale"
-    data["sections"][0]["review_notes"][0][
-        "text"
-    ] = "Verify the final extraction against the sources."
-    report = write_report(FakeClient(data), "test", SPEC, {}, concerns, config())
-    assert report.count("[REVIEW REQUIRED:") == 1
+def test_bad_paragraph_does_not_discard_other_accepted_writing(inputs):
+    def change(result):
+        for section in result["sections"]:
+            for bid in section["block_ids"]:
+                block = inputs.facts["report"]["blocks"][bid]
+                if block["text"].startswith("Recorded risk profile:"):
+                    section["paragraphs"].append(
+                        {"block_id": bid, "text": "Your risk profile is 99."}
+                    )
+                if block["text"].startswith(
+                    "Report instruction — product recommended:"
+                ):
+                    section["paragraphs"].append(
+                        {
+                            "block_id": bid,
+                            "text": "We recommend topping up your existing Stocks & Shares ISA.",
+                        }
+                    )
+
+    report = write_report(FakeClient(change), "test", inputs.facts, config())
+    assert "We recommend topping up your existing Stocks & Shares ISA." in report
+    assert "Recorded risk profile: 4 moderate." in report
+    assert "99" not in report
+    assert "Your platform charge has not been supplied" in report
+    assert "Your ongoing advice charge has not been supplied" in report
 
 
-def test_missing_information_fallback_keeps_the_substantive_concern():
-    data = result()
-    data["sections"][0]["review_notes"] = []
-    concerns = facts()
-    concerns["issues"][0].update(
-        issue_type="validation_missing_information",
-        message="Confirm the ongoing advice fee.",
-    )
-    report = write_report(FakeClient(data), "test", SPEC, {}, concerns, config())
-    assert "Confirm the ongoing advice fee." in report
+def test_exact_supplied_values_are_accepted_and_model_sees_tokenised_input(inputs):
+    def change(result):
+        for section in result["sections"]:
+            for bid in section["block_ids"]:
+                if inputs.facts["report"]["blocks"][bid]["text"].startswith(
+                    "Recorded risk profile:"
+                ):
+                    section["paragraphs"].append(
+                        {
+                            "block_id": bid,
+                            "text": "Your agreed risk profile is 4 (moderate).",
+                        }
+                    )
+
+    client = FakeClient(change)
+    report = write_report(client, "test", inputs.facts, config())
+    assert "Your agreed risk profile is 4 (moderate)." in report
+    plan = json.loads(client.requests[0]["messages"][1]["content"])["reconciled_report"]
+    assert any("{{value-1}}" in b.get("text", "") for b in plan["blocks"].values())
+    assert all("text" not in b for b in plan["blocks"].values() if b["locked"])

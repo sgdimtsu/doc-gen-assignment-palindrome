@@ -1,8 +1,8 @@
 {
-  "run_id": "5073cccf2d59422d9152a44466c87683",
-  "client": "client_03_hard",
+  "run_id": "d6ce11d208844cfd8a70a1e9e5899d68",
+  "client": "client_01_clean",
   "state": "complete",
-  "validation_state": "stale",
+  "validation_state": "incomplete",
   "errors": [],
   "tool_errors": [],
   "inventory": [
@@ -32,24 +32,12 @@
     },
     {
       "source_id": "source-0005",
-      "filename": "portfolio_pack.docx",
-      "format": "docx",
-      "read_status": "read"
-    },
-    {
-      "source_id": "source-0006",
       "filename": "report_request.docx",
       "format": "docx",
       "read_status": "read"
     },
     {
-      "source_id": "source-0007",
-      "filename": "statement_summary.png",
-      "format": "png",
-      "read_status": "read"
-    },
-    {
-      "source_id": "source-0008",
+      "source_id": "source-0006",
       "filename": "template_spec.md",
       "format": "markdown",
       "read_status": "read"
@@ -68,17 +56,46 @@
     "max_tool_output_bytes": 4000000,
     "request_timeout_seconds": 60.0
   },
-  "model_calls": 12,
-  "tool_calls": 11,
+  "model_calls": 9,
+  "tool_calls": 8,
   "usage": {
-    "input_tokens": 194478,
-    "output_tokens": 17152
+    "input_tokens": 119547,
+    "output_tokens": 4621
   },
-  "elapsed_seconds": 137.581,
+  "elapsed_seconds": 47.725,
+  "final_checks": {
+    "findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      }
+    ],
+    "errors": []
+  },
   "validation_attempts": 2,
-  "validation_model_calls": 1,
+  "validation_model_calls": 2,
   "validation_usage": {
-    "input_tokens": 18377,
-    "output_tokens": 770
+    "input_tokens": 22973,
+    "output_tokens": 1481
   }
 }

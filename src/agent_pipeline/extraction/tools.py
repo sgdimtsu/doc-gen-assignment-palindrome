@@ -51,8 +51,7 @@ def validation_definition(extraction_schema):
         "description": "After reading all sources, submit the complete candidate extraction. "
         "Runs deterministic checks and an independent evidence review. Repair errors "
         "and resubmit within the validation budget. If findings remain or the budget "
-        "is exhausted, return the best candidate; findings become report review notes. Review observation "
-        "IDs are code-generated and end in the candidate's one-based observation index.",
+        "is exhausted, return the best candidate; findings become report review notes. Code-owned records are added automatically and cannot be changed by the model. Use source excerpts and field paths to locate findings; IDs do not identify model-array positions.",
         "parameters": {
             "type": "object",
             "properties": {"candidate": schema},

@@ -1,0 +1,821 @@
+{
+  "sources": [
+    {
+      "source_id": "source-0001",
+      "role": "account_records",
+      "document_date": "2026-04-30",
+      "filename": "client_data_db.json",
+      "format": "json",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0002",
+      "role": "internal_guidance",
+      "document_date": null,
+      "filename": "fde_notes.md",
+      "format": "markdown",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0003",
+      "role": "meeting_notes",
+      "document_date": "2026-05-12",
+      "filename": "meeting_notes.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0004",
+      "role": "general_background",
+      "document_date": null,
+      "filename": "platform_market_update.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0005",
+      "role": "report_request",
+      "document_date": null,
+      "filename": "report_request.docx",
+      "format": "docx",
+      "read_status": "read"
+    },
+    {
+      "source_id": "source-0006",
+      "role": "report_specification",
+      "document_date": null,
+      "filename": "template_spec.md",
+      "format": "markdown",
+      "read_status": "read"
+    }
+  ],
+  "observations": [
+    {
+      "observation_type": "report_scope",
+      "source_id": "source-0005",
+      "source_text": "Accounts covered\tHolloway Stocks & Shares ISA",
+      "sections": [
+        "introduction"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "clients": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Single"
+          }
+        ],
+        "included_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Holloway Stocks & Shares ISA",
+            "owner_text": "Single"
+          }
+        ],
+        "excluded_accounts": []
+      },
+      "field_states": [
+        {
+          "field": "included_accounts[0].account_id",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0001"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-ISA-01\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Margaret Hughes\", \"status\": \"open\", \"value\": 52000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "sections": [
+        "introduction",
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-01",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": null,
+          "owner_text": "Margaret Hughes"
+        },
+        "holders": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [
+        {
+          "field": "account.reference_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0002"
+    },
+    {
+      "observation_type": "account",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-CASH-01\", \"platform\": \"Holloway\", \"type\": \"Cash Account\", \"owner\": \"Margaret Hughes\", \"status\": \"open\", \"value\": 25000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-CASH-01",
+          "platform": "Holloway",
+          "account_type": "Cash Account",
+          "reference_text": null,
+          "owner_text": "Margaret Hughes"
+        },
+        "holders": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret Hughes"
+          }
+        ],
+        "status": "open"
+      },
+      "field_states": [
+        {
+          "field": "account.reference_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0003"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-ISA-01\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Margaret Hughes\", \"status\": \"open\", \"value\": 52000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-ISA-01",
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": null,
+          "owner_text": "Margaret Hughes"
+        },
+        "amount": "52000.0",
+        "amount_text": "52000.0",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": null,
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.reference_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "date_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0004"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0001",
+      "source_text": "{\"account_id\": \"H-CASH-01\", \"platform\": \"Holloway\", \"type\": \"Cash Account\", \"owner\": \"Margaret Hughes\", \"status\": \"open\", \"value\": 25000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": "H-CASH-01",
+          "platform": "Holloway",
+          "account_type": "Cash Account",
+          "reference_text": null,
+          "owner_text": "Margaret Hughes"
+        },
+        "amount": "25000.0",
+        "amount_text": "25000.0",
+        "currency": "GBP",
+        "valuation_date": "2026-04-30",
+        "date_text": null,
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.reference_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "date_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0005"
+    },
+    {
+      "observation_type": "valuation",
+      "source_id": "source-0003",
+      "source_text": "We agreed she would move £20,000 from the cash account into the Stocks & Shares ISA. No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved.",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Stocks & Shares ISA",
+          "owner_text": null
+        },
+        "amount": "20000",
+        "amount_text": "£20,000",
+        "currency": "GBP",
+        "valuation_date": null,
+        "date_text": null,
+        "precision": "exact"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "account.owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "valuation_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "date_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0006"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "Margaret is retired and confirmed there have been no changes to her circumstances or objectives since last year's review. She remains comfortable with the moderate approach to risk we agreed previously and was happy that the portfolio had performed in line with that.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret"
+          }
+        ],
+        "category": "personal_circumstance",
+        "timeframe_text": null,
+        "risk_score": null,
+        "risk_description": "moderate approach to risk"
+      },
+      "field_states": [
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        },
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0007"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0005",
+      "source_text": "Agreed risk profile\t4 (moderate)",
+      "sections": [
+        "background_objectives",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Single"
+          }
+        ],
+        "category": "risk_profile",
+        "timeframe_text": null,
+        "risk_score": "4",
+        "risk_description": "moderate"
+      },
+      "field_states": [
+        {
+          "field": "timeframe_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0008"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "Margaret has no income requirement from the portfolio at present and does not expect that to change in the near term.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret"
+          }
+        ],
+        "category": "income_need",
+        "timeframe_text": "near term",
+        "risk_score": null,
+        "risk_description": null
+      },
+      "field_states": [
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0009"
+    },
+    {
+      "observation_type": "objective_circumstance",
+      "source_id": "source-0003",
+      "source_text": "She mentioned she may want to discuss gifting to her grandchildren at some point in the future, but was clear that is not for today and nothing should be actioned on it now.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Margaret"
+          }
+        ],
+        "category": "objective",
+        "timeframe_text": "some point in the future",
+        "risk_score": null,
+        "risk_description": null
+      },
+      "field_states": [
+        {
+          "field": "risk_score",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0010"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "We agreed she would move £20,000 from the cash account into the Stocks & Shares ISA. No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved.",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "contribute",
+        "source_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Cash Account",
+            "reference_text": "cash account",
+            "owner_text": null
+          }
+        ],
+        "target_accounts": [
+          {
+            "account_id": null,
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": "Stocks & Shares ISA",
+            "owner_text": null
+          }
+        ],
+        "amount": "20000",
+        "amount_text": "£20,000",
+        "currency": "GBP",
+        "precision": "exact",
+        "amount_basis": "specified",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": "moving available cash into the ISA wrapper",
+        "conditions": [],
+        "timing_text": null
+      },
+      "field_states": [
+        {
+          "field": "source_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "target_accounts[0].owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0011"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "No investments are being sold to do this; it is simply moving available cash into the ISA wrapper, so there is no disposal involved.",
+      "sections": [
+        "recommendations",
+        "tax_implications"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "retain",
+        "source_accounts": [
+          {
+            "account_id": "H-ISA-01",
+            "platform": "Holloway",
+            "account_type": "Stocks & Shares ISA",
+            "reference_text": null,
+            "owner_text": "Margaret Hughes"
+          }
+        ],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "exact",
+        "amount_basis": "unspecified",
+        "agreement_status": "agreed",
+        "allocation_text": null,
+        "rationale_text": "No investments are being sold; no disposal involved.",
+        "conditions": [],
+        "timing_text": null
+      },
+      "field_states": [
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "source_accounts[0].reference_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0012"
+    },
+    {
+      "observation_type": "action",
+      "source_id": "source-0003",
+      "source_text": "She mentioned she may want to discuss gifting to her grandchildren at some point in the future, but was clear that is not for today and nothing should be actioned on it now.",
+      "sections": [
+        "background_objectives"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "action_type": "other",
+        "source_accounts": [],
+        "target_accounts": [],
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "amount_basis": "unspecified",
+        "agreement_status": "deferred",
+        "allocation_text": null,
+        "rationale_text": "gifting to her grandchildren not for today; defer action",
+        "conditions": [],
+        "timing_text": "some point in the future"
+      },
+      "field_states": [
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "allocation_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0013"
+    },
+    {
+      "observation_type": "funding",
+      "source_id": "source-0005",
+      "source_text": "Source of funds\tCash held on deposit in the Holloway cash account",
+      "sections": [
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "people": [
+          {
+            "name": "Margaret Hughes",
+            "reference_text": "Single"
+          }
+        ],
+        "origin_text": "Cash held on deposit in the Holloway cash account",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Cash Account",
+          "reference_text": "Holloway cash account",
+          "owner_text": null
+        },
+        "amount": null,
+        "amount_text": null,
+        "currency": null,
+        "precision": "unspecified",
+        "receipt_status": "received",
+        "receipt_date": null,
+        "timing_text": null,
+        "commitments": [],
+        "conditions": []
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "account.owner_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "receipt_date",
+          "state": "not_stated"
+        },
+        {
+          "field": "timing_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0014"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0005",
+      "source_text": "Initial charge\t0%",
+      "sections": [
+        "fees_charges",
+        "recommendations"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "initial",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": "Holloway Stocks & Shares ISA",
+          "owner_text": "Single"
+        },
+        "platform": "Holloway",
+        "rate_percent": "0",
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "explicitly_confirmed"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0015"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0003",
+      "source_text": "Next steps: I will prepare the advice report covering the ISA top-up and confirm the ongoing charges with her once the report is issued.",
+      "sections": [
+        "fees_charges"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "platform",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": null,
+          "owner_text": "Margaret Hughes"
+        },
+        "platform": "Holloway",
+        "rate_percent": null,
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "requires_confirmation"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "account.reference_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rate_percent",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0016"
+    },
+    {
+      "observation_type": "charge",
+      "source_id": "source-0003",
+      "source_text": "Next steps: I will prepare the advice report covering the ISA top-up and confirm the ongoing charges with her once the report is issued.",
+      "sections": [
+        "fees_charges"
+      ],
+      "evidence_scope": "client_specific",
+      "data": {
+        "charge_type": "ongoing_advice",
+        "account": {
+          "account_id": null,
+          "platform": "Holloway",
+          "account_type": "Stocks & Shares ISA",
+          "reference_text": null,
+          "owner_text": "Margaret Hughes"
+        },
+        "platform": "Holloway",
+        "rate_percent": null,
+        "amount": null,
+        "currency": null,
+        "basis_text": null,
+        "frequency_text": null,
+        "confirmation_status": "requires_confirmation"
+      },
+      "field_states": [
+        {
+          "field": "account.account_id",
+          "state": "not_stated"
+        },
+        {
+          "field": "account.reference_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "rate_percent",
+          "state": "not_stated"
+        },
+        {
+          "field": "amount",
+          "state": "not_stated"
+        },
+        {
+          "field": "currency",
+          "state": "not_stated"
+        },
+        {
+          "field": "basis_text",
+          "state": "not_stated"
+        },
+        {
+          "field": "frequency_text",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0017"
+    },
+    {
+      "observation_type": "instruction",
+      "source_id": "source-0002",
+      "source_text": "Some numbers are not ours to produce in the draft. The capital gains tax on any disposal, and the platform and adviser fee rates, are confirmed or inserted by a person before the report goes to the client, so the draft must not estimate or invent them. We do need a way to flag these clearly for manual review in the output, so whoever finalises the report can see exactly what is outstanding and fill it in. How you mark them is your call, but a number we made up must never reach the client, and the gaps must not be hidden.",
+      "sections": [
+        "fees_charges",
+        "tax_implications"
+      ],
+      "evidence_scope": "general_illustrative",
+      "data": {
+        "instruction_type": "manual_review",
+        "scope_text": "Numbers to be confirmed by a person, especially platform/adviser rates and CGT figures; do not estimate in draft.",
+        "exact_wording": null
+      },
+      "field_states": [
+        {
+          "field": "exact_wording",
+          "state": "not_stated"
+        }
+      ],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0018"
+    },
+    {
+      "observation_type": "instruction",
+      "source_id": "source-0002",
+      "source_text": "There is a standard line about FCA authorisation that has to appear in the report word for word. I have already put it into the template config as static text, so leave it exactly as it is: do not paraphrase it, and do not let the model rewrite it when you change how the sections are generated.",
+      "sections": [
+        "introduction"
+      ],
+      "evidence_scope": "general_illustrative",
+      "data": {
+        "instruction_type": "mandatory_wording",
+        "scope_text": "FCA authorisation line",
+        "exact_wording": "There is a standard line about FCA authorisation that has to appear in the report word for word."
+      },
+      "field_states": [],
+      "observation_id": "53918319fa5043f0a46e15c86629e481:observation-0019"
+    }
+  ],
+  "extraction_issues": []
+}

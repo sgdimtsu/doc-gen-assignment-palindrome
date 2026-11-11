@@ -9,6 +9,7 @@ from jsonschema import Draft202012Validator, ValidationError
 
 from agent_pipeline import ROOT
 from agent_pipeline.extraction.models import ExtractionRun, ExtractionSettings
+from agent_pipeline.extraction.structured import merge_candidate
 from agent_pipeline.validation.status import (
     candidate_errors,
     execution_errors,
@@ -17,7 +18,10 @@ from agent_pipeline.validation.status import (
 
 
 class ExtractionRecords:
-    def __init__(self, schema_path=ROOT / "config/extraction_schema.json"):
+    def __init__(
+        self, schema_path=ROOT / "config/extraction_schema.json", structured=None
+    ):
+        self.structured = structured or {}
         self.response_schema = json.loads(schema_path.read_text(encoding="utf-8"))
         self.response_validator = Draft202012Validator(self.response_schema)
         self.result_validator = Draft202012Validator(
@@ -57,11 +61,28 @@ class ExtractionRecords:
             }
         )
         issue["required"] += ["issue_id", "observation_ids"]
+        schema["properties"]["request_fields"] = {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "source_id": {"type": "string"},
+                    "label": {"type": "string"},
+                    "value": {"type": "string"},
+                },
+                "required": ["source_id", "label", "value"],
+                "additionalProperties": False,
+            },
+        }
         return schema
 
     def assemble(self, candidate: dict, inventory: list, run_id: str) -> dict:
         self.response_validator.validate(candidate)
-        response = deepcopy(candidate)
+        response = (
+            merge_candidate(candidate, **self.structured)
+            if self.structured
+            else deepcopy(candidate)
+        )
         problems = candidate_errors(candidate, inventory)
         if problems:
             raise ValueError("; ".join(problems))
@@ -71,14 +92,7 @@ class ExtractionRecords:
         }
         sources = []
         for sid, metadata in inventory.items():
-            classification = classifications.get(
-                sid,
-                {
-                    "source_id": sid,
-                    "role": "unknown",
-                    "document_date": None,
-                },
-            )
+            classification = classifications[sid]
             sources.append(
                 {
                     **classification,
@@ -104,6 +118,8 @@ class ExtractionRecords:
             "observations": observations,
             "extraction_issues": issues,
         }
+        if self.structured:
+            result["request_fields"] = deepcopy(self.structured["request_fields"])
         self.result_validator.validate(result)
         return result
 
@@ -133,7 +149,7 @@ def save_run(
     result = None
     if run.response is not None:
         try:
-            result = ExtractionRecords().assemble(
+            result = ExtractionRecords(structured=run.structured).assemble(
                 run.response, run.inventory, run.run_id
             )
         except (ValueError, KeyError, TypeError, ValidationError) as error:

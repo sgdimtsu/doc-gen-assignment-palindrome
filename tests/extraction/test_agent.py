@@ -430,20 +430,23 @@ def omission(case, severity="error"):
     }
 
 
-def test_unreviewed_extraction_is_not_falsely_approved(case):
-    run, _, _ = run_agent(case, case.reads + [final(case.data)])
+def test_unreviewed_extraction_gets_final_advisory_review(case):
+    run, _, _ = run_agent(
+        case, case.reads + [final(case.data), validated(case.data)[1]]
+    )
     assert run.state == "complete"
-    assert validation_state(run.response, run.validation_reports) == "not_reviewed"
+    assert validation_state(run.response, run.validation_reports) == "passed"
 
 
-def test_changed_candidate_is_marked_stale_without_blocking(case):
+def test_changed_candidate_gets_final_review_without_another_repair_loop(case):
     changed = deepcopy(case.data)
     changed["sources"][0]["document_date"] = "2026-01-01"
-    script = validated(case.data)[:-1] + [final(changed)]
+    script = validated(case.data)[:-1] + [final(changed), validated(changed)[1]]
     run, _, _ = run_agent(case, case.reads + script)
     assert run.validation_reports[-1]["state"] == "passed"
     assert run.state == "complete"
-    assert validation_state(run.response, run.validation_reports) == "stale"
+    assert validation_state(run.response, run.validation_reports) == "passed"
+    assert len(run.validation_reports) == 2
     assert run.final_checks == {"findings": [], "errors": []}
 
 
@@ -620,10 +623,13 @@ def test_final_checks_find_error_added_after_llm_review(case):
         "source_text"
     ] = "This assertion is absent from the source."
     run, fake, _ = run_agent(
-        case, case.reads + validated(case.data)[:-1] + [final(changed)]
+        case,
+        case.reads
+        + validated(case.data)[:-1]
+        + [final(changed), validated(changed)[1]],
     )
     assert run.state == "complete"
-    assert validation_state(run.response, run.validation_reports) == "stale"
+    assert validation_state(run.response, run.validation_reports) == "failed"
     assert run.final_checks["errors"] == []
     assert any(f["category"] == "quote" for f in run.final_checks["findings"])
     assert len(fake.requests) == run.model_calls + sum(

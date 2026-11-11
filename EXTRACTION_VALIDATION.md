@@ -13,6 +13,10 @@ Check scope, account identity and holder context, dated valuations (including ap
 
 Check that IDs, owner_text, platform, account type, names, scores and figures attributed to a document are supported by that document. Flag omitted platform/type/ownership components when stated in the reference or explicitly applicable same-source context. An absent ID alone is not an ambiguous account: require null with not_stated, not an ambiguous_reference issue. Do not demand imported IDs or ownership, or resolve account matching here. Do not excuse filling a field from another source. Preserve repeated source assertions; flag premature deduplication, account matching or selection of a preferred valuation. Check that proposed accounts are not represented as existing accounts. Review section tags against the specification; tagging does not decide conditional section inclusion.
 
+## Structured facts
+
+The supplied sources include code_records imported directly from recognised account JSON and request fields. Validate these against the parsed source structure, not substring equality against pretty-printed JSON. A formatting difference is not missing or unsupported financial data. Do not demand model copies of these records. Other observations remain source-local: do not copy database IDs into meeting notes. A contribution instruction is not an account valuation, and an ownership arrangement is not a person's name. Distinguish unresolved report information from a failure to verify an extracted statement; do not claim that a failed quote check proves the underlying financial value is incorrect.
+
 ## Account-reference completeness
 
 Use `extraction_field_definitions` as the extraction contract. Inspect every account reference against the cited document, including clearly applicable surrounding paragraphs or table labels in that same document. Annotating a field `not_stated` does not make its omission correct if the source supplies it.

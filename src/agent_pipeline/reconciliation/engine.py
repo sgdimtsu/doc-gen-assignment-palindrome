@@ -23,7 +23,9 @@ def _fact(observations):
     }
 
 
-def reconcile(extraction: dict, validation_reports=None, run_errors=()) -> dict:
+def reconcile(
+    extraction: dict, validation_reports=None, run_errors=(), specification=None
+) -> dict:
     # Structural validity is required; validation concerns become draft review notes.
     observations = [
         o
@@ -191,6 +193,8 @@ def reconcile(extraction: dict, validation_reports=None, run_errors=()) -> dict:
         "tax_statements": [],
         "instructions": [],
         "unclassified": [],
+        "request_fields": deepcopy(extraction.get("request_fields", [])),
+        "secondary_assertions": [],
     }
     actions = prefer(grouped["action"], "meeting_notes")
     for kind, selected in (("report_scope", scopes), ("action", actions)):
@@ -199,6 +203,7 @@ def reconcile(extraction: dict, validation_reports=None, run_errors=()) -> dict:
             o for o in grouped[kind] if o["observation_id"] not in selected_ids
         ]
         if secondary:
+            output["secondary_assertions"].extend(_fact([o]) for o in secondary)
             issue(
                 "secondary_evidence",
                 "Other "
@@ -452,5 +457,9 @@ def reconcile(extraction: dict, validation_reports=None, run_errors=()) -> dict:
                 "source_unread",
                 "Evidence from " + source["filename"] + " was not fully read",
             )
+    if specification is not None:
+        from agent_pipeline.reconciliation.report import build_report
+
+        output["report"] = build_report(output, specification)
     output["requires_review"] = bool(issues)
     return output

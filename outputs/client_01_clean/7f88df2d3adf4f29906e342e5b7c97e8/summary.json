@@ -1,8 +1,8 @@
 {
-  "run_id": "71518aa17e0745d7b387ce7487afd362",
+  "run_id": "7f88df2d3adf4f29906e342e5b7c97e8",
   "client": "client_01_clean",
   "state": "complete",
-  "validation_state": "stale",
+  "validation_state": "incomplete",
   "errors": [],
   "tool_errors": [],
   "inventory": [
@@ -59,14 +59,31 @@
   "model_calls": 9,
   "tool_calls": 8,
   "usage": {
-    "input_tokens": 119884,
-    "output_tokens": 6271
+    "input_tokens": 118617,
+    "output_tokens": 3929
   },
-  "elapsed_seconds": 105.028,
-  "validation_attempts": 1,
-  "validation_model_calls": 1,
+  "elapsed_seconds": 59.163,
+  "final_checks": {
+    "findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "7f88df2d3adf4f29906e342e5b7c97e8:observation-0009"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      }
+    ],
+    "errors": []
+  },
+  "validation_attempts": 2,
+  "validation_model_calls": 2,
   "validation_usage": {
-    "input_tokens": 10046,
-    "output_tokens": 556
+    "input_tokens": 21182,
+    "output_tokens": 1071
   }
 }

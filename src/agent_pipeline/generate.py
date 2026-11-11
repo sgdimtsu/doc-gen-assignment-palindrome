@@ -13,7 +13,6 @@ from agent_pipeline import ROOT
 from agent_pipeline.extraction.agent import ExtractionAgent
 from agent_pipeline.extraction.models import ExtractionSettings
 from agent_pipeline.extraction.results import save_run, write_json
-from agent_pipeline.extraction.sources import SourceTools
 from agent_pipeline.reconciliation.engine import reconcile
 from agent_pipeline.reconciliation.input import load_extraction
 from agent_pipeline.writing.writer import WriterOutputError, write_report
@@ -41,19 +40,6 @@ async def _main(argv):
     try:
         specification = (client_dir / "template_spec.md").read_text(encoding="utf-8")
         config = json.loads(args.config.read_text(encoding="utf-8"))
-        sources = SourceTools(client_dir)
-        request_source = next(
-            s
-            for s in sources.list_files()["sources"]
-            if s["filename"] == "report_request.docx"
-        )
-        request = sources.read_source(request_source["source_id"])
-        if not request.get("ok"):
-            raise ValueError("Cannot read report_request.docx")
-        report_request = {
-            "blocks": request["blocks"],
-            "limitations": request.get("limitations", []),
-        }
         if args.run_dir:
             summary = json.loads((args.run_dir / "summary.json").read_text())
             if summary["client"] != args.client:
@@ -77,13 +63,11 @@ async def _main(argv):
                 await client.close()
             folder = save_run(args.output_dir, args.client, run, settings)
             print(f"Extraction: {run.state}; run directory: {folder}", flush=True)
-        reconciliation_path = folder / "reconciliation.json"
-        if not reconciliation_path.exists():
-            extraction, reports, errors = load_extraction(folder)
-            facts = reconcile(extraction, reports, errors)
-            write_json(reconciliation_path, facts)
-        else:
-            facts = json.loads(reconciliation_path.read_text(encoding="utf-8"))
+        # Rebuild from this run's extraction so cached reconciliation cannot bypass
+        # the current boundary checks or mix in current raw client documents.
+        extraction, reports, errors = load_extraction(folder)
+        facts = reconcile(extraction, reports, errors, specification)
+        write_json(folder / "reconciliation.json", facts)
         print(
             f"Writing draft using {writer_model}; review issues: {len(facts.get('issues', []))}...",
             flush=True,
@@ -92,8 +76,6 @@ async def _main(argv):
             report = write_report(
                 client,
                 writer_model,
-                specification,
-                report_request,
                 facts,
                 config,
                 response_path=folder / "writer_response.json",

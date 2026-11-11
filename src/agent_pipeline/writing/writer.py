@@ -1,99 +1,98 @@
-"""One writer call; report structure comes from the client's Markdown specification."""
+"""Write grounded narrative while code preserves protected facts and review notices."""
 
 import json
 import re
+from copy import deepcopy
+from collections import Counter
 
 from jsonschema import Draft202012Validator, ValidationError
 
 from document_formatter.formatting import format_document
-
-# Existing fixed wording from the supplied baseline template. The client spec
-# refers to this sentence without reproducing it.
-FCA_LINE = "This firm is authorised and regulated by the Financial Conduct Authority."
+from agent_pipeline.reconciliation.report import FCA_LINE
 
 
 class WriterOutputError(ValueError):
-    """A safe, code-generated explanation of an invalid writer response."""
+    pass
 
 
-def specification_sections(specification):
-    headings = list(re.finditer(r"^##[ \t]+(.+)$", specification, re.MULTILINE))
-    sections = []
-    for index, heading in enumerate(headings):
-        end = (
-            headings[index + 1].start()
-            if index + 1 < len(headings)
-            else len(specification)
-        )
-        sections.append(
-            {
-                "title": heading[1].strip(),
-                "requirements": specification[heading.end() : end].strip(),
-            }
-        )
-    if not sections or len({s["title"] for s in sections}) != len(sections):
-        raise WriterOutputError(
-            "Client specification requires distinct level-two section headings"
-        )
-    return sections
+# These substitutions are presentation only: the original strings remain code-owned.
+VALUE = re.compile(r"(?:[£$€]\s*)?\d[\d,]*(?:\.\d+)?(?:%|(?:[-/]\d+)+)?")
 
 
-def _fixed_wording(requirements):
-    fixed = [
-        " ".join(match[1].split())
-        for match in re.finditer(
-            r'word for word:\s*"([^\"]+)"', requirements, re.IGNORECASE
-        )
-    ]
-    if re.search(
-        r"FCA.*authori[sz]ation|authori[sz]ation.*FCA", requirements, re.IGNORECASE
-    ) and not any(
-        "FCA" in text or "Financial Conduct Authority" in text for text in fixed
+def protect_values(text):
+    values = {}
+
+    def replace(match):
+        key = "{{value-" + str(len(values) + 1) + "}}"
+        values[key] = match[0]
+        return key
+
+    return VALUE.sub(replace, text), values
+
+
+def restore_values(wording, original):
+    _, values = protect_values(original)
+    if not wording.strip() or re.search(
+        r"^#{1,2}\s|REVIEW REQUIRED|\[Issue", wording, re.I | re.M
     ):
-        fixed.append(FCA_LINE)
-    return fixed
+        raise WriterOutputError("Narrative contains report structure or internal notes")
+    tokens = re.findall(r"\{\{value-\d+\}\}", wording)
+    if any(token not in values for token in tokens):
+        raise WriterOutputError("Narrative introduced a protected-value token")
+    for token, value in values.items():
+        wording = wording.replace(token, value)
+    # Accept tokens or the exact supplied values. Check quantities, not the
+    # particular wording used to express negation, uncertainty or conditions.
+    if Counter(VALUE.findall(wording)) != Counter(values.values()):
+        raise WriterOutputError("Narrative changed, added or omitted a value")
+    if "{{" in wording:
+        raise WriterOutputError("Narrative contains an unknown token")
+    return wording.strip()
 
 
-def write_report(
-    client, model, specification, report_request, facts, config, response_path=None
-):
-    sections = specification_sections(specification)
-    issues = facts.get("issues", [])
+def write_report(client, model, facts, config, response_path=None):
+    plan = facts["report"]
+    active = [section for section in plan["sections"] if section["include"]]
+    expected = [
+        {"title": s["title"], "block_ids": s["block_ids"], "paragraphs": []}
+        for s in active
+    ]
+    supplied_plan = deepcopy(plan)
+    for bid, block in supplied_plan["blocks"].items():
+        block["text"], block["protected_values"] = protect_values(block["text"])
+        block["can_rephrase"] = not block.get("locked", False)
+        if block.get("locked"):
+            block.pop("text")
+            block.pop("protected_values")
     schema = {
         "type": "object",
         "properties": {
             "sections": {
                 "type": "array",
-                "minItems": len(sections),
-                "maxItems": len(sections),
+                "minItems": len(active),
+                "maxItems": len(active),
                 "items": {
                     "type": "object",
                     "properties": {
                         "title": {
                             "type": "string",
-                            "enum": [s["title"] for s in sections],
+                            "enum": [s["title"] for s in active],
                         },
-                        "include": {"type": "boolean"},
-                        "content": {"type": "string"},
-                        "review_notes": {
+                        "block_ids": {"type": "array", "items": {"type": "string"}},
+                        "paragraphs": {
                             "type": "array",
-                            "maxItems": len(issues),
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "issue_index": {
-                                        "type": "integer",
-                                        "minimum": 0,
-                                        "maximum": max(0, len(issues) - 1),
-                                    },
+                                    "block_id": {"type": "string"},
                                     "text": {"type": "string"},
                                 },
-                                "required": ["issue_index", "text"],
+                                "required": ["block_id", "text"],
                                 "additionalProperties": False,
                             },
                         },
                     },
-                    "required": ["title", "include", "content", "review_notes"],
+                    "required": ["title", "block_ids", "paragraphs"],
                     "additionalProperties": False,
                 },
             }
@@ -101,173 +100,111 @@ def write_report(
         "required": ["sections"],
         "additionalProperties": False,
     }
-    rules = "\n".join(config["global_instructions"] + config["writer_prompt"])
-    rules += (
-        "\nReturn one entry for every supplied section in the exact order. Set include=false "
-        "only when the specification makes that section conditional and its condition is not met. "
-        "Do not put report headings in content. For each issue in reconciled_facts.issues, put its "
-        "zero-based issue_index and a plain-language review note in the most relevant included section. "
-        "Account for every issue using review_notes only, including uncertainty about scope, proposed accounts "
-        "and validation quality. Translate technical concerns into a need to verify the affected "
-        "information; do not expose internal IDs or file paths. Do not put notes in omitted sections."
-    )
-    response = client.chat.completions.create(
-        model=model,
-        store=False,
-        max_completion_tokens=10000,
-        messages=[
-            {"role": "system", "content": rules},
-            {
-                "role": "user",
-                "content": json.dumps(
-                    {
-                        "template_spec": specification,
-                        "report_request": report_request,
-                        "sections": sections,
-                        "reconciled_facts": facts,
-                    },
-                    ensure_ascii=False,
-                ),
-            },
-        ],
-        response_format={
-            "type": "json_schema",
-            "json_schema": {"name": "draft_report", "strict": True, "schema": schema},
-        },
-    )
-    output = response.choices[0].message.content or "" if response.choices else ""
-    if response_path is not None:
-        response_path.write_text(output, encoding="utf-8")
-    if (
-        not response.choices
-        or response.choices[0].finish_reason != "stop"
-        or response.choices[0].message.refusal
-    ):
-        reason = response.choices[0].finish_reason if response.choices else "no choices"
-        raise WriterOutputError("Writer response did not complete (" + reason + ")")
+    fallback = {"sections": expected}
     try:
+        response = client.chat.completions.create(
+            model=model,
+            store=False,
+            max_completion_tokens=4000,
+            messages=[
+                {
+                    "role": "system",
+                    "content": "\n".join(
+                        config["global_instructions"] + config["writer_prompt"]
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": json.dumps(
+                        {"reconciled_report": supplied_plan}, ensure_ascii=False
+                    ),
+                },
+            ],
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "draft_report",
+                    "strict": True,
+                    "schema": schema,
+                },
+            },
+        )
+        output = response.choices[0].message.content or "" if response.choices else ""
+        if response_path is not None:
+            response_path.write_text(output, encoding="utf-8")
+        if (
+            not response.choices
+            or response.choices[0].finish_reason != "stop"
+            or response.choices[0].message.refusal
+        ):
+            raise WriterOutputError("Writer did not complete")
         result = json.loads(output)
         Draft202012Validator(schema).validate(result)
-    except (ValueError, ValidationError):
-        raise WriterOutputError(
-            "Writer returned invalid section JSON; inspect writer_response.json"
-        ) from None
-    return render_report(result, specification, facts)
+        return render_report(result, facts)
+    except (ValueError, ValidationError, KeyError, TypeError, IndexError):
+        # A bad arrangement must not discard valid facts or introduce new prose.
+        return render_report(
+            fallback,
+            facts,
+            "The writer arrangement could not be verified. This draft uses the reconciled wording and order.",
+        )
 
 
-def _fallback_note(issue):
-    kind = issue["issue_type"]
-    if kind == "unresolved_account_match":
-        return "An account reference in the supporting information could not be matched uniquely. Confirm the account details before proceeding."
-    if kind == "interpretation_required":
-        return "Some supporting instructions or circumstances need adviser interpretation before this draft is finalised."
-    if kind in {
-        "validation_stale",
-        "validation_failed",
-        "validation_incomplete",
-        "validation_not_reviewed",
-    }:
-        return "The supporting information and this draft require human verification; automated review has not confirmed the final version."
-    # Retain the substantive concern, stripping internal observation identifiers.
-    return re.sub(
-        r"\b[0-9a-f]{32}:observation-\d+\b",
-        "a supporting observation",
-        issue["message"],
-    )
-
-
-def _clean_text(text):
-    text = re.sub(r"\[(?:Issue|Issues)\s+\d+(?:[\s,–-]+\d+)*\]", "", text, flags=re.I)
-    text = re.sub(r"\b[0-9a-f]{32}:observation-\d+\b", "a supporting observation", text)
-    return text.strip()
-
-
-def _note_text(text):
-    text = _clean_text(text)
-    # Accept legacy/model-generated wrappers, but render the marker only once.
-    text = re.sub(r"^(?:\[?REVIEW REQUIRED\s*:\s*)+", "", text, flags=re.I)
-    return text.rstrip("]").strip()
-
-
-def render_report(result, specification, facts):
-    sections = specification_sections(specification)
-    issues = facts.get("issues", [])
-    if [s["title"] for s in result["sections"]] != [s["title"] for s in sections]:
-        raise WriterOutputError("Writer changed the specified section order")
-    rendered, covered, notes_seen = [], set(), set()
-
-    def append_note(content, text):
-        text = _note_text(text)
-        key = " ".join(text.casefold().split())
-        if not text or key in notes_seen:
-            return content
-        notes_seen.add(key)
-        return content + "\n\n[REVIEW REQUIRED: " + text + "]"
-
-    for section, definition in zip(result["sections"], sections):
-        fixed = _fixed_wording(definition["requirements"])
-        if not section["include"]:
-            if fixed:
-                raise WriterOutputError("An omitted section contains required wording")
-            continue
-        content = section["content"].strip()
-        if not content or re.search(r"^#{1,2}\s", content, re.MULTILINE):
+def render_report(result, facts, notice=None):
+    plan = facts["report"]
+    active = [s for s in plan["sections"] if s["include"]]
+    if [s["title"] for s in result["sections"]] != [s["title"] for s in active]:
+        raise WriterOutputError("Writer changed the reconciled section order")
+    rendered = []
+    for supplied, expected in zip(result["sections"], active):
+        if Counter(supplied["block_ids"]) != Counter(expected["block_ids"]):
             raise WriterOutputError(
-                "Writer must return section content without report headings"
+                "Writer changed the reconciled facts or their section"
             )
-        # Review prose belongs to the structured notes, with issue fallbacks below.
-        content = re.sub(r"\[REVIEW REQUIRED:.*?\]", "", content, flags=re.I | re.S)
-        content = "\n\n".join(
-            paragraph
-            for paragraph in content.split("\n\n")
-            if not re.match(r"^REVIEW REQUIRED\s*:", paragraph.strip(), re.I)
-        )
-        content = _clean_text(content)
-        if not content:
-            content = "The information for this section requires confirmation."
-        for text in fixed:
-            if text not in content:
-                content = (
-                    content + "\n\n" + text
-                    if text == FCA_LINE
-                    else text + "\n\n" + content
-                )
-        for note in section["review_notes"]:
-            if not note["text"].strip() or note["issue_index"] in covered:
+        paragraphs = supplied.get("paragraphs", [])
+        wording = {}
+        local_fallback = False
+        for paragraph in paragraphs:
+            bid = paragraph["block_id"]
+            if bid not in expected["block_ids"] or bid in wording:
+                local_fallback = True
                 continue
-            covered.add(note["issue_index"])
-            content = append_note(content, note["text"])
-        rendered.append({"title": section["title"], "content": content})
+            # Locked content is rendered separately, regardless of model output.
+            if not plan["blocks"][bid].get("locked"):
+                wording[bid] = paragraph["text"]
+        texts = []
+        for bid in supplied["block_ids"]:
+            block = plan["blocks"][bid]
+            text = block["text"]
+            if bid in wording:
+                try:
+                    text = restore_values(wording[bid], text)
+                except WriterOutputError:
+                    local_fallback = True
+            if text not in texts:
+                texts.append(text)
+        if local_fallback:
+            texts.append(
+                "[REVIEW REQUIRED: Some wording in this section could not be verified; the affected paragraphs retain the reconciled wording.]"
+            )
+        # Mandatory wording is never delegated to the model.
+        texts = (
+            [t for t in expected["fixed_text"] if t != FCA_LINE]
+            + texts
+            + [t for t in expected["fixed_text"] if t == FCA_LINE]
+        )
+        texts += [
+            "[REVIEW REQUIRED: " + note + "]"
+            for note in expected.get("review_notes", [])
+        ]
+        rendered.append(dict(title=expected["title"], content="\n\n".join(texts)))
     if not rendered:
-        raise WriterOutputError("Writer returned no report sections")
-    for index in sorted(set(range(len(issues))) - covered):
-        rendered[0]["content"] = append_note(
-            rendered[0]["content"], _fallback_note(issues[index])
-        )
-    processing_notice = any(
-        issue["issue_type"]
-        in {
-            "validation_stale",
-            "validation_failed",
-            "validation_incomplete",
-            "validation_not_reviewed",
-        }
-        for issue in issues
-    )
-    if (
-        facts.get("validation_state", "not_reviewed") != "passed"
-        and not processing_notice
-    ):
-        rendered[0]["content"] = append_note(
-            rendered[0]["content"],
-            "Automated review has not confirmed the final extraction. Verify this draft against the source information before proceeding.",
-        )
-    title_match = re.search(r"^#[ \t]+(.+)$", specification, re.MULTILINE)
-    title = (
-        title_match[1].removeprefix("Report specification: ").strip()
-        if title_match
-        else "Advice Report"
-    )
-    # A draft label is metadata in the first section, not an extra report section.
+        raise WriterOutputError("Reconciliation provided no included report sections")
+    notes = []
+    if notice:
+        notes.append(notice)
     rendered[0]["content"] = "**DRAFT — FOR HUMAN REVIEW**\n\n" + rendered[0]["content"]
-    return format_document({"document_title": title}, rendered)
+    rendered[0]["content"] += "".join(
+        "\n\n[REVIEW REQUIRED: " + text + "]" for text in dict.fromkeys(notes)
+    )
+    return format_document({"document_title": plan["title"]}, rendered)

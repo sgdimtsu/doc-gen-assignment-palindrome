@@ -11,7 +11,7 @@
       "Robert Fletcher"
     ],
     "observation_ids": [
-      "38aa7eff8a754c88ad615c60179b90b9:observation-0001"
+      "cfb55807eb474858a28281dedbad44d4:observation-0001"
     ]
   },
   "accounts": [
@@ -20,7 +20,7 @@
       "account_id": "H-ISA-R",
       "proposed": false,
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0004"
+        "cfb55807eb474858a28281dedbad44d4:observation-0002"
       ],
       "holders": [
         "Robert Fletcher"
@@ -31,30 +31,30 @@
       "valuation": {
         "data": {
           "account": {
-            "account_id": null,
+            "account_id": "H-ISA-R",
             "platform": "Holloway",
             "account_type": "Stocks & Shares ISA",
-            "reference_text": "Holloway ISA (Robert)",
-            "owner_text": "Robert"
+            "reference_text": "Stocks & Shares ISA (Robert Fletcher)",
+            "owner_text": "Robert Fletcher"
           },
-          "amount": "70000",
-          "amount_text": "£70,000",
+          "amount": "70000.0",
+          "amount_text": "70000.0",
           "currency": "GBP",
           "valuation_date": "2026-04-30",
-          "date_text": "30 Apr 2026",
+          "date_text": null,
           "precision": "exact"
         },
         "observation_ids": [
-          "38aa7eff8a754c88ad615c60179b90b9:observation-0007"
+          "cfb55807eb474858a28281dedbad44d4:observation-0006",
+          "cfb55807eb474858a28281dedbad44d4:observation-0009"
         ],
-        "source_text": "Holloway Account Statement\n\n| Account                 | Type                      | Value    | Valued on    |\n|------------------------|---------------------------|----------|--------------|\n| Holloway ISA (Robert)  | Stocks & Shares ISA       | £70,000  | 30 Apr 2026  |",
+        "source_text": "{\"account_id\": \"H-ISA-R\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Robert Fletcher\", \"status\": \"open\", \"value\": 70000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
         "sections": [
-          "background_objectives",
-          "recommendations"
+          "background_objectives"
         ],
         "field_states": [
           {
-            "field": "account.account_id",
+            "field": "date_text",
             "state": "not_stated"
           }
         ]
@@ -66,7 +66,7 @@
       "account_id": "H-ISA-JE",
       "proposed": false,
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0005"
+        "cfb55807eb474858a28281dedbad44d4:observation-0003"
       ],
       "holders": [
         "Jean Fletcher"
@@ -77,30 +77,30 @@
       "valuation": {
         "data": {
           "account": {
-            "account_id": null,
+            "account_id": "H-ISA-JE",
             "platform": "Holloway",
             "account_type": "Stocks & Shares ISA",
-            "reference_text": "Holloway ISA (Jean)",
-            "owner_text": "Jean"
+            "reference_text": "Stocks & Shares ISA (Jean Fletcher)",
+            "owner_text": "Jean Fletcher"
           },
-          "amount": "66000",
-          "amount_text": "£66,000",
+          "amount": "66000.0",
+          "amount_text": "66000.0",
           "currency": "GBP",
           "valuation_date": "2026-04-30",
-          "date_text": "30 Apr 2026",
+          "date_text": null,
           "precision": "exact"
         },
         "observation_ids": [
-          "38aa7eff8a754c88ad615c60179b90b9:observation-0008"
+          "cfb55807eb474858a28281dedbad44d4:observation-0007",
+          "cfb55807eb474858a28281dedbad44d4:observation-0010"
         ],
-        "source_text": "Holloway Account Statement\n\n| Account                 | Type                      | Value    | Valued on    |\n|------------------------|---------------------------|----------|--------------|\n| Holloway ISA (Jean)    | Stocks & Shares ISA       | £66,000  | 30 Apr 2026  |",
+        "source_text": "{\"account_id\": \"H-ISA-JE\", \"platform\": \"Holloway\", \"type\": \"Stocks & Shares ISA\", \"owner\": \"Jean Fletcher\", \"status\": \"open\", \"value\": 66000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-04-30\"}",
         "sections": [
-          "background_objectives",
-          "recommendations"
+          "background_objectives"
         ],
         "field_states": [
           {
-            "field": "account.account_id",
+            "field": "date_text",
             "state": "not_stated"
           }
         ]
@@ -112,7 +112,7 @@
       "account_id": "H-GIA-JF",
       "proposed": false,
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0006"
+        "cfb55807eb474858a28281dedbad44d4:observation-0004"
       ],
       "holders": [
         "Jean Fletcher",
@@ -124,39 +124,51 @@
       "valuation": {
         "data": {
           "account": {
-            "account_id": null,
+            "account_id": "H-GIA-JF",
             "platform": "Holloway",
             "account_type": "General Investment Account",
-            "reference_text": "joint GIA",
+            "reference_text": "General Investment Account (Joint)",
             "owner_text": "Joint"
           },
-          "amount": null,
-          "amount_text": "around £38,000",
+          "amount": "30000.0",
+          "amount_text": "30000.0",
           "currency": "GBP",
-          "valuation_date": "2026-05-16",
-          "date_text": "during the meeting (16 May 2026)",
-          "precision": "approximate"
+          "valuation_date": "2026-03-10",
+          "date_text": null,
+          "precision": "exact"
         },
         "observation_ids": [
-          "38aa7eff8a754c88ad615c60179b90b9:observation-0010"
+          "cfb55807eb474858a28281dedbad44d4:observation-0008",
+          "cfb55807eb474858a28281dedbad44d4:observation-0011"
         ],
-        "source_text": "We looked at the jointly-held General Investment Account on the Holloway platform. Pulling it up during the meeting, it was showing around £38,000, a little higher than the figure on the last statement they had to hand.",
+        "source_text": "{\"account_id\": \"H-GIA-JF\", \"platform\": \"Holloway\", \"type\": \"General Investment Account\", \"owner\": \"Joint\", \"status\": \"open\", \"value\": 30000.0, \"currency\": \"GBP\", \"valuation_date\": \"2026-03-10\"}",
         "sections": [
-          "background_objectives",
-          "recommendations"
+          "background_objectives"
         ],
         "field_states": [
           {
-            "field": "account.account_id",
+            "field": "date_text",
             "state": "not_stated"
-          },
-          {
-            "field": "amount",
-            "state": "qualified_value"
           }
         ]
       },
       "in_report_scope": true
+    },
+    {
+      "account_key": "account-0004",
+      "account_id": "H-CASH-JE",
+      "proposed": false,
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0005"
+      ],
+      "holders": [
+        "Jean Fletcher"
+      ],
+      "platform": "Holloway",
+      "account_type": "Cash Account",
+      "status": "open",
+      "valuation": null,
+      "in_report_scope": false
     }
   ],
   "actions": [
@@ -185,9 +197,9 @@
         "timing_text": null
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0014"
+        "cfb55807eb474858a28281dedbad44d4:observation-0016"
       ],
-      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.\nSelling down the GIA is a disposal, so there is a capital gains position to set out in the report.",
       "sections": [
         "recommendations",
         "tax_implications"
@@ -235,14 +247,14 @@
           {
             "account_id": null,
             "platform": "Holloway",
-            "account_type": "ISA",
+            "account_type": "Stocks & Shares ISA",
             "reference_text": "Robert's ISA",
             "owner_text": "Robert"
           },
           {
             "account_id": null,
             "platform": "Holloway",
-            "account_type": "ISA",
+            "account_type": "Stocks & Shares ISA",
             "reference_text": "Jean's ISA",
             "owner_text": "Jean"
           }
@@ -253,13 +265,13 @@
         "precision": "unspecified",
         "amount_basis": "unspecified",
         "agreement_status": "agreed",
-        "allocation_text": null,
+        "allocation_text": "fund both Robert's and Jean's ISAs for the new tax year",
         "rationale_text": null,
         "conditions": [],
         "timing_text": null
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0015"
+        "cfb55807eb474858a28281dedbad44d4:observation-0017"
       ],
       "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
       "sections": [
@@ -284,10 +296,6 @@
         },
         {
           "field": "currency",
-          "state": "not_stated"
-        },
-        {
-          "field": "allocation_text",
           "state": "not_stated"
         },
         {
@@ -324,15 +332,15 @@
         "precision": "unspecified",
         "amount_basis": "unspecified",
         "agreement_status": "agreed",
-        "allocation_text": null,
+        "allocation_text": "for the balance from inheritance and GIA after ISA contributions",
         "rationale_text": null,
         "conditions": [],
         "timing_text": null
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0016"
+        "cfb55807eb474858a28281dedbad44d4:observation-0018"
       ],
-      "source_text": "The plan we agreed: disinvest the joint GIA, and together with the inheritance, fund both Robert's and Jean's ISAs for the new tax year and open a new jointly-held investment account for the balance.",
+      "source_text": "The plan we agreed: ... and open a new jointly-held investment account for the balance.",
       "sections": [
         "recommendations"
       ],
@@ -362,80 +370,6 @@
           "state": "not_stated"
         },
         {
-          "field": "allocation_text",
-          "state": "not_stated"
-        },
-        {
-          "field": "rationale_text",
-          "state": "not_stated"
-        },
-        {
-          "field": "timing_text",
-          "state": "not_stated"
-        }
-      ],
-      "source_account_keys": [],
-      "target_account_keys": []
-    },
-    {
-      "data": {
-        "action_type": "retain",
-        "source_accounts": [
-          {
-            "account_id": null,
-            "platform": null,
-            "account_type": "Cash Account",
-            "reference_text": "another small cash account",
-            "owner_text": "Jean"
-          }
-        ],
-        "target_accounts": [],
-        "amount": null,
-        "amount_text": null,
-        "currency": null,
-        "precision": "unspecified",
-        "amount_basis": "unspecified",
-        "agreement_status": "deferred",
-        "allocation_text": null,
-        "rationale_text": null,
-        "conditions": [
-          "confirmation of account status required"
-        ],
-        "timing_text": null
-      },
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0018"
-      ],
-      "source_text": "Jean mentioned in passing that she has another small cash account from some years ago, but she could not recall the balance and was not even sure it was still active. She will dig out the paperwork and we will confirm it before anything is finalised.",
-      "sections": [
-        "background_objectives"
-      ],
-      "field_states": [
-        {
-          "field": "source_accounts[0].account_id",
-          "state": "not_stated"
-        },
-        {
-          "field": "source_accounts[0].platform",
-          "state": "not_stated"
-        },
-        {
-          "field": "amount",
-          "state": "not_stated"
-        },
-        {
-          "field": "amount_text",
-          "state": "not_stated"
-        },
-        {
-          "field": "currency",
-          "state": "not_stated"
-        },
-        {
-          "field": "allocation_text",
-          "state": "not_stated"
-        },
-        {
           "field": "rationale_text",
           "state": "not_stated"
         },
@@ -454,7 +388,7 @@
         "people": [
           {
             "name": "Jean Fletcher",
-            "reference_text": "Jean"
+            "reference_text": "Jean Fletcher"
           }
         ],
         "origin_text": "inheritance from her late mother's estate",
@@ -470,7 +404,7 @@
         "conditions": []
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0002"
+        "cfb55807eb474858a28281dedbad44d4:observation-0014"
       ],
       "source_text": "Jean has received an inheritance of around £120,000 from her late mother's estate, which has now cleared.",
       "sections": [
@@ -501,14 +435,10 @@
         "people": [
           {
             "name": "Jean Fletcher",
-            "reference_text": "Jean"
-          },
-          {
-            "name": "Robert Fletcher",
-            "reference_text": "Robert"
+            "reference_text": "Jean Fletcher"
           }
         ],
-        "origin_text": "inheritance (Jean) and the joint General Investment Account",
+        "origin_text": "inheritance and the joint General Investment Account",
         "account": null,
         "amount": null,
         "amount_text": "GBP 120,000 inheritance plus the full joint GIA value",
@@ -521,9 +451,9 @@
         "conditions": []
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0003"
+        "cfb55807eb474858a28281dedbad44d4:observation-0015"
       ],
-      "source_text": "Investment amount\tGBP 120,000 inheritance plus the full joint GIA value",
+      "source_text": "Investment amount\tGBP 120,000 inheritance plus the full joint GIA value\nSource of funds\tInheritance (Jean) and the joint General Investment Account",
       "sections": [
         "recommendations"
       ],
@@ -534,7 +464,7 @@
         },
         {
           "field": "amount",
-          "state": "not_stated"
+          "state": "qualified_value"
         },
         {
           "field": "receipt_date",
@@ -553,20 +483,20 @@
         "people": [
           {
             "name": "Robert Fletcher",
-            "reference_text": "Robert"
+            "reference_text": "Robert Fletcher"
           },
           {
             "name": "Jean Fletcher",
-            "reference_text": "Jean"
+            "reference_text": "Jean Fletcher"
           }
         ],
         "category": "objective",
         "timeframe_text": "long-term",
         "risk_score": "4",
-        "risk_description": "moderate risk level"
+        "risk_description": "moderate"
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0011"
+        "cfb55807eb474858a28281dedbad44d4:observation-0012"
       ],
       "source_text": "Their objectives are unchanged from the last review: long-term growth, with no income required from the portfolio for the foreseeable future. Both remain at a moderate risk level and were comfortable keeping it there.",
       "sections": [
@@ -579,7 +509,7 @@
         "people": [
           {
             "name": "Jean Fletcher",
-            "reference_text": "Jean"
+            "reference_text": "Jean Fletcher"
           }
         ],
         "category": "personal_circumstance",
@@ -588,48 +518,9 @@
         "risk_description": null
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0012"
+        "cfb55807eb474858a28281dedbad44d4:observation-0013"
       ],
-      "source_text": "Jean is doing as well as can be expected and was grateful for the flowers the office had sent.",
-      "sections": [
-        "background_objectives"
-      ],
-      "field_states": [
-        {
-          "field": "timeframe_text",
-          "state": "not_stated"
-        },
-        {
-          "field": "risk_score",
-          "state": "not_stated"
-        },
-        {
-          "field": "risk_description",
-          "state": "not_stated"
-        }
-      ]
-    },
-    {
-      "data": {
-        "people": [
-          {
-            "name": "Robert Fletcher",
-            "reference_text": "Robert"
-          },
-          {
-            "name": "Jean Fletcher",
-            "reference_text": "Jean"
-          }
-        ],
-        "category": "personal_circumstance",
-        "timeframe_text": null,
-        "risk_score": null,
-        "risk_description": null
-      },
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0013"
-      ],
-      "source_text": "We talked about their grandchildren and a trip they have planned later in the year; nothing there changes the advice.",
+      "source_text": "Jean has received an inheritance of around £120,000 from her late mother's estate, which has now cleared. The couple would like to put this to work alongside their existing portfolio.",
       "sections": [
         "background_objectives"
       ],
@@ -663,7 +554,7 @@
         "confirmation_status": "not_stated"
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0019"
+        "cfb55807eb474858a28281dedbad44d4:observation-0020"
       ],
       "source_text": "Initial charge\t0.5%",
       "sections": [
@@ -676,71 +567,7 @@
           "state": "not_stated"
         },
         {
-          "field": "amount",
-          "state": "not_stated"
-        },
-        {
-          "field": "currency",
-          "state": "not_stated"
-        },
-        {
-          "field": "basis_text",
-          "state": "not_stated"
-        },
-        {
-          "field": "frequency_text",
-          "state": "not_stated"
-        },
-        {
           "field": "platform",
-          "state": "not_stated"
-        }
-      ]
-    },
-    {
-      "data": {
-        "charge_type": "platform",
-        "account": {
-          "account_id": null,
-          "platform": null,
-          "account_type": null,
-          "reference_text": "new joint account",
-          "owner_text": "Joint"
-        },
-        "platform": null,
-        "rate_percent": null,
-        "amount": null,
-        "currency": null,
-        "basis_text": null,
-        "frequency_text": null,
-        "confirmation_status": "requires_confirmation"
-      },
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0020"
-      ],
-      "source_text": "Robert asked about the charges on the new joint account; I said the report would set those out once verified.",
-      "sections": [
-        "fees_charges"
-      ],
-      "field_states": [
-        {
-          "field": "account.account_id",
-          "state": "not_stated"
-        },
-        {
-          "field": "account.platform",
-          "state": "not_stated"
-        },
-        {
-          "field": "account.account_type",
-          "state": "not_stated"
-        },
-        {
-          "field": "platform",
-          "state": "not_stated"
-        },
-        {
-          "field": "rate_percent",
           "state": "not_stated"
         },
         {
@@ -768,11 +595,11 @@
         "people": [
           {
             "name": "Robert Fletcher",
-            "reference_text": "Robert"
+            "reference_text": "Robert Fletcher"
           },
           {
             "name": "Jean Fletcher",
-            "reference_text": "Jean"
+            "reference_text": "Jean Fletcher"
           }
         ],
         "accounts": [
@@ -793,7 +620,7 @@
         "confirmation_status": "not_stated"
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0017"
+        "cfb55807eb474858a28281dedbad44d4:observation-0019"
       ],
       "source_text": "Selling down the GIA is a disposal, so there is a capital gains position to set out in the report.",
       "sections": [
@@ -828,14 +655,30 @@
       "data": {
         "instruction_type": "mandatory_wording",
         "scope_text": "conclusion",
-        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest.\nPast performance is not a guide to future returns."
+        "exact_wording": "The value of investments can fall as well as rise and you may get back less than you invest. Past performance is not a guide to future returns."
       },
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0021"
+        "cfb55807eb474858a28281dedbad44d4:observation-0021"
       ],
-      "source_text": "Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"",
+      "source_text": "Conclusion\n- Must include this risk warning, word for word:\n  \"The value of investments can fall as well as rise and you may get back less than you invest.\n  Past performance is not a guide to future returns.\"\n- Then a closing line inviting the client to proceed.",
       "sections": [
         "conclusion"
+      ],
+      "field_states": []
+    },
+    {
+      "data": {
+        "instruction_type": "tone",
+        "scope_text": "how to reference new funding/inheritance",
+        "exact_wording": "Reference its origin with appropriate sensitivity."
+      },
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0022"
+      ],
+      "source_text": "The new money being invested is an inheritance the client received following the recent death of her mother. Reference its origin with appropriate sensitivity.",
+      "sections": [
+        "background_objectives",
+        "recommendations"
       ],
       "field_states": []
     }
@@ -847,7 +690,7 @@
       "message": "insufficient_identity",
       "severity": "error",
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0001"
+        "cfb55807eb474858a28281dedbad44d4:observation-0001"
       ],
       "account_keys": [],
       "field": "included_accounts[3]"
@@ -857,37 +700,27 @@
       "message": "insufficient_identity",
       "severity": "error",
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0016"
+        "cfb55807eb474858a28281dedbad44d4:observation-0018"
       ],
       "account_keys": [],
       "field": "target_accounts[0]"
     },
     {
-      "issue_type": "unresolved_account_match",
-      "message": "insufficient_identity",
-      "severity": "error",
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0018"
+      "issue_type": "valuation_unresolved",
+      "message": "No valuation was extracted",
+      "severity": "warning",
+      "observation_ids": [],
+      "account_keys": [
+        "account-0004"
       ],
-      "account_keys": [],
-      "field": "source_accounts[0]"
-    },
-    {
-      "issue_type": "unresolved_account_match",
-      "message": "insufficient_identity",
-      "severity": "error",
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0020"
-      ],
-      "account_keys": [],
-      "field": "account"
+      "field": "valuation"
     },
     {
       "issue_type": "amount_unconfirmed",
       "message": "Do not state an exact transaction amount; retain wording or request confirmation",
       "severity": "warning",
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0015"
+        "cfb55807eb474858a28281dedbad44d4:observation-0017"
       ],
       "account_keys": [
         "account-0001",
@@ -900,7 +733,7 @@
       "message": "Do not state an exact transaction amount; retain wording or request confirmation",
       "severity": "warning",
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0016"
+        "cfb55807eb474858a28281dedbad44d4:observation-0018"
       ],
       "account_keys": [],
       "field": "amount"
@@ -910,17 +743,7 @@
       "message": "This charge requires human confirmation",
       "severity": "warning",
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0019"
-      ],
-      "account_keys": [],
-      "field": null
-    },
-    {
-      "issue_type": "confirmation_required",
-      "message": "This charge requires human confirmation",
-      "severity": "warning",
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0020"
+        "cfb55807eb474858a28281dedbad44d4:observation-0020"
       ],
       "account_keys": [],
       "field": null
@@ -930,18 +753,16 @@
       "message": "This tax_statement requires human confirmation",
       "severity": "warning",
       "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0017"
+        "cfb55807eb474858a28281dedbad44d4:observation-0019"
       ],
       "account_keys": [],
       "field": null
     },
     {
-      "issue_type": "extraction_ambiguous_reference",
-      "message": "Jean mentioned a 'small cash account' but could not recall key details such as the account ID or platform. This prevents a unique match to existing records.",
+      "issue_type": "extraction_unreadable_content",
+      "message": "No additional account details beyond the visually extracted statement table; content beyond the visible table is outside the image or not readable.",
       "severity": "warning",
-      "observation_ids": [
-        "38aa7eff8a754c88ad615c60179b90b9:observation-0021"
-      ],
+      "observation_ids": [],
       "account_keys": [],
       "field": null
     },
@@ -950,6 +771,96 @@
       "message": "The final candidate changed after validation. Earlier findings may be outdated; see validation.json and verify this draft.",
       "severity": "warning",
       "observation_ids": [],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0002"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0003"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0004"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0005"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0006"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0007"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0008"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_field_state",
+      "message": "Extraction check — verify: qualified_value requires an approximate or bounded amount Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0015"
+      ],
+      "account_keys": [],
+      "field": null
+    },
+    {
+      "issue_type": "validation_quote",
+      "message": "Extraction check — verify: Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+      "severity": "error",
+      "observation_ids": [
+        "cfb55807eb474858a28281dedbad44d4:observation-0018"
+      ],
       "account_keys": [],
       "field": null
     }

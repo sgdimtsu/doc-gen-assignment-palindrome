@@ -1,0 +1,534 @@
+[
+  {
+    "state": "failed",
+    "evidence_review_complete": true,
+    "deterministic_findings": [
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timeframe_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0002"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_score Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0002"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_description Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0002"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timeframe_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0003"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_score Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_description Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0004"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_score Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: risk_description Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0005"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: receipt_date Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0007"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0007"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0007"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0008"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0008"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0008"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0009"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: allocation_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0010"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: rationale_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0010"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "field_state",
+        "severity": "error",
+        "message": "Null field lacks an explicit state: timing_text Next step: Use paths relative to data, annotate null fields and remove missing states from populated fields.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0010"
+        ],
+        "source_ids": [
+          "source-0003"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0001 data.included_accounts[0].owner_text is null, but the request states 'Held in single or joint name? Single'. This indicates the account is held in single name; the field should be extracted as 'Single' or reflect the actual holder's name if explicitly stated elsewhere in this same source. Evidence:\n- 'Held in single or joint name? Single'\n- 'Accounts covered\\nHolloway Stocks & Shares ISA'",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0005",
+            "source_text": "Held in single or joint name?\nSingle"
+          }
+        ]
+      },
+      {
+        "category": "omission",
+        "severity": "error",
+        "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0006 data.account.owner_text is null, but the request states this is a single account (see 'Held in single or joint name? Single'); thus the cash account is also single-owned. Extract as 'Single' or reflect the true holder if explicitly stated. Evidence:\n- 'Held in single or joint name? Single'\n- 'Source of funds\\nCash held on deposit in the Holloway cash account'",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0005",
+            "source_text": "Held in single or joint name?\nSingle"
+          }
+        ]
+      },
+      {
+        "category": "missing_information",
+        "severity": "warning",
+        "message": "owner_text for included_accounts and for the cash account in d6ce11d208844cfd8a70a1e9e5899d68:observation-0001 and observation-0006 is not the actual name but only that it is not joint, per the request. The actual explicit owner name is not provided in this source and should remain unresolved unless present in the same document. Human review is required to confirm if name is required or if 'Single' suffices as the only directly available context.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001",
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": [
+          {
+            "source_id": "source-0005",
+            "source_text": "Held in single or joint name?\nSingle"
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "candidate_sha256": "cc3bc7e663399e9ae8a0d857dfe595e1da9ffc3856457f4b3d807fb10f8bc462",
+    "usage": {
+      "input_tokens": 12225,
+      "output_tokens": 647
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "499de4c6165833eeda0036d3a0f00c5f7de2928af1bef5d56904ccea9fafa62e",
+    "review_diagnostics": {
+      "expected_source_ids": [
+        "source-0005",
+        "source-0006",
+        "source-0001",
+        "source-0002",
+        "source-0003",
+        "source-0004"
+      ],
+      "response": {
+        "reviewed_source_ids": [
+          "source-0005",
+          "source-0006",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0001 data.included_accounts[0].owner_text is null, but the request states 'Held in single or joint name? Single'. This indicates the account is held in single name; the field should be extracted as 'Single' or reflect the actual holder's name if explicitly stated elsewhere in this same source. Evidence:\n- 'Held in single or joint name? Single'\n- 'Accounts covered\\nHolloway Stocks & Shares ISA'",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001"
+            ],
+            "source_ids": [
+              "source-0005"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0005",
+                "source_text": "Held in single or joint name?\nSingle"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0006 data.account.owner_text is null, but the request states this is a single account (see 'Held in single or joint name? Single'); thus the cash account is also single-owned. Extract as 'Single' or reflect the true holder if explicitly stated. Evidence:\n- 'Held in single or joint name? Single'\n- 'Source of funds\\nCash held on deposit in the Holloway cash account'",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+            ],
+            "source_ids": [
+              "source-0005"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0005",
+                "source_text": "Held in single or joint name?\nSingle"
+              }
+            ]
+          },
+          {
+            "category": "missing_information",
+            "severity": "warning",
+            "message": "owner_text for included_accounts and for the cash account in d6ce11d208844cfd8a70a1e9e5899d68:observation-0001 and observation-0006 is not the actual name but only that it is not joint, per the request. The actual explicit owner name is not provided in this source and should remain unresolved unless present in the same document. Human review is required to confirm if name is required or if 'Single' suffices as the only directly available context.",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001",
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+            ],
+            "source_ids": [
+              "source-0005"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0005",
+                "source_text": "Held in single or joint name?\nSingle"
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": []
+    }
+  },
+  {
+    "state": "incomplete",
+    "deterministic_findings": [
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      },
+      {
+        "category": "quote",
+        "severity": "error",
+        "message": "Supporting text is not a verbatim excerpt of the cited document Next step: Copy an original source excerpt that supports the populated fields; do not summarise.",
+        "observation_ids": [
+          "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+        ],
+        "source_ids": [
+          "source-0005"
+        ],
+        "evidence": []
+      }
+    ],
+    "review_findings": [],
+    "evidence_review_complete": false,
+    "errors": [
+      "Evidence review failed: findings[0].evidence[0]: excerpt is not verbatim in source-0005; findings[1].evidence[0]: excerpt is not verbatim in source-0005"
+    ],
+    "usage": {
+      "input_tokens": 10748,
+      "output_tokens": 834
+    },
+    "model": "gpt-4.1",
+    "model_calls": 1,
+    "extraction_sha256": "34cc683504ddb9d732b7c51414b6e7014f6f17f682ba927145f7177d74fd25f6",
+    "review_diagnostics": {
+      "expected_source_ids": [
+        "source-0005",
+        "source-0006",
+        "source-0001",
+        "source-0002",
+        "source-0003",
+        "source-0004"
+      ],
+      "response": {
+        "reviewed_source_ids": [
+          "source-0005",
+          "source-0006",
+          "source-0001",
+          "source-0002",
+          "source-0003",
+          "source-0004"
+        ],
+        "findings": [
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0001, field included_accounts[0].owner_text is null (not_stated), but the source provides that the account is held in single name and elsewhere identifies the client as Margaret Hughes. Supporting excerpt: \"Held in single or joint name?\tSingle\" and \"Accounts covered\tHolloway Stocks & Shares ISA\" (in client context), so 'Margaret Hughes' should be included as owner_text per source-local inference.",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0001"
+            ],
+            "source_ids": [
+              "source-0005"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0005",
+                "source_text": "Accounts covered\nHolloway Stocks & Shares ISA\nHeld in single or joint name?\nSingle"
+              }
+            ]
+          },
+          {
+            "category": "omission",
+            "severity": "error",
+            "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0006, field account.owner_text is null (not_stated), but the source states 'Held in single or joint name? Single' and the context defines 'Margaret Hughes' as client. Therefore, 'Margaret Hughes' should be included as owner_text for the cash account as supported by the same single-ownership context.",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0006"
+            ],
+            "source_ids": [
+              "source-0005"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0005",
+                "source_text": "Source of funds\tCash held on deposit in the Holloway cash account\nHeld in single or joint name?\tSingle"
+              }
+            ]
+          },
+          {
+            "category": "missing_information",
+            "severity": "warning",
+            "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0007 target_accounts[0].owner_text is null. While the report request does specify single name, the owner's name does not appear explicitly stated in the same phrase for this product in this source. Thus, the null value is justified, but human confirmation of explicit name linkage may be needed.",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0007"
+            ],
+            "source_ids": [
+              "source-0005"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0005",
+                "source_text": "Product recommended\tTop up of existing Stocks & Shares ISA\nHeld in single or joint name?\tSingle"
+              }
+            ]
+          },
+          {
+            "category": "missing_information",
+            "severity": "warning",
+            "message": "Observation d6ce11d208844cfd8a70a1e9e5899d68:observation-0009 target_accounts[0].owner_text and source_accounts[0].owner_text are null. While the context (meeting notes) clearly applies to the client, the precise instruction does not repeat the name adjacent to these account descriptions, so the null value correctly preserves absence of explicit owner_text in this source, but this should be checked by a human if strict linkage is required by the report.",
+            "observation_ids": [
+              "d6ce11d208844cfd8a70a1e9e5899d68:observation-0009"
+            ],
+            "source_ids": [
+              "source-0003"
+            ],
+            "evidence": [
+              {
+                "source_id": "source-0003",
+                "source_text": "her Holloway cash account and would like to use this year's ISA allowance by moving some of it into her Stocks & Shares ISA.\nWe agreed she would move £20,000 from the cash account into the Stocks & Shares ISA."
+              }
+            ]
+          }
+        ]
+      },
+      "rejection_reasons": [
+        "findings[0].evidence[0]: excerpt is not verbatim in source-0005",
+        "findings[1].evidence[0]: excerpt is not verbatim in source-0005"
+      ]
+    },
+    "candidate_sha256": "0eae3767314810383613621b10d5d7e1438c6f37ae014223e39136cd508cf62c"
+  }
+]
